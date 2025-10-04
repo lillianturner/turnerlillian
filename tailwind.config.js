@@ -20,7 +20,7 @@ export default {
       fontFamily: {
         'heading': ['Oswald', 'sans-serif'],
         'subheading': ['Montserrat', 'sans-serif'],
-        'body': ['Montserrat', 'sans-serif'],
+        'body': ['Nunito Sans', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
