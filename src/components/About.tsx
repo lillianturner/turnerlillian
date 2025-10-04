@@ -55,7 +55,7 @@ export function About() {
         <div className="max-w-4xl mx-auto mb-16">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <article className="glass-card p-8 rounded-xl" aria-labelledby="journey-heading">
+              <article className="glass-card p-8 rounded-xl hover-lift transition-all-smooth" aria-labelledby="journey-heading">
                 <h3 id="journey-heading" className="text-2xl font-semibold mb-4">My Journey</h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   With over 5 years of experience in UX design and technical writing, I've helped startups and 
@@ -72,7 +72,7 @@ export function About() {
             </div>
             
             <div className="space-y-6">
-              <article className="glass-card p-8 rounded-xl" aria-labelledby="motivation-heading">
+              <article className="glass-card p-8 rounded-xl hover-lift transition-all-smooth" aria-labelledby="motivation-heading">
                 <h3 id="motivation-heading" className="text-2xl font-semibold mb-4">What Drives Me</h3>
                 <p className="text-muted-foreground leading-relaxed mb-6">
                   I'm fascinated by the intersection of psychology, technology, and design. Every project is an 
@@ -98,7 +98,7 @@ export function About() {
           <h3 className="text-2xl font-semibold text-center mb-8" id="values-heading">Core Values</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6" role="list" aria-labelledby="values-heading">
             {values.map((value, index) => (
-              <article key={index} role="listitem" className="glass-card p-6 rounded-xl text-center focus-within:ring-2 focus-within:ring-primary">
+              <article key={index} role="listitem" className="glass-card p-6 rounded-xl text-center focus-within:ring-2 focus-within:ring-primary hover-lift transition-all-smooth">
                 <div className="text-primary mb-4 flex justify-center" role="img" aria-label={`${value.title} icon`}>{value.icon}</div>
                 <h4 className="text-lg font-semibold mb-3" id={`value-title-${index}`}>{value.title}</h4>
                 <p className="text-sm text-muted-foreground" aria-describedby={`value-title-${index}`}>{value.description}</p>
@@ -108,7 +108,7 @@ export function About() {
         </div>
 
         {/* Skills & Expertise */}
-        <aside className="glass-card-accent p-8 rounded-xl" aria-labelledby="skills-heading">
+        <aside className="glass-card-accent p-8 rounded-xl hover-lift transition-all-smooth" aria-labelledby="skills-heading">
           <h3 id="skills-heading" className="text-2xl font-semibold text-center mb-8">Skills & Expertise</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8" role="list" aria-label="Skill categories">
             {skills.map((skillGroup, index) => (

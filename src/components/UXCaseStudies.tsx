@@ -35,8 +35,8 @@ export function UXCaseStudies() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" role="list" aria-label="UX case studies">
           {caseStudies.map((study, index) => (
-            <article key={index} role="listitem" className="group glass-card rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-primary flex flex-col h-full">
-              <div className="aspect-video glass-section flex items-center justify-center" role="img" aria-label={`Preview image for ${study.title}`}>
+            <article key={index} role="listitem" className="group glass-card rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-primary flex flex-col h-full card-interactive">
+              <div className="aspect-video glass-section flex items-center justify-center card-image" role="img" aria-label={`Preview image for ${study.title}`}>
                 <span className="text-muted-foreground">Project Image</span>
               </div>
               <div className="p-6 flex flex-col flex-grow">
@@ -50,7 +50,7 @@ export function UXCaseStudies() {
                   ))}
                 </div>
                 <Button 
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground focus:ring-2 focus:ring-primary focus:ring-offset-2 mt-auto" 
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground focus:ring-2 focus:ring-primary focus:ring-offset-2 mt-auto btn-animate hover-glow" 
                   aria-label={`View case study for ${study.title}`}
                 >
                   View Case Study

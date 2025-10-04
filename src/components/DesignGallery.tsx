@@ -78,7 +78,7 @@ export function DesignGallery() {
         </div>
 
         {/* Design Philosophy */}
-        <aside className="glass-card-primary p-8 rounded-xl mb-16 max-w-4xl mx-auto" aria-labelledby="philosophy-heading">
+        <aside className="glass-card-primary p-8 rounded-xl mb-16 max-w-4xl mx-auto hover-lift transition-all-smooth" aria-labelledby="philosophy-heading">
           <h3 id="philosophy-heading" className="text-2xl font-semibold mb-6 text-center">Design Philosophy</h3>
           <div className="grid md:grid-cols-3 gap-6" role="list" aria-label="Design principles">
             {designPrinciples.map((principle, index) => (
@@ -99,7 +99,7 @@ export function DesignGallery() {
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16" role="list" aria-label="Design categories">
           {designCategories.map((category, index) => (
-            <article key={index} role="listitem" className="group glass-card rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-primary">
+            <article key={index} role="listitem" className="group glass-card rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-primary hover-lift transition-all-smooth">
               <div className={`p-8 text-gray-900 ${category.glassClass}`} role="banner">
                 <div className="text-gray-800 mb-4" role="img" aria-label={`${category.title} icon`}>{category.icon}</div>
                 <h3 className="text-xl font-bold text-gray-900" id={`category-title-${index}`}>{category.title}</h3>
@@ -123,7 +123,7 @@ export function DesignGallery() {
         </div>
 
         {/* Design Process */}
-        <aside className="glass-card-accent p-8 rounded-xl" aria-labelledby="process-heading">
+        <aside className="glass-card-accent p-8 rounded-xl hover-lift transition-all-smooth" aria-labelledby="process-heading">
           <h3 id="process-heading" className="text-2xl font-semibold mb-6 text-center">Design Process</h3>
           <div className="grid md:grid-cols-4 gap-6" role="list" aria-label="Design process steps">
             {[

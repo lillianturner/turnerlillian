@@ -22,7 +22,7 @@ export function Contact() {
                 name="name"
                 required
                 aria-required="true"
-                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" 
+                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary form-field transition-all-smooth" 
                 placeholder="Your full name"
               />
             </div>
@@ -35,7 +35,7 @@ export function Contact() {
                 required
                 aria-required="true"
                 aria-describedby="email-help"
-                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" 
+                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary form-field transition-all-smooth" 
                 placeholder="your.email@example.com"
               />
               <p id="email-help" className="text-sm text-muted-foreground mt-1">We'll never share your email with anyone else.</p>
@@ -48,11 +48,11 @@ export function Contact() {
                 rows={5} 
                 required
                 aria-required="true"
-                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary resize-vertical" 
+                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary resize-vertical form-field transition-all-smooth" 
                 placeholder="Tell me about your project or how I can help you..."
               ></textarea>
             </div>
-            <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" aria-describedby="submit-help">
+            <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground btn-animate hover-glow" aria-describedby="submit-help">
               Send Message
             </Button>
             <p id="submit-help" className="text-sm text-muted-foreground text-center">I typically respond within 24 hours.</p>
