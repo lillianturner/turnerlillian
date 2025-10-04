@@ -3,49 +3,84 @@
 @tailwind utilities;
 
 :root {
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
-  --primary: 79 27% 62%; /* #AFC97E */
-  --primary-foreground: 210 40% 98%;
-  --secondary: 54 52% 71%; /* #E2D686 */
-  --secondary-foreground: 222.2 47.4% 11.2%;
-  --muted: 83 68% 86%; /* #D4E6B5 */
-  --muted-foreground: 215.4 16.3% 46.9%;
-  --accent: 51 100% 69%; /* #FFDF64 */
-  --accent-foreground: 222.2 47.4% 11.2%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-  --ring: 79 27% 62%; /* #AFC97E */
-  --radius: 0.5rem;
+  /* Cohesive Deep Forest Green Palette */
+  --background: 0 0% 99%; /* Warm white #FEFFFE */
+  --foreground: 210 22% 16%; /* Dark gray #1F2937 */
+  --card: 214 15% 95%; /* Light gray #F3F4F6 */
+  --card-foreground: 210 22% 16%;
+  --popover: 214 15% 95%;
+  --popover-foreground: 210 22% 16%;
+  
+  /* Primary: Deep forest green family */
+  --primary: 158 64% 20%; /* Deep forest #065F46 */
+  --primary-foreground: 0 0% 100%;
+  
+  /* Secondary: Primary light for accents */
+  --secondary: 158 58% 26%; /* Primary light #0D7A5A */
+  --secondary-foreground: 0 0% 100%;
+  
+  /* Accent: Light forest green complement */
+  --accent: 158 45% 35%; /* Light Forest Green #34A853 */
+  --accent-foreground: 0 0% 100%;
+  
+  /* Neutral palette */
+  --muted: 214 15% 95%; /* Light gray #F3F4F6 */
+  --muted-foreground: 213 13% 43%; /* Medium gray #6B7280 */
+  
+  /* Semantic colors */
+  --destructive: 0 72% 51%; /* Standard red #DC2626 */
+  --destructive-foreground: 0 0% 100%;
+  
+  /* UI elements */
+  --border: 214 32% 91%; /* Very light gray #E5E7EB */
+  --input: 214 32% 91%;
+  --ring: 158 64% 20%; /* Primary green focus ring */
+  --radius: 0.75rem;
 }
 
 .dark {
-  --background: 222.2 84% 4.9%;
-  --foreground: 210 40% 98%;
-  --card: 222.2 84% 4.9%;
-  --card-foreground: 210 40% 98%;
-  --popover: 222.2 84% 4.9%;
-  --popover-foreground: 210 40% 98%;
-  --primary: 210 40% 98%;
-  --primary-foreground: 222.2 47.4% 11.2%;
-  --secondary: 217.2 32.6% 17.5%;
-  --secondary-foreground: 210 40% 98%;
-  --muted: 217.2 32.6% 17.5%;
-  --muted-foreground: 215 20.2% 65.1%;
-  --accent: 217.2 32.6% 17.5%;
-  --accent-foreground: 210 40% 98%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 210 40% 98%;
-  --border: 217.2 32.6% 17.5%;
-  --input: 217.2 32.6% 17.5%;
-  --ring: 212.7 26.8% 83.9%;
+  /* Dark mode with cohesive deep forest green palette */
+  --background: 158 85% 9%; /* Primary dark #042F23 */
+  --foreground: 0 0% 99%; /* Warm white #FEFFFE */
+  --card: 158 64% 20%; /* Deep forest #065F46 */
+  --card-foreground: 0 0% 99%;
+  --popover: 158 64% 20%;
+  --popover-foreground: 0 0% 99%;
+  
+  /* Primary: Lighter green for dark mode */
+  --primary: 158 58% 26%; /* Primary light #0D7A5A */
+  --primary-foreground: 0 0% 99%;
+  
+  /* Secondary: Light green for dark mode */
+  --secondary: 158 45% 35%; /* Light Forest Green #34A853 */
+  --secondary-foreground: 0 0% 99%;
+  
+  /* Accent: Medium forest green */
+  --accent: 158 58% 26%; /* Medium Forest Green #0D7A5A */
+  --accent-foreground: 0 0% 99%;
+  
+  /* Dark mode neutrals */
+  --muted: 158 45% 15%; /* Darker muted green */
+  --muted-foreground: 213 13% 63%;
+  
+  --destructive: 0 72% 61%;
+  --destructive-foreground: 0 0% 99%;
+  
+  --border: 158 45% 15%;
+  --input: 158 45% 15%;
+  --ring: 158 58% 26%;
 }
+
+/* 
+MONOCHROME DEEP FOREST GREEN COLOR SYSTEM
+==========================================
+🌲 Primary Dark: #042F23 (HSL: 158 85% 9%) - Deepest shadows, footer
+🌲 Primary: #065F46 (HSL: 158 64% 20%) - Main brand color, logos  
+🌿 Secondary: #0D7A5A (HSL: 158 58% 26%) - Hover states, accents
+🌱 Accent: #34A853 (HSL: 158 45% 35%) - Light highlights, CTAs
+🍃 Light: #10B981 (HSL: 158 64% 41%) - Subtle backgrounds
+🌈 Extra Light: #6EE7B7 (HSL: 158 64% 68%) - Very light accents
+*/
 
 * {
   border-color: hsl(var(--border));
@@ -103,64 +138,393 @@ p, span, div, li, button {
 }
 
 .glass-button-primary {
-  background: rgba(175, 201, 126, 0.2) !important; /* #AFC97E with transparency */
+  background: rgba(6, 95, 70, 0.2) !important; /* Deep forest #065F46 with transparency */
   backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(175, 201, 126, 0.3) !important;
-  color: #AFC97E !important;
-  box-shadow: 0 4px 12px rgba(175, 201, 126, 0.2) !important;
+  border: 1px solid rgba(6, 95, 70, 0.3) !important;
+  color: #065F46 !important;
+  box-shadow: 0 4px 12px rgba(6, 95, 70, 0.2) !important;
 }
 
 .glass-button-primary:hover {
-  background: rgba(175, 201, 126, 0.3) !important;
+  background: rgba(6, 95, 70, 0.3) !important;
   backdrop-filter: blur(16px) !important;
-  border: 1px solid rgba(175, 201, 126, 0.5) !important;
-  box-shadow: 0 6px 20px rgba(175, 201, 126, 0.3) !important;
+  border: 1px solid rgba(6, 95, 70, 0.5) !important;
+  box-shadow: 0 6px 20px rgba(6, 95, 70, 0.3) !important;
   transform: translateY(-1px) !important;
 }
 
 .glass-button-accent {
-  background: rgba(255, 223, 100, 0.2) !important; /* #FFDF64 with transparency */
+  background: rgba(52, 168, 83, 0.2) !important; /* Light Forest Green #34A853 with transparency */
   backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(255, 223, 100, 0.3) !important;
-  color: #877B66 !important;
-  box-shadow: 0 4px 12px rgba(255, 223, 100, 0.2) !important;
+  border: 1px solid rgba(52, 168, 83, 0.3) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 12px rgba(52, 168, 83, 0.2) !important;
 }
 
 .glass-button-accent:hover {
-  background: rgba(255, 223, 100, 0.3) !important;
+  background: rgba(52, 168, 83, 0.3) !important;
   backdrop-filter: blur(16px) !important;
-  border: 1px solid rgba(255, 223, 100, 0.5) !important;
-  box-shadow: 0 6px 20px rgba(255, 223, 100, 0.3) !important;
+  border: 1px solid rgba(52, 168, 83, 0.5) !important;
+  box-shadow: 0 6px 20px rgba(52, 168, 83, 0.3) !important;
   transform: translateY(-1px) !important;
 }
 
 /* Dark background glass buttons */
 .glass-button-dark {
-  background: rgba(135, 123, 102, 0.15) !important; /* #877B66 with transparency */
+  background: rgba(4, 47, 35, 0.15) !important; /* Primary dark #042F23 with transparency */
   backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(135, 123, 102, 0.2) !important;
+  border: 1px solid rgba(4, 47, 35, 0.2) !important;
   color: white !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
 }
 
 .glass-button-dark:hover {
-  background: rgba(135, 123, 102, 0.25) !important;
+  background: rgba(4, 47, 35, 0.25) !important;
   backdrop-filter: blur(16px) !important;
-  border: 1px solid rgba(135, 123, 102, 0.3) !important;
+  border: 1px solid rgba(4, 47, 35, 0.3) !important;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3) !important;
   transform: translateY(-1px) !important;
 }
 
-.nature-gradient {
+/* Frosted Glass Cards and Boxes */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(15px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-2px) !important;
+}
+
+.glass-card-primary {
+  background: rgba(6, 95, 70, 0.08) !important; /* Deep emerald with transparency */
+  backdrop-filter: blur(15px) !important;
+  border: 1px solid rgba(6, 95, 70, 0.2) !important;
+  box-shadow: 0 8px 32px rgba(6, 95, 70, 0.1) !important;
+}
+
+.glass-card-primary:hover {
+  background: rgba(6, 95, 70, 0.12) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(6, 95, 70, 0.3) !important;
+  box-shadow: 0 12px 40px rgba(6, 95, 70, 0.15) !important;
+  transform: translateY(-2px) !important;
+}
+
+.glass-card-accent {
+  background: rgba(52, 168, 83, 0.08) !important; /* Light Forest Green with transparency */
+  backdrop-filter: blur(15px) !important;
+  border: 1px solid rgba(52, 168, 83, 0.2) !important;
+  box-shadow: 0 8px 32px rgba(52, 168, 83, 0.1) !important;
+}
+
+.glass-card-accent:hover {
+  background: rgba(52, 168, 83, 0.12) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(52, 168, 83, 0.3) !important;
+  box-shadow: 0 12px 40px rgba(52, 168, 83, 0.15) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Frosted Glass Category Headers */
+.glass-category-primary {
+  background: rgba(6, 95, 70, 0.15) !important; /* Deep forest green with transparency */
+  backdrop-filter: blur(15px) !important;
+  border-bottom: 1px solid rgba(6, 95, 70, 0.2) !important;
+  transition: all 0.3s ease !important;
+}
+
+.glass-category-secondary {
+  background: rgba(13, 122, 90, 0.12) !important; /* Primary light with transparency */
+  backdrop-filter: blur(15px) !important;
+  border-bottom: 1px solid rgba(13, 122, 90, 0.2) !important;
+  transition: all 0.3s ease !important;
+}
+
+.glass-category-neutral {
+  background: rgba(107, 114, 128, 0.1) !important; /* Medium gray with transparency */
+  backdrop-filter: blur(15px) !important;
+  border-bottom: 1px solid rgba(107, 114, 128, 0.15) !important;
+  transition: all 0.3s ease !important;
+}
+
+.glass-category-green {
+  background: rgba(52, 168, 83, 0.15) !important; /* Light Forest Green with transparency */
+  backdrop-filter: blur(15px) !important;
+  border-bottom: 1px solid rgba(52, 168, 83, 0.25) !important;
+  transition: all 0.3s ease !important;
+}
+
+.glass-category-green:hover {
+  background: rgba(52, 168, 83, 0.25) !important;
+  backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid rgba(52, 168, 83, 0.4) !important;
+  box-shadow: 0 4px 20px rgba(52, 168, 83, 0.2) !important;
+}
+
+.glass-category-dark {
+  background: rgba(31, 41, 55, 0.15) !important; /* Dark gray with transparency */
+  backdrop-filter: blur(15px) !important;
+  border-bottom: 1px solid rgba(31, 41, 55, 0.2) !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Enhanced Frosted Glass Logo and Social Icons */
+.glass-logo {
   background: linear-gradient(135deg, 
-    #ffffff 0%,
-    #f8f9fa 25%,
-    #e9ecef 50%,
-    #dee2e6 75%,
-    #6c757d 100%
+    rgba(6, 95, 70, 0.25) 0%, 
+    rgba(6, 95, 70, 0.12) 50%, 
+    rgba(6, 95, 70, 0.18) 100%) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.5) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.4) !important;
+  box-shadow: 
+    0 8px 32px rgba(6, 95, 70, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(6, 95, 70, 0.1) !important;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  position: relative !important;
+}
+
+.glass-logo:hover {
+  background: linear-gradient(135deg, 
+    rgba(6, 95, 70, 0.35) 0%, 
+    rgba(6, 95, 70, 0.18) 50%, 
+    rgba(6, 95, 70, 0.28) 100%) !important;
+  backdrop-filter: blur(20px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.6) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.5) !important;
+  transform: translateY(-2px) scale(1.05) !important;
+  box-shadow: 
+    0 12px 40px rgba(6, 95, 70, 0.25),
+    0 4px 20px rgba(6, 95, 70, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(6, 95, 70, 0.15) !important;
+}
+
+.glass-social-icon {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.3) 0%, 
+    rgba(243, 244, 246, 0.15) 50%, 
+    rgba(255, 255, 255, 0.2) 100%) !important;
+  backdrop-filter: blur(15px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.6) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 
+    0 6px 20px rgba(107, 114, 128, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(107, 114, 128, 0.05) !important;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  position: relative !important;
+}
+
+.glass-social-icon:hover {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.4) 0%, 
+    rgba(243, 244, 246, 0.25) 50%, 
+    rgba(255, 255, 255, 0.3) 100%) !important;
+  backdrop-filter: blur(20px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.7) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.6) !important;
+  transform: translateY(-3px) scale(1.08) !important;
+  box-shadow: 
+    0 10px 30px rgba(107, 114, 128, 0.2),
+    0 4px 15px rgba(107, 114, 128, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(107, 114, 128, 0.08) !important;
+}
+
+.glass-social-icon-dark {
+  backdrop-filter: blur(15px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  position: relative !important;
+}
+
+.glass-social-icon-dark:hover {
+  backdrop-filter: blur(20px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.35) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.3) !important;
+  transform: translateY(-3px) scale(1.08) !important;
+  box-shadow: 
+    0 12px 35px rgba(0, 0, 0, 0.3),
+    0 6px 20px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15) !important;
+}
+
+.glass-section {
+  background: rgba(237, 242, 247, 0.6) !important; /* Muted background */
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(226, 232, 240, 0.3) !important;
+}
+
+.professional-gradient {
+  background: linear-gradient(135deg, 
+    #F7FAFC 0%,    /* Gray 50 */
+    #EDF2F7 25%,   /* Gray 100 */
+    #E2E8F0 50%,   /* Gray 200 */
+    #CBD5E0 75%,   /* Gray 300 */
+    #A0AEC0 100%   /* Gray 400 */
   );
 }
 
 .organic-border {
   border-radius: 2rem 1rem 2rem 1rem;
+}
+
+/* Enhanced Accessibility Styles */
+/* Focus indicators for better keyboard navigation */
+*:focus {
+  outline: 2px solid hsl(var(--primary)) !important;
+  outline-offset: 2px !important;
+}
+
+/* Enhanced focus states for better accessibility */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .glass-card,
+  .glass-card-primary,
+  .glass-card-accent {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 2px solid hsl(var(--foreground)) !important;
+    backdrop-filter: none !important;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .glass-card:hover,
+  .glass-card-primary:hover,
+  .glass-card-accent:hover {
+    transform: none !important;
+  }
+}
+
+/* Typography accessibility enhancements */
+body {
+  line-height: 1.6; /* Better than default 1.5 */
+  font-size: 16px; /* Ensure minimum size */
+}
+
+/* Ensure adequate spacing between elements */
+p + p,
+p + ul,
+p + ol,
+ul + p,
+ol + p {
+  margin-top: 1em;
+}
+
+/* Better link accessibility */
+a {
+  text-decoration-skip-ink: auto;
+}
+
+a:hover,
+a:focus {
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+}
+
+/* Improved button accessibility */
+button,
+[role="button"] {
+  min-height: 44px;
+  min-width: 44px;
+  cursor: pointer;
+}
+
+button:disabled,
+[role="button"][aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Better heading hierarchy */
+h1 { font-size: clamp(2rem, 4vw, 3.5rem); }
+h2 { font-size: clamp(1.5rem, 3vw, 2.5rem); }
+h3 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); }
+h4 { font-size: clamp(1.125rem, 2vw, 1.5rem); }
+
+/* Mobile accessibility enhancements */
+@media (max-width: 768px) {
+  /* Ensure adequate touch targets on mobile */
+  button,
+  [role="button"],
+  a[href],
+  input,
+  select,
+  textarea {
+    min-height: 48px; /* Larger on mobile */
+    min-width: 48px;
+  }
+  
+  /* Better spacing on mobile */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Improve readability on small screens */
+  body {
+    font-size: 18px; /* Slightly larger base size on mobile */
+    line-height: 1.7;
+  }
+  
+  /* Better mobile menu accessibility */
+  [data-mobile-menu] {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: rgba(0, 0, 0, 0.8);
+  }
+  
+  /* Focus trapping for mobile menu */
+  [data-mobile-menu][aria-hidden="true"] {
+    display: none;
+  }
+}
+
+/* Large text mode support */
+@media (min-resolution: 2dppx) {
+  body {
+    font-size: 17px; /* Slightly larger on high-DPI screens */
+  }
+}
+
+/* Orientation change support */
+@media (orientation: landscape) and (max-height: 500px) {
+  .min-h-screen {
+    min-height: auto;
+    padding: 2rem 0;
+  }
 }

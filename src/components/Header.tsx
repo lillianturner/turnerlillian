@@ -15,30 +15,36 @@ export function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
+    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b" role="banner">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo/Brand */}
           <div className="flex items-center">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center mr-3">
-              <span className="text-primary-foreground font-bold">LT</span>
-            </div>
-            <span className="text-xl font-semibold">Lillian Turner</span>
+            <a href="#home" className="flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg" aria-label="Lillian Turner - Home">
+              <div className="w-10 h-10 glass-logo rounded-lg flex items-center justify-center mr-3">
+                <span className="text-primary font-bold" aria-hidden="true">LT</span>
+              </div>
+              <span className="text-xl font-semibold">Lillian Turner</span>
+            </a>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-8" role="navigation" aria-label="Main navigation">
             {navigation.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-foreground/80 hover:text-foreground transition-colors"
+                className="text-foreground/80 hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md px-2 py-1"
               >
                 {item.name}
               </a>
             ))}
-            <Button variant="outline" size="sm">
-              <Download className="w-4 h-4 mr-2" />
+            <Button 
+              size="sm" 
+              className="bg-primary hover:bg-primary/90 text-primary-foreground"
+              aria-label="Download Resume PDF"
+            >
+              <Download className="w-4 h-4 mr-2" aria-hidden="true" />
               Resume
             </Button>
           </nav>
@@ -49,28 +55,35 @@ export function Header() {
               variant="ghost"
               size="sm"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-menu"
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
-              {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isMenuOpen ? <X className="w-5 h-5" aria-hidden="true" /> : <Menu className="w-5 h-5" aria-hidden="true" />}
             </Button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t">
-            <nav className="flex flex-col space-y-4">
+          <div className="md:hidden py-4 border-t" id="mobile-menu">
+            <nav className="flex flex-col space-y-4" role="navigation" aria-label="Mobile navigation">
               {navigation.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-foreground/80 hover:text-foreground transition-colors"
+                  className="text-foreground/80 hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md px-2 py-1"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
                 </a>
               ))}
-              <Button variant="outline" size="sm" className="self-start">
-                <Download className="w-4 h-4 mr-2" />
+              <Button 
+                size="sm" 
+                className="bg-primary hover:bg-primary/90 text-primary-foreground self-start"
+                aria-label="Download Resume PDF"
+              >
+                <Download className="w-4 h-4 mr-2" aria-hidden="true" />
                 Resume
               </Button>
             </nav>

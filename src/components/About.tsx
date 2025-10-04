@@ -40,12 +40,12 @@ export function About() {
   ];
 
   return (
-    <section id="about" className="py-20 bg-muted/50">
+    <section id="about" className="py-20 bg-muted/50" aria-labelledby="about-heading">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <p className="subheading text-primary text-lg mb-4">Professional Background</p>
-          <h2 className="text-4xl font-bold mb-4">About Me</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="subheading text-primary text-lg mb-4" role="text">Professional Background</p>
+          <h2 id="about-heading" className="text-4xl font-bold mb-4">About Me</h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto" role="text">
             I'm a passionate UX designer and technical communicator who believes that great design and clear communication 
             can transform how people interact with technology.
           </p>
@@ -55,8 +55,8 @@ export function About() {
         <div className="max-w-4xl mx-auto mb-16">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <div className="bg-card p-8 rounded-xl border">
-                <h3 className="text-2xl font-semibold mb-4">My Journey</h3>
+              <article className="glass-card p-8 rounded-xl" aria-labelledby="journey-heading">
+                <h3 id="journey-heading" className="text-2xl font-semibold mb-4">My Journey</h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   With over 5 years of experience in UX design and technical writing, I've helped startups and 
                   established companies create digital experiences that users actually love. My background in both 
@@ -68,56 +68,56 @@ export function About() {
                   accessible. This foundation in clear communication naturally led me to UX design, where I could 
                   apply the same principles to visual and interactive experiences.
                 </p>
-              </div>
+              </article>
             </div>
             
             <div className="space-y-6">
-              <div className="bg-card p-8 rounded-xl border">
-                <h3 className="text-2xl font-semibold mb-4">What Drives Me</h3>
+              <article className="glass-card p-8 rounded-xl" aria-labelledby="motivation-heading">
+                <h3 id="motivation-heading" className="text-2xl font-semibold mb-4">What Drives Me</h3>
                 <p className="text-muted-foreground leading-relaxed mb-6">
                   I'm fascinated by the intersection of psychology, technology, and design. Every project is an 
                   opportunity to understand how people think, what they need, and how we can create solutions 
                   that feel almost invisible in their simplicity.
                 </p>
                 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4" role="list" aria-label="Personal facts">
                   {personalFacts.map((item, index) => (
-                    <div key={index} className="flex items-center space-x-2 text-sm">
-                      <div className="text-primary">{item.icon}</div>
+                    <div key={index} role="listitem" className="flex items-center space-x-2 text-sm">
+                      <div className="text-primary" role="img" aria-label={`${item.fact} icon`}>{item.icon}</div>
                       <span className="text-muted-foreground">{item.fact}</span>
                     </div>
                   ))}
                 </div>
-              </div>
+              </article>
             </div>
           </div>
         </div>
 
         {/* Values */}
         <div className="mb-16">
-          <h3 className="text-2xl font-semibold text-center mb-8">Core Values</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <h3 className="text-2xl font-semibold text-center mb-8" id="values-heading">Core Values</h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6" role="list" aria-labelledby="values-heading">
             {values.map((value, index) => (
-              <div key={index} className="bg-card p-6 rounded-xl border text-center hover:shadow-lg transition-all duration-300">
-                <div className="text-primary mb-4 flex justify-center">{value.icon}</div>
-                <h4 className="text-lg font-semibold mb-3">{value.title}</h4>
-                <p className="text-sm text-muted-foreground">{value.description}</p>
-              </div>
+              <article key={index} role="listitem" className="glass-card p-6 rounded-xl text-center focus-within:ring-2 focus-within:ring-primary">
+                <div className="text-primary mb-4 flex justify-center" role="img" aria-label={`${value.title} icon`}>{value.icon}</div>
+                <h4 className="text-lg font-semibold mb-3" id={`value-title-${index}`}>{value.title}</h4>
+                <p className="text-sm text-muted-foreground" aria-describedby={`value-title-${index}`}>{value.description}</p>
+              </article>
             ))}
           </div>
         </div>
 
         {/* Skills & Expertise */}
-        <div className="bg-card p-8 rounded-xl border">
-          <h3 className="text-2xl font-semibold text-center mb-8">Skills & Expertise</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <aside className="glass-card-accent p-8 rounded-xl" aria-labelledby="skills-heading">
+          <h3 id="skills-heading" className="text-2xl font-semibold text-center mb-8">Skills & Expertise</h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8" role="list" aria-label="Skill categories">
             {skills.map((skillGroup, index) => (
-              <div key={index}>
-                <h4 className="text-lg font-semibold mb-4 text-primary">{skillGroup.category}</h4>
-                <ul className="space-y-2">
+              <div key={index} role="listitem">
+                <h4 className="text-lg font-semibold mb-4 text-primary" id={`skill-category-${index}`}>{skillGroup.category}</h4>
+                <ul className="space-y-2" aria-labelledby={`skill-category-${index}`}>
                   {skillGroup.items.map((skill, idx) => (
                     <li key={idx} className="text-sm text-muted-foreground flex items-center">
-                      <span className="w-1.5 h-1.5 bg-primary rounded-full mr-2"></span>
+                      <span className="w-1.5 h-1.5 bg-primary rounded-full mr-2" role="presentation"></span>
                       {skill}
                     </li>
                   ))}
@@ -125,7 +125,7 @@ export function About() {
               </div>
             ))}
           </div>
-        </div>
+        </aside>
       </div>
     </section>
   );
