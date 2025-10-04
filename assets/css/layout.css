@@ -378,25 +378,52 @@
 }
 
 /* Curved Dividers */
-.section::before,
-.section::after {
+.ux-studies::before {
   content: '';
   position: absolute;
+  top: -50px;
   left: 0;
   right: 0;
-  height: 50px;
-  background: currentColor;
+  height: 100px;
+  background: var(--color-off-white);
+  clip-path: ellipse(150% 100% at 50% 100%);
   z-index: 1;
 }
 
-.section::before {
-  top: 0;
-  clip-path: ellipse(100% 100% at 50% 0%);
+.tech-comm::after {
+  content: '';
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: var(--gradient-primary);
+  clip-path: ellipse(150% 100% at 50% 0%);
+  z-index: 1;
 }
 
-.section::after {
-  bottom: 0;
-  clip-path: ellipse(100% 100% at 50% 100%);
+.about::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: var(--gradient-primary);
+  clip-path: ellipse(120% 100% at 50% 100%);
+  z-index: 1;
+}
+
+.contact::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: var(--color-white);
+  clip-path: ellipse(130% 100% at 50% 100%);
+  z-index: 1;
 }
 
 /* Mobile Navigation */

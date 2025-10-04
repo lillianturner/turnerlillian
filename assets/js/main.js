@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmoothScrolling();
     initMobileNavigation();
     initFloatingElements();
+    initGalleryFilter();
 });
 
 // Navigation Functions
@@ -401,10 +402,98 @@ window.addEventListener('load', preloadImages);
 // Add error handling for missing images
 document.addEventListener('error', (e) => {
     if (e.target.tagName === 'IMG') {
-        e.target.style.display = 'none';
-        console.warn(`Failed to load image: ${e.target.src}`);
+        // Replace with placeholder or hide
+        e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OTk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9IjAuM2VtIj5JbWFnZSBOb3QgRm91bmQ8L3RleHQ+PC9zdmc+';
+        e.target.alt = 'Image not found - placeholder displayed';
+        console.warn(`Failed to load image: ${e.target.getAttribute('data-original-src') || 'unknown'}`);
     }
 }, true);
+
+// Performance Monitoring
+function trackPerformance() {
+    if ('performance' in window) {
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const perfData = performance.getEntriesByType('navigation')[0];
+                const loadTime = perfData.loadEventEnd - perfData.loadEventStart;
+                console.log(`Page loaded in ${loadTime}ms`);
+                
+                // Track Core Web Vitals if available
+                if ('PerformanceObserver' in window) {
+                    const observer = new PerformanceObserver((list) => {
+                        list.getEntries().forEach((entry) => {
+                            console.log(`${entry.name}: ${entry.value}`);
+                        });
+                    });
+                    observer.observe({entryTypes: ['measure']});
+                }
+            }, 0);
+        });
+    }
+}
+
+// Initialize performance tracking
+trackPerformance();
+
+// Service Worker Registration for Offline Support
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+                console.log('SW registered: ', registration);
+            })
+            .catch((registrationError) => {
+                console.log('SW registration failed: ', registrationError);
+            });
+    });
+}
+
+// Gallery Filter Function
+function initGalleryFilter() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    if (!filterButtons.length || !galleryItems.length) return;
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const filter = button.getAttribute('data-filter');
+            
+            // Update active button
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            // Filter gallery items
+            galleryItems.forEach(item => {
+                const category = item.getAttribute('data-category');
+                
+                // Add filtering class for animation
+                item.classList.add('filtering');
+                
+                if (filter === 'all' || category === filter) {
+                    item.classList.remove('hide');
+                    item.classList.add('show');
+                    setTimeout(() => {
+                        item.style.display = 'block';
+                    }, 50);
+                } else {
+                    item.classList.remove('show');
+                    item.classList.add('hide');
+                    setTimeout(() => {
+                        if (item.classList.contains('hide')) {
+                            item.style.display = 'none';
+                        }
+                    }, 300);
+                }
+                
+                // Remove filtering class after animation
+                setTimeout(() => {
+                    item.classList.remove('filtering');
+                }, 500);
+            });
+        });
+    });
+}
 
 // Console welcome message
 console.log(`

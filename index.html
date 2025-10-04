@@ -19,6 +19,9 @@
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/layout.css">
     <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/enhanced-sections.css">
+    <link rel="stylesheet" href="assets/css/gallery.css">
+    <link rel="stylesheet" href="assets/css/organic-accents.css">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
@@ -143,10 +146,179 @@
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title">Design Gallery</h2>
-                    <p class="section-description">Visual design, branding, and creative projects</p>
+                    <p class="section-description">Visual design, branding, and creative projects that showcase aesthetic sensibility</p>
                 </div>
+                
+                <!-- Gallery Filter -->
+                <div class="gallery-filter">
+                    <button class="filter-btn active" data-filter="all">All Work</button>
+                    <button class="filter-btn" data-filter="branding">Branding</button>
+                    <button class="filter-btn" data-filter="ui">UI Design</button>
+                    <button class="filter-btn" data-filter="print">Print Design</button>
+                    <button class="filter-btn" data-filter="illustration">Illustration</button>
+                </div>
+                
                 <div class="gallery-grid">
-                    <!-- Gallery items will be populated -->
+                    <!-- Branding Projects -->
+                    <div class="gallery-item" data-category="branding">
+                        <div class="gallery-card glass-card">
+                            <div class="gallery-image">
+                                <img src="assets/images/gallery/eco-brand-identity.jpg" alt="Eco-friendly startup brand identity" loading="lazy">
+                                <div class="gallery-overlay">
+                                    <div class="overlay-content">
+                                        <h3>EcoFlow Brand Identity</h3>
+                                        <p>Complete visual identity for sustainable tech startup</p>
+                                        <a href="#" class="gallery-link">View Project</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery-meta">
+                                <span class="gallery-category">Branding</span>
+                                <h4>Sustainable Tech Identity</h4>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-category="branding">
+                        <div class="gallery-card glass-card">
+                            <div class="gallery-image">
+                                <img src="assets/images/gallery/coffee-brand.jpg" alt="Artisan coffee brand design" loading="lazy">
+                                <div class="gallery-overlay">
+                                    <div class="overlay-content">
+                                        <h3>Artisan Coffee Co.</h3>
+                                        <p>Packaging and brand system for local roastery</p>
+                                        <a href="#" class="gallery-link">View Project</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery-meta">
+                                <span class="gallery-category">Branding</span>
+                                <h4>Coffee Packaging Design</h4>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- UI Design Projects -->
+                    <div class="gallery-item" data-category="ui">
+                        <div class="gallery-card glass-card">
+                            <div class="gallery-image">
+                                <img src="assets/images/gallery/fintech-app.jpg" alt="Fintech mobile app interface" loading="lazy">
+                                <div class="gallery-overlay">
+                                    <div class="overlay-content">
+                                        <h3>FinanceFlow App</h3>
+                                        <p>Mobile banking interface with micro-interactions</p>
+                                        <a href="#" class="gallery-link">View Project</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery-meta">
+                                <span class="gallery-category">UI Design</span>
+                                <h4>Mobile Banking Interface</h4>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-category="ui">
+                        <div class="gallery-card glass-card">
+                            <div class="gallery-image">
+                                <img src="assets/images/gallery/dashboard-design.jpg" alt="Analytics dashboard design" loading="lazy">
+                                <div class="gallery-overlay">
+                                    <div class="overlay-content">
+                                        <h3>Analytics Dashboard</h3>
+                                        <p>Data visualization and reporting interface</p>
+                                        <a href="#" class="gallery-link">View Project</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery-meta">
+                                <span class="gallery-category">UI Design</span>
+                                <h4>Data Visualization</h4>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Print Design Projects -->
+                    <div class="gallery-item" data-category="print">
+                        <div class="gallery-card glass-card">
+                            <div class="gallery-image">
+                                <img src="assets/images/gallery/conference-materials.jpg" alt="Conference design materials" loading="lazy">
+                                <div class="gallery-overlay">
+                                    <div class="overlay-content">
+                                        <h3>UX Conference 2024</h3>
+                                        <p>Complete visual identity and print materials</p>
+                                        <a href="#" class="gallery-link">View Project</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery-meta">
+                                <span class="gallery-category">Print Design</span>
+                                <h4>Event Materials</h4>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-category="print">
+                        <div class="gallery-card glass-card">
+                            <div class="gallery-image">
+                                <img src="assets/images/gallery/book-design.jpg" alt="Technical book design" loading="lazy">
+                                <div class="gallery-overlay">
+                                    <div class="overlay-content">
+                                        <h3>Design Systems Handbook</h3>
+                                        <p>Typography and layout for technical publication</p>
+                                        <a href="#" class="gallery-link">View Project</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery-meta">
+                                <span class="gallery-category">Print Design</span>
+                                <h4>Book Layout & Typography</h4>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Illustration Projects -->
+                    <div class="gallery-item" data-category="illustration">
+                        <div class="gallery-card glass-card">
+                            <div class="gallery-image">
+                                <img src="assets/images/gallery/icon-system.jpg" alt="Custom icon system" loading="lazy">
+                                <div class="gallery-overlay">
+                                    <div class="overlay-content">
+                                        <h3>Custom Icon System</h3>
+                                        <p>200+ icons for productivity application</p>
+                                        <a href="#" class="gallery-link">View Project</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery-meta">
+                                <span class="gallery-category">Illustration</span>
+                                <h4>Icon Design System</h4>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-category="illustration">
+                        <div class="gallery-card glass-card">
+                            <div class="gallery-image">
+                                <img src="assets/images/gallery/editorial-illustration.jpg" alt="Editorial illustrations" loading="lazy">
+                                <div class="gallery-overlay">
+                                    <div class="overlay-content">
+                                        <h3>Tech Ethics Series</h3>
+                                        <p>Editorial illustrations for digital magazine</p>
+                                        <a href="#" class="gallery-link">View Project</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery-meta">
+                                <span class="gallery-category">Illustration</span>
+                                <h4>Editorial Illustration</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-cta">
+                    <p>Interested in seeing more creative work or discussing a visual design project?</p>
+                    <a href="index.html#contact" class="btn btn-primary">Let's Create Together</a>
                 </div>
             </div>
         </section>
@@ -156,7 +328,179 @@
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title">Supplementary Work</h2>
-                    <p class="section-description">Project management, accessibility, and creative explorations</p>
+                    <p class="section-description">Project management, accessibility audits, and creative explorations that support great design</p>
+                </div>
+                <div class="supplementary-grid">
+                    <div class="supplement-category">
+                        <div class="category-card glass-card">
+                            <div class="category-header">
+                                <div class="category-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                        <path d="M8 12h8"></path>
+                                        <path d="M12 8v8"></path>
+                                    </svg>
+                                </div>
+                                <h3>Project Management</h3>
+                            </div>
+                            <p class="category-description">Strategic planning and execution artifacts that keep design projects on track and stakeholders aligned.</p>
+                            <div class="artifact-list">
+                                <div class="artifact-item">
+                                    <h4>Design System Roadmap</h4>
+                                    <p>18-month strategic plan for component library development with resource allocation and milestones</p>
+                                    <div class="artifact-tags">
+                                        <span class="tag">Strategy</span>
+                                        <span class="tag">Planning</span>
+                                    </div>
+                                </div>
+                                <div class="artifact-item">
+                                    <h4>Sprint Planning Templates</h4>
+                                    <p>Agile frameworks tailored for design teams including story mapping and retrospective formats</p>
+                                    <div class="artifact-tags">
+                                        <span class="tag">Agile</span>
+                                        <span class="tag">Templates</span>
+                                    </div>
+                                </div>
+                                <div class="artifact-item">
+                                    <h4>Stakeholder Communication Plan</h4>
+                                    <p>Structured approach to design reviews and feedback collection across cross-functional teams</p>
+                                    <div class="artifact-tags">
+                                        <span class="tag">Communication</span>
+                                        <span class="tag">Process</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="category-link">Explore Project Artifacts</a>
+                        </div>
+                    </div>
+                    
+                    <div class="supplement-category">
+                        <div class="category-card glass-card">
+                            <div class="category-header">
+                                <div class="category-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                </div>
+                                <h3>Accessibility Audits</h3>
+                            </div>
+                            <p class="category-description">Comprehensive accessibility evaluations ensuring digital experiences work for everyone, regardless of ability.</p>
+                            <div class="artifact-list">
+                                <div class="artifact-item">
+                                    <h4>WCAG 2.1 AA Compliance Audit</h4>
+                                    <p>Complete accessibility assessment of e-commerce platform resulting in 94% compliance improvement</p>
+                                    <div class="artifact-tags">
+                                        <span class="tag">WCAG</span>
+                                        <span class="tag">Compliance</span>
+                                    </div>
+                                </div>
+                                <div class="artifact-item">
+                                    <h4>Screen Reader Testing Report</h4>
+                                    <p>User testing with assistive technology users identifying navigation and content structure issues</p>
+                                    <div class="artifact-tags">
+                                        <span class="tag">User Testing</span>
+                                        <span class="tag">Assistive Tech</span>
+                                    </div>
+                                </div>
+                                <div class="artifact-item">
+                                    <h4>Accessibility Design Guidelines</h4>
+                                    <p>Team resource covering color contrast, keyboard navigation, and inclusive design patterns</p>
+                                    <div class="artifact-tags">
+                                        <span class="tag">Guidelines</span>
+                                        <span class="tag">Training</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="category-link">View Accessibility Work</a>
+                        </div>
+                    </div>
+                    
+                    <div class="supplement-category">
+                        <div class="category-card glass-card">
+                            <div class="category-header">
+                                <div class="category-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                                    </svg>
+                                </div>
+                                <h3>Creative Projects</h3>
+                            </div>
+                            <p class="category-description">Explorative work that pushes creative boundaries and experiments with new design approaches and technologies.</p>
+                            <div class="artifact-list">
+                                <div class="artifact-item">
+                                    <h4>Generative Art Series</h4>
+                                    <p>Algorithm-generated visual compositions exploring the intersection of code, nature, and design</p>
+                                    <div class="artifact-tags">
+                                        <span class="tag">Generative Design</span>
+                                        <span class="tag">Creative Code</span>
+                                    </div>
+                                </div>
+                                <div class="artifact-item">
+                                    <h4>Voice Interface Prototypes</h4>
+                                    <p>Experimental conversational UI designs for smart home and automotive applications</p>
+                                    <div class="artifact-tags">
+                                        <span class="tag">Voice UI</span>
+                                        <span class="tag">Prototyping</span>
+                                    </div>
+                                </div>
+                                <div class="artifact-item">
+                                    <h4>Sustainable Design Workshop</h4>
+                                    <p>Workshop series on eco-conscious design practices and carbon-aware digital experiences</p>
+                                    <div class="artifact-tags">
+                                        <span class="tag">Sustainability</span>
+                                        <span class="tag">Education</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="category-link">Explore Creative Work</a>
+                        </div>
+                    </div>
+                    
+                    <div class="supplement-category">
+                        <div class="category-card glass-card">
+                            <div class="category-header">
+                                <div class="category-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14,2 14,8 20,8"></polyline>
+                                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                                        <polyline points="10,9 9,9 8,9"></polyline>
+                                    </svg>
+                                </div>
+                                <h3>Writing & Content</h3>
+                            </div>
+                            <p class="category-description">Thought leadership pieces, industry insights, and educational content that contribute to the design community.</p>
+                            <div class="artifact-list">
+                                <div class="artifact-item">
+                                    <h4>Design Systems Blog Series</h4>
+                                    <p>5-part deep dive into scaling design systems across multiple products and teams</p>
+                                    <div class="artifact-tags">
+                                        <span class="tag">Thought Leadership</span>
+                                        <span class="tag">Design Systems</span>
+                                    </div>
+                                </div>
+                                <div class="artifact-item">
+                                    <h4>UX Research Newsletter</h4>
+                                    <p>Monthly publication covering emerging research methodologies and industry case studies</p>
+                                    <div class="artifact-tags">
+                                        <span class="tag">Newsletter</span>
+                                        <span class="tag">Research</span>
+                                    </div>
+                                </div>
+                                <div class="artifact-item">
+                                    <h4>Conference Speaking</h4>
+                                    <p>Presentations on inclusive design practices at UXWeek, Design+Research, and local meetups</p>
+                                    <div class="artifact-tags">
+                                        <span class="tag">Speaking</span>
+                                        <span class="tag">Community</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="category-link">Read Writing Samples</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -164,26 +508,154 @@
         <!-- About Section -->
         <section id="about" class="section about">
             <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">About Me</h2>
+                    <p class="section-description">Bridging human needs with technical innovation through empathy-driven design</p>
+                </div>
                 <div class="about-content">
-                    <div class="about-text">
-                        <h2 class="section-title">About Me</h2>
-                        <p class="about-description">
-                            I'm a passionate UX designer and technical communicator with a background in creating human-centered digital experiences. My work bridges the gap between complex technical concepts and intuitive user interfaces.
-                        </p>
-                        <div class="resume-download">
-                            <a href="assets/files/lillian-turner-resume.pdf" class="btn btn-primary" download>
-                                Download Resume
-                            </a>
+                    <div class="about-main">
+                        <div class="about-intro glass-card">
+                            <div class="about-photo">
+                                <img src="assets/images/lillian-about.jpg" alt="Lillian Turner working on design" class="about-image">
+                            </div>
+                            <div class="about-text">
+                                <p class="about-description">
+                                    I'm a passionate UX designer and technical communicator who believes that great design starts with deep empathy for users. With over 6 years of experience, I specialize in transforming complex technical concepts into intuitive, accessible experiences that people actually want to use.
+                                </p>
+                                <p class="about-description">
+                                    My unique combination of design thinking and technical communication allows me to not only create beautiful interfaces but also ensure users can successfully navigate and understand them. I'm driven by the challenge of making technology more human.
+                                </p>
+                                <div class="resume-download">
+                                    <a href="assets/files/lillian-turner-resume.pdf" class="btn btn-primary" download>
+                                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                            <polyline points="7,10 12,15 17,10"></polyline>
+                                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                                        </svg>
+                                        Download Resume
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    
                     <div class="about-details">
-                        <div class="detail-card glass-card">
-                            <h3>Education</h3>
-                            <p>Details about educational background</p>
+                        <div class="detail-row">
+                            <div class="detail-card glass-card">
+                                <div class="detail-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                                        <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                                    </svg>
+                                </div>
+                                <h3>Education</h3>
+                                <div class="education-item">
+                                    <h4>Master of Human-Computer Interaction</h4>
+                                    <p>Carnegie Mellon University, 2018</p>
+                                </div>
+                                <div class="education-item">
+                                    <h4>Bachelor of Communication Design</h4>
+                                    <p>Parsons School of Design, 2016</p>
+                                </div>
+                            </div>
+                            
+                            <div class="detail-card glass-card">
+                                <div class="detail-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                    </svg>
+                                </div>
+                                <h3>Core Values</h3>
+                                <div class="values-list">
+                                    <div class="value-item">
+                                        <strong>Empathy First:</strong> Every design decision starts with understanding user needs and emotions
+                                    </div>
+                                    <div class="value-item">
+                                        <strong>Inclusive Design:</strong> Creating experiences that work for everyone, regardless of ability or background
+                                    </div>
+                                    <div class="value-item">
+                                        <strong>Continuous Learning:</strong> Staying curious and adapting to new technologies and methodologies
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="detail-card glass-card">
-                            <h3>Values</h3>
-                            <p>Core principles and approach to design</p>
+                        
+                        <div class="detail-row">
+                            <div class="detail-card glass-card">
+                                <div class="detail-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
+                                    </svg>
+                                </div>
+                                <h3>Skills & Expertise</h3>
+                                <div class="skills-grid">
+                                    <div class="skill-category">
+                                        <h4>UX Design</h4>
+                                        <ul>
+                                            <li>User Research</li>
+                                            <li>Information Architecture</li>
+                                            <li>Interaction Design</li>
+                                            <li>Prototyping</li>
+                                        </ul>
+                                    </div>
+                                    <div class="skill-category">
+                                        <h4>Technical Communication</h4>
+                                        <ul>
+                                            <li>Technical Writing</li>
+                                            <li>Content Strategy</li>
+                                            <li>Documentation Design</li>
+                                            <li>UX Writing</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="detail-card glass-card">
+                                <div class="detail-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="12" cy="7" r="4"></circle>
+                                    </svg>
+                                </div>
+                                <h3>What Colleagues Say</h3>
+                                <div class="testimonials">
+                                    <blockquote class="testimonial">
+                                        <p>"Lillian has a rare ability to translate complex technical requirements into clear, actionable design solutions. Her documentation is consistently the best on our team."</p>
+                                        <cite>— Sarah Chen, Product Manager at TechCorp</cite>
+                                    </blockquote>
+                                    <blockquote class="testimonial">
+                                        <p>"Working with Lillian transformed how we approach user research. Her empathy-driven methodology helped us understand our users in ways we never had before."</p>
+                                        <cite>— Marcus Rodriguez, Engineering Lead</cite>
+                                    </blockquote>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Personal Interests -->
+                <div class="personal-section">
+                    <h3 class="personal-title">Beyond Design</h3>
+                    <div class="interests-grid">
+                        <div class="interest-item glass-card">
+                            <div class="interest-icon">🌱</div>
+                            <h4>Sustainable Design</h4>
+                            <p>Passionate about eco-friendly design practices and reducing digital carbon footprints</p>
+                        </div>
+                        <div class="interest-item glass-card">
+                            <div class="interest-icon">🎨</div>
+                            <h4>Urban Sketching</h4>
+                            <p>Capturing city life through watercolor and ink, inspiring organic design elements</p>
+                        </div>
+                        <div class="interest-item glass-card">
+                            <div class="interest-icon">📚</div>
+                            <h4>Mentoring</h4>
+                            <p>Guiding emerging designers and writers through industry transitions and skill development</p>
+                        </div>
+                        <div class="interest-item glass-card">
+                            <div class="interest-icon">🧘</div>
+                            <h4>Mindful Design</h4>
+                            <p>Exploring how contemplative practices inform more thoughtful, human-centered design</p>
                         </div>
                     </div>
                 </div>
