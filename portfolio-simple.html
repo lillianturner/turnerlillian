@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lillian Turner - UX Designer & Technical Communicator</title>
+    <meta name="description" content="Professional portfolio showcasing UX design, technical communication, and creative work by Lillian Turner">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a1a;
+            --primary-light: #2d2d2d;
+            --accent: #0066cc;
+            --accent-green: #22c55e;
+            --accent-copper: #b45309;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6b7280;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --border: #e5e7eb;
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.18);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header Styles */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: var(--primary);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--text-primary);
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background: var(--bg-secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 5rem 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        /* Case Study Cards */
+        .case-study-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .case-study-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: var(--accent-green);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--bg-secondary);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            background: var(--bg-primary);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #0056b3;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .grid-2,
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Setup Notice */
+        .setup-notice {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 2rem 0;
+            color: #92400e;
+        }
+
+        .setup-notice h4 {
+            margin-bottom: 0.5rem;
+            color: #78350f;
+        }
+    </style>
+</head>
+<body>
+    <!-- Setup Notice -->
+    <div class="setup-notice">
+        <h4>🚀 Complete React Version Available</h4>
+        <p>This is a simplified HTML version. For the full React experience with advanced interactions, please install Node.js and run the commands below.</p>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">LT</div>
+                    <div class="logo-text">Lillian Turner</div>
+                </div>
+                <nav>
+                    <a href="#home">Home</a>
+                    <a href="#ux-studies">UX Case Studies</a>
+                    <a href="#tech-writing">Technical Writing</a>
+                    <a href="#design-gallery">Design Gallery</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#" class="btn">📄 Resume</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>UX Designer & Technical Communicator</h1>
+            <p>Creating intuitive digital experiences and clear, compelling content that bridges the gap between complex technology and human understanding.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+                <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                <a href="#ux-studies" class="btn">View My Work</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- UX Case Studies -->
+    <section id="ux-studies">
+        <div class="container">
+            <h2 class="section-title">UX Case Studies</h2>
+            <div class="grid grid-2">
+                <div class="glass-card case-study-card">
+                    <h3>E-commerce Platform Redesign</h3>
+                    <p>Increased conversion rates by 35% through user-centered design and comprehensive usability testing.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">User Research</span>
+                        <span class="tech-tag">Wireframing</span>
+                        <span class="tech-tag">Prototyping</span>
+                        <span class="tech-tag">A/B Testing</span>
+                    </div>
+                    <a href="#" class="btn">View Case Study</a>
+                </div>
+                <div class="glass-card case-study-card">
+                    <h3>Mobile Banking App</h3>
+                    <p>Designed an intuitive mobile banking experience focusing on security and accessibility.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Mobile Design</span>
+                        <span class="tech-tag">Accessibility</span>
+                        <span class="tech-tag">Security UX</span>
+                        <span class="tech-tag">User Flows</span>
+                    </div>
+                    <a href="#" class="btn">View Case Study</a>
+                </div>
+                <div class="glass-card case-study-card">
+                    <h3>SaaS Dashboard Interface</h3>
+                    <p>Simplified complex data visualization for better user decision-making and workflow efficiency.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Data Visualization</span>
+                        <span class="tech-tag">Dashboard Design</span>
+                        <span class="tech-tag">Information Architecture</span>
+                        <span class="tech-tag">User Testing</span>
+                    </div>
+                    <a href="#" class="btn">View Case Study</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Writing -->
+    <section id="tech-writing" style="background: var(--bg-secondary);">
+        <div class="container">
+            <h2 class="section-title">Technical Writing</h2>
+            <div class="grid grid-3">
+                <div class="glass-card">
+                    <h3>📚 User Guides</h3>
+                    <p>Clear, step-by-step documentation that helps users achieve their goals efficiently.</p>
+                </div>
+                <div class="glass-card">
+                    <h3>🚀 API Documentation</h3>
+                    <p>Comprehensive developer resources with examples, best practices, and troubleshooting.</p>
+                </div>
+                <div class="glass-card">
+                    <h3>📋 Process Documentation</h3>
+                    <p>Detailed workflows and procedures that improve team efficiency and knowledge sharing.</p>
+                </div>
+                <div class="glass-card">
+                    <h3>🎯 Content Strategy</h3>
+                    <p>Strategic content planning that aligns with business goals and user needs.</p>
+                </div>
+                <div class="glass-card">
+                    <h3>📖 Knowledge Base</h3>
+                    <p>Searchable, organized information resources that reduce support burden.</p>
+                </div>
+                <div class="glass-card">
+                    <h3>✍️ Technical Blog Posts</h3>
+                    <p>Engaging articles that explain complex concepts to diverse audiences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Gallery -->
+    <section id="design-gallery">
+        <div class="container">
+            <h2 class="section-title">Design Gallery</h2>
+            <div class="grid grid-3">
+                <div class="glass-card">
+                    <h3>🎨 Brand Identity</h3>
+                    <p>Complete brand systems including logos, color palettes, and style guides.</p>
+                </div>
+                <div class="glass-card">
+                    <h3>📱 UI Mockups</h3>
+                    <p>High-fidelity interface designs for web and mobile applications.</p>
+                </div>
+                <div class="glass-card">
+                    <h3>📦 Packaging Design</h3>
+                    <p>Eye-catching product packaging that communicates brand values.</p>
+                </div>
+                <div class="glass-card">
+                    <h3>🖨️ Print Materials</h3>
+                    <p>Brochures, business cards, and marketing materials.</p>
+                </div>
+                <div class="glass-card">
+                    <h3>🎭 Illustrations</h3>
+                    <p>Custom illustrations and icons that enhance user experience.</p>
+                </div>
+                <div class="glass-card">
+                    <h3>📊 Infographics</h3>
+                    <p>Visual data representations that make complex information digestible.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" style="background: var(--bg-secondary);">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="glass-card" style="max-width: 800px; margin: 0 auto;">
+                <p style="font-size: 1.125rem; margin-bottom: 2rem;">
+                    I'm a passionate UX designer and technical communicator with over 5 years of experience creating user-centered digital experiences and clear, compelling content. My unique combination of design thinking and technical writing skills allows me to bridge the gap between complex technology and human understanding.
+                </p>
+                <div class="grid grid-2" style="gap: 3rem;">
+                    <div>
+                        <h3>Skills & Expertise</h3>
+                        <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+                            <li style="margin-bottom: 0.5rem;">✓ User Experience (UX) Design</li>
+                            <li style="margin-bottom: 0.5rem;">✓ User Interface (UI) Design</li>
+                            <li style="margin-bottom: 0.5rem;">✓ Technical Writing</li>
+                            <li style="margin-bottom: 0.5rem;">✓ Content Strategy</li>
+                            <li style="margin-bottom: 0.5rem;">✓ User Research & Testing</li>
+                            <li style="margin-bottom: 0.5rem;">✓ Information Architecture</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Tools & Technologies</h3>
+                        <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+                            <li style="margin-bottom: 0.5rem;">• Figma, Sketch, Adobe Creative Suite</li>
+                            <li style="margin-bottom: 0.5rem;">• HTML, CSS, JavaScript basics</li>
+                            <li style="margin-bottom: 0.5rem;">• Markdown, Git, API documentation</li>
+                            <li style="margin-bottom: 0.5rem;">• Confluence, Notion, GitBook</li>
+                            <li style="margin-bottom: 0.5rem;">• Google Analytics, Hotjar</li>
+                            <li style="margin-bottom: 0.5rem;">• Miro, FigJam, Whimsical</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Work Together</h2>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <div style="text-align: center;">
+                        <button type="submit" class="btn-primary">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Lillian Turner. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; opacity: 0.8;">
+                Connect with me: 
+                <a href="#" style="color: #60a5fa; margin: 0 0.5rem;">LinkedIn</a>
+                <a href="#" style="color: #60a5fa; margin: 0 0.5rem;">Twitter</a>
+                <a href="#" style="color: #60a5fa; margin: 0 0.5rem;">Email</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Simple form handling
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! This is a demo form. In a real implementation, this would send your message.');
+        });
+
+        // Add glass effect on scroll
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const header = document.querySelector('header');
+            
+            if (scrollTop > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.25)';
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+    </script>
+</body>
+</html>

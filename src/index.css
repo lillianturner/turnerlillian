@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 79 27% 62%; /* #AFC97E */
+  --primary-foreground: 210 40% 98%;
+  --secondary: 54 52% 71%; /* #E2D686 */
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  --muted: 83 68% 86%; /* #D4E6B5 */
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 51 100% 69%; /* #FFDF64 */
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 79 27% 62%; /* #AFC97E */
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 210 40% 98%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 212.7 26.8% 83.9%;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+}
+
+/* Typography System */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Oswald', sans-serif !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+.subheading {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 300 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+}
+
+p, span, div, li, button {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 400 !important;
+}
+
+/* Glass & Nature Fusion Theme */
+.glass {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Frosted Glass Button Effects */
+.glass-button {
+  background: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+.glass-button:hover {
+  background: rgba(255, 255, 255, 0.25) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-1px) !important;
+}
+
+.glass-button-primary {
+  background: rgba(175, 201, 126, 0.2) !important; /* #AFC97E with transparency */
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(175, 201, 126, 0.3) !important;
+  color: #AFC97E !important;
+  box-shadow: 0 4px 12px rgba(175, 201, 126, 0.2) !important;
+}
+
+.glass-button-primary:hover {
+  background: rgba(175, 201, 126, 0.3) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(175, 201, 126, 0.5) !important;
+  box-shadow: 0 6px 20px rgba(175, 201, 126, 0.3) !important;
+  transform: translateY(-1px) !important;
+}
+
+.glass-button-accent {
+  background: rgba(255, 223, 100, 0.2) !important; /* #FFDF64 with transparency */
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 223, 100, 0.3) !important;
+  color: #877B66 !important;
+  box-shadow: 0 4px 12px rgba(255, 223, 100, 0.2) !important;
+}
+
+.glass-button-accent:hover {
+  background: rgba(255, 223, 100, 0.3) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 223, 100, 0.5) !important;
+  box-shadow: 0 6px 20px rgba(255, 223, 100, 0.3) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Dark background glass buttons */
+.glass-button-dark {
+  background: rgba(135, 123, 102, 0.15) !important; /* #877B66 with transparency */
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(135, 123, 102, 0.2) !important;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+.glass-button-dark:hover {
+  background: rgba(135, 123, 102, 0.25) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(135, 123, 102, 0.3) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3) !important;
+  transform: translateY(-1px) !important;
+}
+
+.nature-gradient {
+  background: linear-gradient(135deg, 
+    #ffffff 0%,
+    #f8f9fa 25%,
+    #e9ecef 50%,
+    #dee2e6 75%,
+    #6c757d 100%
+  );
+}
+
+.organic-border {
+  border-radius: 2rem 1rem 2rem 1rem;
+}
