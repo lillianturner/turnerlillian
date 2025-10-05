@@ -22,8 +22,8 @@ export function Footer() {
                 href="https://linkedin.com/in/lillianturner" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center w-10 h-10 rounded-full glass-social-icon-dark focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#042F23]"
-                style={{ backgroundColor: 'rgba(13, 122, 90, 0.8)' }}
+                className="inline-flex items-center justify-center w-10 h-10 rounded-lg glass-logo transition-transform duration-200 hover:scale-105"
+                style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
                 aria-label="LinkedIn profile"
                 role="listitem"
               >
@@ -33,8 +33,8 @@ export function Footer() {
                 href="https://github.com/lillianturner" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center w-10 h-10 rounded-full glass-social-icon-dark focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#042F23]"
-                style={{ backgroundColor: 'rgba(13, 122, 90, 0.8)' }}
+                className="inline-flex items-center justify-center w-10 h-10 rounded-lg glass-logo transition-transform duration-200 hover:scale-105"
+                style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
                 aria-label="GitHub profile"
                 role="listitem"
               >
@@ -42,8 +42,8 @@ export function Footer() {
               </a>
               <a 
                 href="mailto:hello@lillianturner.com"
-                className="inline-flex items-center justify-center w-10 h-10 rounded-full glass-social-icon-dark focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#042F23]"
-                style={{ backgroundColor: 'rgba(13, 122, 90, 0.8)' }}
+                className="inline-flex items-center justify-center w-10 h-10 rounded-lg glass-logo transition-transform duration-200 hover:scale-105"
+                style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
                 aria-label="Send email"
                 role="listitem"
               >
