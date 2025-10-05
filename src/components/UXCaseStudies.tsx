@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button } from './ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from './ui/dialog';
+import { PDFViewer } from './PDFViewer';
 
 export function UXCaseStudies() {
   const caseStudies = [
@@ -8,37 +9,52 @@ export function UXCaseStudies() {
       title: "Poppin' Joe's Kettle Corn E-Commerce Website Redesign",
       description: "Redesigned the website for a beloved family brand by conducting a site analysis, creating a content strategy report, and developing a full editorial style guide. The project improved navigation, clarified brand voice, and established a cohesive, accessible digital presence.",
       tags: ["User Research", "Information Architecture", "Style Guide", "Brand Voice", "Accessibility"],
-      image: "/placeholder-ecommerce.jpg"
+      image: "/placeholder-ecommerce.jpg",
+      pdfUrls: [
+        "/pdfs/poppin-joe-site-analysis.pdf",
+        "/pdfs/poppin-joe-content-strategy.pdf",
+        "/pdfs/poppin-joe-style-guide.pdf"
+      ],
+      pdfTitles: [
+        "Site Analysis Report",
+        "Content Strategy Report",
+        "Editorial Style Guide"
+      ]
     },
     {
       title: "Mobile Banking App",
       description: "Designed an intuitive mobile banking experience focusing on security and accessibility.",
       tags: ["Mobile Design", "Accessibility", "Security UX", "User Flows"],
-      image: "/placeholder-banking.jpg"
+      image: "/placeholder-banking.jpg",
+      pdfUrl: "/pdfs/mobile-banking-case-study.pdf"
     },
     {
       title: "SaaS Dashboard Interface",
       description: "Simplified complex data visualization for better user decision-making and workflow efficiency.",
       tags: ["Data Visualization", "Dashboard Design", "Information Architecture", "User Testing"],
-      image: "/placeholder-saas.jpg"
+      image: "/placeholder-saas.jpg",
+      pdfUrl: "/pdfs/saas-dashboard-case-study.pdf"
     },
     {
       title: "Healthcare Patient Portal",
       description: "Streamlined patient access to medical records and appointment scheduling with HIPAA-compliant design.",
       tags: ["Healthcare UX", "Accessibility", "Information Security", "User Journey Mapping"],
-      image: "/placeholder-healthcare.jpg"
+      image: "/placeholder-healthcare.jpg",
+      pdfUrl: "/pdfs/healthcare-portal-case-study.pdf"
     },
     {
       title: "Educational Learning Platform",
       description: "Enhanced student engagement and learning outcomes through gamification and adaptive UI design.",
       tags: ["EdTech", "Gamification", "Adaptive Design", "User Engagement"],
-      image: "/placeholder-education.jpg"
+      image: "/placeholder-education.jpg",
+      pdfUrl: "/pdfs/education-platform-case-study.pdf"
     },
     {
       title: "Travel Booking Website",
       description: "Optimized the booking flow to reduce cart abandonment by 40% with improved UX patterns.",
       tags: ["Conversion Optimization", "User Flows", "Mobile-First Design", "Usability Testing"],
-      image: "/placeholder-travel.jpg"
+      image: "/placeholder-travel.jpg",
+      pdfUrl: "/pdfs/travel-booking-case-study.pdf"
     }
   ];
 
@@ -100,48 +116,95 @@ export function UXCaseStudies() {
               </DialogDescription>
             </DialogHeader>
             <div className="flex flex-col space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                {/* Left Column - Images */}
-                <div className="flex flex-col items-center justify-center space-y-4">
-                  <div className="aspect-video bg-muted rounded-lg flex items-center justify-center w-full">
-                    <span className="text-muted-foreground">Project Preview Image</span>
+              {/* Special layout for Poppin Joe's with multiple PDFs */}
+              {selectedStudy?.title === "Poppin' Joe's Kettle Corn E-Commerce Website Redesign" ? (
+                <div className="grid lg:grid-cols-3 gap-6">
+                  {/* Left Column - Multiple PDFs */}
+                  <div className="lg:col-span-2 space-y-6">
+                    {selectedStudy.pdfUrls?.map((pdfUrl, index) => (
+                      <PDFViewer
+                        key={index}
+                        pdfUrl={pdfUrl}
+                        title={selectedStudy.pdfTitles?.[index] || `Document ${index + 1}`}
+                        className="w-full"
+                      />
+                    ))}
                   </div>
-                  <div className="aspect-video bg-muted rounded-lg flex items-center justify-center w-full">
-                    <span className="text-muted-foreground">Additional Project Image</span>
-                  </div>
-                </div>
 
-                {/* Right Column - Information */}
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="font-semibold mb-2">Key Skills & Technologies</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {selectedStudy?.tags.map((tag, index) => (
-                        <span key={index} className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
-                          {tag}
-                        </span>
-                      ))}
+                  {/* Right Column - Information */}
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-semibold mb-2">Key Skills & Technologies</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {selectedStudy?.tags.map((tag, index) => (
+                          <span key={index} className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-2">Project Overview</h4>
+                      <p className="text-muted-foreground">
+                        This case study demonstrates my approach to user-centered design, focusing on research-driven solutions
+                        that deliver measurable business impact. The project involved comprehensive user research, iterative
+                        prototyping, and rigorous usability testing to ensure optimal user experience.
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-2">Key Achievements</h4>
+                      <ul className="text-muted-foreground space-y-1">
+                        <li>• Increased conversion rates by 35%</li>
+                        <li>• Improved user satisfaction scores</li>
+                        <li>• Reduced task completion time</li>
+                        <li>• Enhanced accessibility compliance</li>
+                      </ul>
                     </div>
                   </div>
-                  <div>
-                    <h4 className="font-semibold mb-2">Project Overview</h4>
-                    <p className="text-muted-foreground">
-                      This case study demonstrates my approach to user-centered design, focusing on research-driven solutions
-                      that deliver measurable business impact. The project involved comprehensive user research, iterative
-                      prototyping, and rigorous usability testing to ensure optimal user experience.
-                    </p>
+                </div>
+              ) : (
+                /* Default layout for other case studies */
+                <div className="grid md:grid-cols-2 gap-6">
+                  {/* Left Column - PDF Viewer */}
+                  <div className="flex flex-col items-center justify-center">
+                    <PDFViewer
+                      pdfUrl={selectedStudy?.pdfUrl || ""}
+                      className="w-full"
+                    />
                   </div>
-                  <div>
-                    <h4 className="font-semibold mb-2">Key Achievements</h4>
-                    <ul className="text-muted-foreground space-y-1">
-                      <li>• Increased conversion rates by 35%</li>
-                      <li>• Improved user satisfaction scores</li>
-                      <li>• Reduced task completion time</li>
-                      <li>• Enhanced accessibility compliance</li>
-                    </ul>
+
+                  {/* Right Column - Information */}
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-semibold mb-2">Key Skills & Technologies</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {selectedStudy?.tags.map((tag, index) => (
+                          <span key={index} className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-2">Project Overview</h4>
+                      <p className="text-muted-foreground">
+                        This case study demonstrates my approach to user-centered design, focusing on research-driven solutions
+                        that deliver measurable business impact. The project involved comprehensive user research, iterative
+                        prototyping, and rigorous usability testing to ensure optimal user experience.
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-2">Key Achievements</h4>
+                      <ul className="text-muted-foreground space-y-1">
+                        <li>• Increased conversion rates by 35%</li>
+                        <li>• Improved user satisfaction scores</li>
+                        <li>• Reduced task completion time</li>
+                        <li>• Enhanced accessibility compliance</li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
 
               {/* Close Button */}
               <div className="flex justify-end">
