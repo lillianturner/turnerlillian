@@ -9,7 +9,7 @@ export function UXCaseStudies() {
       title: "Poppin' Joe's Kettle Corn E-Commerce Website Redesign",
       description: "Redesigned the website for a beloved family brand by conducting a site analysis, creating a content strategy report, and developing a full editorial style guide. The project improved navigation, clarified brand voice, and established a cohesive, accessible digital presence.",
       tags: ["User Research", "Information Architecture", "Style Guide", "Brand Voice", "Accessibility"],
-      image: "/placeholder-ecommerce.jpg",
+      image: "/pdfs/PoppinJoes.png",
       pdfUrls: [
         "/pdfs/poppin-joe-site-analysis.pdf",
         "/pdfs/poppin-joe-content-strategy.pdf",
@@ -22,18 +22,18 @@ export function UXCaseStudies() {
       ]
     },
     {
-      title: "Mobile Banking App",
-      description: "Designed an intuitive mobile banking experience focusing on security and accessibility.",
-      tags: ["Mobile Design", "Accessibility", "Security UX", "User Flows"],
-      image: "/placeholder-banking.jpg",
-      pdfUrl: "/pdfs/mobile-banking-case-study.pdf"
+      title: "Pacific Northwest X-Ray Inc. Website Usability Test Report",
+      description: "Conducted comprehensive usability testing for Pacific Northwest X-Ray Inc.'s website, identifying key user experience issues and providing actionable recommendations for improvement.",
+      tags: ["Usability Testing", "User Research", "Healthcare UX", "Accessibility", "User Experience"],
+      image: "/pdfs/PNWX.png",
+      pdfUrl: "/pdfs/Pacific Northwest X-Ray Inc. Website Usability Test Report.pdf"
     },
     {
-      title: "SaaS Dashboard Interface",
-      description: "Simplified complex data visualization for better user decision-making and workflow efficiency.",
-      tags: ["Data Visualization", "Dashboard Design", "Information Architecture", "User Testing"],
+      title: "Charity: Water Fundraising Landing Page",
+      description: "Developed a responsive fundraising landing page for charity: water as part of the Global Career Accelerator program. The page targeted Gen-Z donors and emphasized clear calls-to-action and mobile-first usability.",
+      tags: ["HTML/CSS", "Responsive Design", "AI-Assisted Development", "GitHub Pages", "UX Best Practices"],
       image: "/placeholder-saas.jpg",
-      pdfUrl: "/pdfs/saas-dashboard-case-study.pdf"
+      webUrl: "https://lillianturner.github.io/CR-02-charity-water-lp/"
     },
     {
       title: "Healthcare Patient Portal",
@@ -103,8 +103,8 @@ export function UXCaseStudies() {
               className="group glass-card rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-primary flex flex-col h-full card-interactive cursor-pointer"
               onClick={() => setSelectedStudy(study)}
             >
-              <div className="aspect-video glass-section flex items-center justify-center card-image" role="img" aria-label={`Preview image for ${study.title}`}>
-                <span className="text-muted-foreground">Project Image</span>
+              <div className="aspect-video glass-section flex items-center justify-center card-image overflow-hidden" role="img" aria-label={`Preview image for ${study.title}`}>
+                <img src={study.image} alt={`Preview for ${study.title}`} className="w-full h-full object-cover" />
               </div>
               <div className="p-6 flex flex-col flex-grow">
                 <h3 className="text-xl font-semibold mb-3" id={`study-title-${index}`}>{study.title}</h3>
@@ -201,19 +201,10 @@ export function UXCaseStudies() {
                       </div>
                       <div>
                         <h4 className="font-semibold mb-3 text-lg">Key Deliverables</h4>
-                        <ul className="text-muted-foreground space-y-2">
-                          <li className="flex items-start gap-2">
-                            <span className="text-primary mt-1">•</span>
-                            <span>Complete site analysis report identifying UX issues and improvement opportunities</span>
-                          </li>
-                          <li className="flex items-start gap-2">
-                            <span className="text-primary mt-1">•</span>
-                            <span>Content strategy framework with brand voice guidelines and messaging hierarchy</span>
-                          </li>
-                          <li className="flex items-start gap-2">
-                            <span className="text-primary mt-1">•</span>
-                            <span>Editorial style guide ensuring consistent tone and terminology across all content</span>
-                          </li>
+                        <ul className="text-muted-foreground space-y-2 list-disc pl-6">
+                          <li>Complete site analysis report identifying UX issues and improvement opportunities</li>
+                          <li>Content strategy framework with brand voice guidelines and messaging hierarchy</li>
+                          <li>Editorial style guide ensuring consistent tone and terminology across all content</li>
                         </ul>
                       </div>
                     </div>
@@ -231,23 +222,11 @@ export function UXCaseStudies() {
                       </div>
                       <div>
                         <h4 className="font-semibold mb-3">Impact & Results</h4>
-                        <ul className="text-muted-foreground space-y-2 text-sm">
-                          <li className="flex items-start gap-2">
-                            <span className="text-green-600 mt-1">✓</span>
-                            <span>Improved site navigation and user flow clarity</span>
-                          </li>
-                          <li className="flex items-start gap-2">
-                            <span className="text-green-600 mt-1">✓</span>
-                            <span>Established consistent brand voice and messaging</span>
-                          </li>
-                          <li className="flex items-start gap-2">
-                            <span className="text-green-600 mt-1">✓</span>
-                            <span>Enhanced accessibility and user experience standards</span>
-                          </li>
-                          <li className="flex items-start gap-2">
-                            <span className="text-green-600 mt-1">✓</span>
-                            <span>Created scalable content framework for future growth</span>
-                          </li>
+                        <ul className="text-muted-foreground space-y-2 text-sm list-disc pl-6">
+                          <li>Improved site navigation and user flow clarity</li>
+                          <li>Established consistent brand voice and messaging</li>
+                          <li>Enhanced accessibility and user experience standards</li>
+                          <li>Created scalable content framework for future growth</li>
                         </ul>
                       </div>
                     </div>
@@ -270,6 +249,80 @@ export function UXCaseStudies() {
                     </div>
                   </div>
                 </div>
+              ) : selectedStudy?.title === "Charity: Water Fundraising Landing Page" ? (
+                /* Special layout for Charity: Water - webpage preview */
+                <div className="space-y-6">
+                  {/* Project Information - First */}
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div className="lg:col-span-2 space-y-4">
+                      <div>
+                        <h4 className="font-semibold mb-3 text-lg">Project Overview</h4>
+                        <p className="text-muted-foreground leading-relaxed">
+                          Developed a responsive fundraising landing page for charity: water as part of the Global Career Accelerator program. The page targeted Gen-Z donors and emphasized clear calls-to-action and mobile-first usability.
+                        </p>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold mb-3 text-lg">Key Deliverables</h4>
+                        <ul className="text-muted-foreground space-y-2 list-disc pl-6">
+                          <li>Fully coded HTML/CSS landing page for desktop and mobile</li>
+                          <li>AI-assisted development using GitHub Copilot and ChatGPT</li>
+                          <li>Applied UX best practices in hierarchy, responsiveness, and clarity</li>
+                          <li>Final hosted project on GitHub Pages</li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="font-semibold mb-3">Key Skills & Technologies</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {selectedStudy?.tags.map((tag, index) => (
+                            <span key={index} className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold mb-3">Impact & Results</h4>
+                        <ul className="text-muted-foreground space-y-2 text-sm list-disc pl-6">
+                          <li>Built a fully functional, responsive webpage from concept to deployment</li>
+                          <li>Enhanced proficiency in HTML/CSS and responsive design</li>
+                          <li>Strengthened AI collaboration and technical problem-solving skills</li>
+                          <li>Improved prompt engineering and workflow efficiency through AI-assisted learning</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Webpage Preview - Below project information */}
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <h4 className="font-semibold text-xl md:text-2xl text-green-800">Live Project Preview</h4>
+                      {/* Open in new tab button aligned with heading */}
+                      <Button
+                        size="sm"
+                        onClick={() => window.open(selectedStudy.webUrl, '_blank')}
+                        className="flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground btn-animate hover-glow"
+                        title="Open webpage in new tab"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                        Open in New Tab
+                      </Button>
+                    </div>
+                    <div className="w-full">
+                      <iframe
+                        src={selectedStudy.webUrl}
+                        title="Charity: Water Fundraising Landing Page"
+                        className="w-full h-96 border rounded-lg"
+                        scrolling="auto"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                </div>
               ) : (
                 /* Default layout for other case studies - matching Poppin Joe's structure */
                 <div className="space-y-6">
@@ -279,11 +332,14 @@ export function UXCaseStudies() {
                       <div>
                         <h4 className="font-semibold mb-3 text-lg">Project Overview</h4>
                         <p className="text-muted-foreground leading-relaxed">
+                          {selectedStudy?.title === "Pacific Northwest X-Ray Inc. Website Usability Test Report" && (
+                            "Conducted a usability test of Pacific Northwest X-Ray Inc.'s e-commerce site to assess how efficiently medical professionals could locate and purchase equipment. The study identified major pain points in navigation, product search, and ordering flow."
+                          )}
                           {selectedStudy?.title === "Mobile Banking App" && (
                             "This mobile banking application redesign focused on creating a secure, intuitive, and accessible banking experience. The project addressed key pain points in mobile financial services, implementing biometric authentication, simplified navigation, and comprehensive accessibility features to serve users with diverse needs and abilities."
                           )}
-                          {selectedStudy?.title === "SaaS Dashboard Interface" && (
-                            "This comprehensive dashboard redesign transformed complex data visualization into clear, actionable insights. The project involved extensive user research with data analysts and business users to understand their workflows, pain points, and information needs, resulting in a streamlined interface that improved decision-making efficiency."
+                          {selectedStudy?.title === "Charity: Water Fundraising Landing Page" && (
+                            "Developed a responsive fundraising landing page for charity: water as part of the Global Career Accelerator program. The page targeted Gen-Z donors and emphasized clear calls-to-action and mobile-first usability."
                           )}
                           {selectedStudy?.title === "Healthcare Patient Portal" && (
                             "This patient portal redesign addressed critical usability issues in healthcare technology, focusing on HIPAA compliance, accessibility standards, and intuitive navigation for patients managing their healthcare journey. The project involved collaboration with healthcare providers and extensive user testing with patients of varying technical proficiency."
@@ -298,7 +354,15 @@ export function UXCaseStudies() {
                       </div>
                       <div>
                         <h4 className="font-semibold mb-3 text-lg">Key Deliverables</h4>
-                        <ul className="text-muted-foreground space-y-2">
+                        <ul className="text-muted-foreground space-y-2 list-disc pl-6">
+                          {selectedStudy?.title === "Pacific Northwest X-Ray Inc. Website Usability Test Report" && (
+                            <>
+                              <li>Usability test plan with three realistic task scenarios</li>
+                              <li>Participant observations and timing data</li>
+                              <li>Synthesized findings on navigation, search, and ordering issues</li>
+                              <li>Actionable redesign recommendations for clearer structure and smoother checkout</li>
+                            </>
+                          )}
                           {selectedStudy?.title === "Mobile Banking App" && (
                             <>
                               <li className="flex items-start gap-2">
@@ -315,20 +379,12 @@ export function UXCaseStudies() {
                               </li>
                             </>
                           )}
-                          {selectedStudy?.title === "SaaS Dashboard Interface" && (
+                          {selectedStudy?.title === "Charity: Water Fundraising Landing Page" && (
                             <>
-                              <li className="flex items-start gap-2">
-                                <span className="text-primary mt-1">•</span>
-                                <span>Interactive data visualization components with drill-down capabilities</span>
-                              </li>
-                              <li className="flex items-start gap-2">
-                                <span className="text-primary mt-1">•</span>
-                                <span>Customizable dashboard layouts with drag-and-drop functionality</span>
-                              </li>
-                              <li className="flex items-start gap-2">
-                                <span className="text-primary mt-1">•</span>
-                                <span>Advanced filtering and search capabilities for large datasets</span>
-                              </li>
+                              <li>Fully coded HTML/CSS landing page for desktop and mobile</li>
+                              <li>AI-assisted development using GitHub Copilot and ChatGPT</li>
+                              <li>Applied UX best practices in hierarchy, responsiveness, and clarity</li>
+                              <li>Final hosted project on GitHub Pages</li>
                             </>
                           )}
                           {selectedStudy?.title === "Healthcare Patient Portal" && (
@@ -396,7 +452,15 @@ export function UXCaseStudies() {
                       </div>
                       <div>
                         <h4 className="font-semibold mb-3">Impact & Results</h4>
-                        <ul className="text-muted-foreground space-y-2 text-sm">
+                        <ul className="text-muted-foreground space-y-2 text-sm list-disc pl-6">
+                          {selectedStudy?.title === "Pacific Northwest X-Ray Inc. Website Usability Test Report" && (
+                            <>
+                              <li>Identified navigation and product-filtering barriers that slowed task completion</li>
+                              <li>Provided data-driven redesign proposals to improve efficiency and clarity</li>
+                              <li>Strengthened UX research and usability testing methodology skills</li>
+                              <li>Demonstrated ability to translate qualitative findings into practical design recommendations</li>
+                            </>
+                          )}
                           {selectedStudy?.title === "Mobile Banking App" && (
                             <>
                               <li className="flex items-start gap-2">
@@ -417,24 +481,12 @@ export function UXCaseStudies() {
                               </li>
                             </>
                           )}
-                          {selectedStudy?.title === "SaaS Dashboard Interface" && (
+                          {selectedStudy?.title === "Charity: Water Fundraising Landing Page" && (
                             <>
-                              <li className="flex items-start gap-2">
-                                <span className="text-green-600 mt-1">✓</span>
-                                <span>60% faster data insights generation</span>
-                              </li>
-                              <li className="flex items-start gap-2">
-                                <span className="text-green-600 mt-1">✓</span>
-                                <span>85% user task completion rate</span>
-                              </li>
-                              <li className="flex items-start gap-2">
-                                <span className="text-green-600 mt-1">✓</span>
-                                <span>40% reduction in training time</span>
-                              </li>
-                              <li className="flex items-start gap-2">
-                                <span className="text-green-600 mt-1">✓</span>
-                                <span>Enterprise-wide adoption achieved</span>
-                              </li>
+                              <li>Built a fully functional, responsive webpage from concept to deployment</li>
+                              <li>Enhanced proficiency in HTML/CSS and responsive design</li>
+                              <li>Strengthened AI collaboration and technical problem-solving skills</li>
+                              <li>Improved prompt engineering and workflow efficiency through AI-assisted learning</li>
                             </>
                           )}
                           {selectedStudy?.title === "Healthcare Patient Portal" && (
@@ -504,11 +556,27 @@ export function UXCaseStudies() {
 
                   {/* PDF Grid - Below project information */}
                   <div className="space-y-4">
-                    <h4 className="font-semibold text-xl md:text-2xl text-green-800">Project Documentation</h4>
+                    <div className="flex items-center justify-between">
+                      <h4 className="font-semibold text-xl md:text-2xl text-green-800">Project Documentation</h4>
+                      {/* Full screen button aligned with heading */}
+                      <Button
+                        size="sm"
+                        onClick={() => window.open(selectedStudy?.pdfUrl || "", '_blank')}
+                        className="flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground btn-animate hover-glow"
+                        title="Open PDF in full screen"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 3H3a2 2 0 00-2 2v14a2 2 0 002 2h18a2 2 0 002-2V5a2 2 0 00-2-2z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 14l-9-9-9 9" />
+                        </svg>
+                        Full Screen
+                      </Button>
+                    </div>
                     <div className="grid grid-cols-1 gap-4 md:gap-6">
                       <PDFViewer
                         pdfUrl={selectedStudy?.pdfUrl || ""}
                         className="w-full"
+                        useIframe={true}
                       />
                     </div>
                   </div>
