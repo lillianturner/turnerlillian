@@ -123,7 +123,7 @@ export function Header() {
               <div className="w-10 h-10 glass-logo rounded-lg flex items-center justify-center mr-3">
                 <span className="text-primary font-bold" aria-hidden="true">LT</span>
               </div>
-              <span className="text-xl font-semibold">Lillian Turner</span>
+              <span className="text-xl font-semibold brand-name">LILLIAN TURNER</span>
             </a>
           </div>
 
@@ -142,7 +142,7 @@ export function Header() {
             ))}
             <Button 
               size="sm" 
-              className="bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-200 ml-4"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-200 ml-4 shimmer-effect"
               aria-label="View Resume"
               onClick={() => openDocumentModal('resume')}
             >
@@ -151,7 +151,7 @@ export function Header() {
             </Button>
             <Button 
               size="sm" 
-              className="bg-secondary hover:bg-secondary/90 text-secondary-foreground transition-all duration-200 ml-2"
+              className="bg-secondary hover:bg-secondary/90 text-secondary-foreground transition-all duration-200 ml-2 shimmer-effect"
               aria-label="View CV"
               onClick={() => openDocumentModal('cv')}
             >

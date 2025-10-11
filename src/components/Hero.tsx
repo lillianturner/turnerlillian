@@ -42,7 +42,8 @@ export function Hero() {
               </Button>
               <Button 
                 size="lg" 
-                className="text-lg px-8 py-3 bg-primary hover:bg-primary/90 text-primary-foreground btn-animate hover-glow"
+                variant="outline"
+                className="text-lg px-8 py-3 border-2 border-primary text-primary hover:bg-primary/10 btn-animate"
                 onClick={() => {
                   const element = document.getElementById('contact');
                   element?.scrollIntoView({ behavior: 'smooth' });
@@ -54,28 +55,52 @@ export function Hero() {
 
             {/* Social Links */}
             <div className="flex space-x-4 lg:space-x-5" role="list" aria-label="Social media links">
-              <Button variant="ghost" size="lg" className="w-12 h-12 lg:w-14 lg:h-14 glass-social-icon hover-scale-sm transition-all-smooth" aria-label="LinkedIn profile" role="listitem">
-                <Linkedin className="w-5 h-5 lg:w-6 lg:h-6 text-primary" aria-hidden="true" />
-              </Button>
-              <Button variant="ghost" size="lg" className="w-12 h-12 lg:w-14 lg:h-14 glass-social-icon hover-scale-sm transition-all-smooth" aria-label="GitHub profile" role="listitem">
-                <Github className="w-5 h-5 lg:w-6 lg:h-6 text-primary" aria-hidden="true" />
-              </Button>
-              <Button variant="ghost" size="lg" className="w-12 h-12 lg:w-14 lg:h-14 glass-social-icon hover-scale-sm transition-all-smooth" aria-label="Email contact" role="listitem">
-                <Mail className="w-5 h-5 lg:w-6 lg:h-6 text-primary" aria-hidden="true" />
-              </Button>
+              <a 
+                href="https://www.linkedin.com/in/lillian-turner-79bb16226" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                role="listitem"
+              >
+                <Button variant="ghost" size="lg" className="w-12 h-12 lg:w-14 lg:h-14 glass-social-icon hover-scale-sm transition-all-smooth" aria-label="LinkedIn profile">
+                  <Linkedin className="w-5 h-5 lg:w-6 lg:h-6 text-primary" aria-hidden="true" />
+                </Button>
+              </a>
+              <a 
+                href="https://github.com/turnerlillian" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                role="listitem"
+              >
+                <Button variant="ghost" size="lg" className="w-12 h-12 lg:w-14 lg:h-14 glass-social-icon hover-scale-sm transition-all-smooth" aria-label="GitHub profile">
+                  <Github className="w-5 h-5 lg:w-6 lg:h-6 text-primary" aria-hidden="true" />
+                </Button>
+              </a>
+              <a 
+                href="mailto:turnerlillianc@gmail.com"
+                role="listitem"
+              >
+                <Button variant="ghost" size="lg" className="w-12 h-12 lg:w-14 lg:h-14 glass-social-icon hover-scale-sm transition-all-smooth" aria-label="Email contact">
+                  <Mail className="w-5 h-5 lg:w-6 lg:h-6 text-primary" aria-hidden="true" />
+                </Button>
+              </a>
             </div>
           </div>
 
           {/* Professional Photo/Visual */}
-          <div className="relative flex justify-center items-center" role="img" aria-label="Professional headshot of Lillian Turner">
-            <div className="aspect-square max-w-sm lg:max-w-md rounded-2xl lg:rounded-3xl flex items-center justify-center shadow-2xl relative overflow-hidden">
+          <div 
+            className="relative flex justify-center items-center cursor-pointer" 
+            role="button" 
+            aria-label="Click to learn more about Lillian Turner"
+            onClick={() => {
+              const element = document.getElementById('about');
+              element?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            <div className="aspect-square max-w-sm lg:max-w-md rounded-2xl lg:rounded-3xl flex items-center justify-center relative overflow-hidden hover-glow shimmer-effect">
               <img
                 src="/pdfs/headshot.jpeg"
                 alt="Lillian Turner - UX Designer & Technical Communicator"
                 className="w-full h-full object-cover rounded-2xl lg:rounded-3xl"
-                style={{
-                  boxShadow: '0 25px 50px rgba(6, 95, 70, 0.2), 0 10px 20px rgba(6, 95, 70, 0.15), 0 4px 8px rgba(6, 95, 70, 0.1)'
-                }}
               />
             </div>
           </div>

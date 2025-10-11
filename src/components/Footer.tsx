@@ -19,7 +19,7 @@ export function Footer() {
             </p>
             <div className="flex space-x-4" role="list" aria-label="Social media links">
               <a 
-                href="https://linkedin.com/in/lillianturner" 
+                href="https://www.linkedin.com/in/lillian-turner-79bb16226" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center w-10 h-10 rounded-lg glass-logo transition-transform duration-200 hover:scale-105"
@@ -30,7 +30,7 @@ export function Footer() {
                 <Linkedin className="w-5 h-5 text-white" />
               </a>
               <a 
-                href="https://github.com/lillianturner" 
+                href="https://github.com/turnerlillian" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center w-10 h-10 rounded-lg glass-logo transition-transform duration-200 hover:scale-105"
@@ -41,7 +41,7 @@ export function Footer() {
                 <Github className="w-5 h-5 text-white" />
               </a>
               <a 
-                href="mailto:hello@lillianturner.com"
+                href="mailto:turnerlillianc@gmail.com"
                 className="inline-flex items-center justify-center w-10 h-10 rounded-lg glass-logo transition-transform duration-200 hover:scale-105"
                 style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
                 aria-label="Send email"

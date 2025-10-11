@@ -30,9 +30,10 @@ interface PDFViewerProps {
   title?: string;
   className?: string;
   useIframe?: boolean;
+  hideOverlayButton?: boolean;
 }
 
-export function PDFViewer({ pdfUrl, title, className = "", useIframe = false }: PDFViewerProps) {
+export function PDFViewer({ pdfUrl, title, className = "", useIframe = false, hideOverlayButton = false }: PDFViewerProps) {
   const [numPages, setNumPages] = useState<number | null>(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [loading, setLoading] = useState(!useIframe); // Don't show loading for iframe initially
@@ -106,7 +107,7 @@ export function PDFViewer({ pdfUrl, title, className = "", useIframe = false }: 
 
       <div className="border rounded-lg overflow-hidden bg-white relative group">
         {/* Full screen button overlay for PDFs without titles */}
-        {!title && (
+        {!title && !hideOverlayButton && (
           <div className="absolute top-3 right-3 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
             <Button
               variant="secondary"
@@ -179,6 +180,15 @@ export function PDFViewer({ pdfUrl, title, className = "", useIframe = false }: 
                     </div>
                   </div>
                 )}
+                {/* Scroll indicator hint */}
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 pointer-events-none animate-bounce">
+                  <div className="bg-primary/90 text-primary-foreground px-3 py-1.5 rounded-full shadow-lg flex items-center gap-2 text-xs font-medium">
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                    </svg>
+                    Scroll to view more
+                  </div>
+                </div>
                 <iframe
                   src={pdfUrl}
                   className="w-full border-0 rounded-lg"
