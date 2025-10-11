@@ -67,11 +67,16 @@ export function Hero() {
           </div>
 
           {/* Professional Photo/Visual */}
-          <div className="relative flex justify-center items-center" role="img" aria-label="Lillian Turner's professional brand logo">
-            <div className="aspect-square rounded-2xl lg:rounded-3xl flex items-center justify-center shadow-lg" style={{ backgroundColor: '#F3F4F6' }}>
-              <div className="w-52 h-52 lg:w-60 lg:h-60 rounded-full flex items-center justify-center shadow-md" style={{ backgroundColor: '#065F46' }}>
-                <span className="text-6xl lg:text-7xl font-bold text-white" aria-hidden="true">LT</span>
-              </div>
+          <div className="relative flex justify-center items-center" role="img" aria-label="Professional headshot of Lillian Turner">
+            <div className="aspect-square max-w-sm lg:max-w-md rounded-2xl lg:rounded-3xl flex items-center justify-center shadow-2xl relative overflow-hidden">
+              <img
+                src="/pdfs/headshot.jpeg"
+                alt="Lillian Turner - UX Designer & Technical Communicator"
+                className="w-full h-full object-cover rounded-2xl lg:rounded-3xl"
+                style={{
+                  boxShadow: '0 25px 50px rgba(6, 95, 70, 0.2), 0 10px 20px rgba(6, 95, 70, 0.15), 0 4px 8px rgba(6, 95, 70, 0.1)'
+                }}
+              />
             </div>
           </div>
         </div>

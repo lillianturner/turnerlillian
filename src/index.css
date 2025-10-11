@@ -3,72 +3,74 @@
 @tailwind utilities;
 
 :root {
-  /* Cohesive Deep Forest Green Palette */
-  --background: 0 0% 99%; /* Warm white #FEFFFE */
-  --foreground: 210 22% 16%; /* Dark gray #1F2937 */
-  --card: 214 15% 95%; /* Light gray #F3F4F6 */
-  --card-foreground: 210 22% 16%;
-  --popover: 214 15% 95%;
-  --popover-foreground: 210 22% 16%;
-  
-  /* Primary: Deep forest green family */
+  /* Enhanced Deep Forest Green Palette with Better Contrast */
+  --background: 158 25% 97%; /* Very light forest green tint #F7FCF9 */
+  --foreground: 158 85% 9%; /* Deep forest #042F23 */
+  --card: 0 0% 100%; /* Pure white for contrast #FFFFFF */
+  --card-foreground: 158 85% 9%; /* Deep forest #042F23 */
+  --popover: 0 0% 100%; /* Pure white #FFFFFF */
+  --popover-foreground: 158 85% 9%; /* Deep forest #042F23 */
+
+  /* Primary: Deep forest green family - enhanced for contrast */
   --primary: 158 64% 20%; /* Deep forest #065F46 */
-  --primary-foreground: 0 0% 100%;
-  
-  /* Secondary: Primary light for accents */
+  --primary-foreground: 0 0% 100%; /* White text on green */
+
+  /* Secondary: Rich forest green for accents */
   --secondary: 158 58% 26%; /* Primary light #0D7A5A */
   --secondary-foreground: 0 0% 100%;
-  
-  /* Accent: Light forest green complement */
+
+  /* Accent: Vibrant forest green complement */
   --accent: 158 45% 35%; /* Light Forest Green #34A853 */
   --accent-foreground: 0 0% 100%;
-  
-  /* Neutral palette */
-  --muted: 214 15% 95%; /* Light gray #F3F4F6 */
-  --muted-foreground: 213 13% 43%; /* Medium gray #6B7280 */
-  
+
+  /* Neutral palette with better contrast */
+  --muted: 158 15% 92%; /* Subtle forest green tint #E8F5F0 */
+  --muted-foreground: 158 25% 25%; /* Dark forest green #2D5A47 */
+
   /* Semantic colors */
   --destructive: 0 72% 51%; /* Standard red #DC2626 */
   --destructive-foreground: 0 0% 100%;
-  
-  /* UI elements */
-  --border: 214 32% 91%; /* Very light gray #E5E7EB */
-  --input: 214 32% 91%;
-  --ring: 158 64% 20%; /* Primary green focus ring */
+
+  /* UI elements with enhanced contrast */
+  --border: 158 20% 85%; /* Forest green border #C7E4D7 */
+  --input: 0 0% 100%; /* White inputs #FFFFFF */
+  --ring: 158 64% 20%; /* Primary green focus ring #065F46 */
   --radius: 0.75rem;
 }
 
 .dark {
-  /* Dark mode with cohesive deep forest green palette */
-  --background: 158 85% 9%; /* Primary dark #042F23 */
-  --foreground: 0 0% 99%; /* Warm white #FEFFFE */
-  --card: 158 64% 20%; /* Deep forest #065F46 */
-  --card-foreground: 0 0% 99%;
-  --popover: 158 64% 20%;
-  --popover-foreground: 0 0% 99%;
-  
-  /* Primary: Lighter green for dark mode */
-  --primary: 158 58% 26%; /* Primary light #0D7A5A */
-  --primary-foreground: 0 0% 99%;
-  
-  /* Secondary: Light green for dark mode */
-  --secondary: 158 45% 35%; /* Light Forest Green #34A853 */
-  --secondary-foreground: 0 0% 99%;
-  
-  /* Accent: Medium forest green */
-  --accent: 158 58% 26%; /* Medium Forest Green #0D7A5A */
-  --accent-foreground: 0 0% 99%;
-  
-  /* Dark mode neutrals */
-  --muted: 158 45% 15%; /* Darker muted green */
-  --muted-foreground: 213 13% 63%;
-  
-  --destructive: 0 72% 61%;
-  --destructive-foreground: 0 0% 99%;
-  
-  --border: 158 45% 15%;
-  --input: 158 45% 15%;
-  --ring: 158 58% 26%;
+  /* Enhanced Dark Mode with Better Contrast */
+  --background: 158 85% 9%; /* Deep forest #042F23 */
+  --foreground: 0 0% 100%; /* Pure white #FFFFFF */
+  --card: 158 64% 15%; /* Darker forest green for cards #0A4A3A */
+  --card-foreground: 0 0% 100%; /* White text #FFFFFF */
+  --popover: 158 64% 15%; /* Darker forest green #0A4A3A */
+  --popover-foreground: 0 0% 100%; /* White text #FFFFFF */
+
+  /* Primary: Enhanced for dark mode contrast */
+  --primary: 158 45% 35%; /* Light Forest Green #34A853 */
+  --primary-foreground: 158 85% 9%; /* Deep forest text on light green */
+
+  /* Secondary: Medium forest green for accents */
+  --secondary: 158 58% 26%; /* Medium Forest Green #0D7A5A */
+  --secondary-foreground: 0 0% 100%;
+
+  /* Accent: Bright forest green for highlights */
+  --accent: 158 35% 45%; /* Bright Forest Green #4CAF50 */
+  --accent-foreground: 158 85% 9%;
+
+  /* Dark mode neutrals with better contrast */
+  --muted: 158 45% 15%; /* Dark forest green #1A3D32 */
+  --muted-foreground: 158 15% 75%; /* Light forest green text #B8D4C1 */
+
+  /* Semantic colors for dark mode */
+  --destructive: 0 75% 55%; /* Brighter red for dark backgrounds */
+  --destructive-foreground: 0 0% 100%;
+
+  /* UI elements with enhanced dark mode contrast */
+  --border: 158 35% 20%; /* Medium forest green border #2D5A47 */
+  --input: 158 64% 15%; /* Dark forest green inputs #0A4A3A */
+  --ring: 158 45% 35%; /* Light green focus ring #34A853 */
 }
 
 /* 
@@ -363,6 +365,41 @@ p, span, div, li, button {
   box-shadow: 
     0 6px 20px rgba(0, 0, 0, 0.25),
     inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Ultra-Enhanced Social Icon Effects */
+.glass-social-icon::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+  transform: translate(-100%, -100%);
+  transition: transform 0.6s ease;
+}
+
+.glass-social-icon:hover::before {
+  transform: translate(0, 0);
+}
+
+.glass-social-icon:hover {
+  background:
+    linear-gradient(135deg, rgba(6, 95, 70, 0.15) 0%, rgba(13, 122, 90, 0.12) 50%, rgba(6, 95, 70, 0.15) 100%),
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%);
+  border-color: rgba(6, 95, 70, 0.5);
+  box-shadow:
+    0 10px 40px rgba(6, 95, 70, 0.2),
+    0 4px 16px rgba(6, 95, 70, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 0 rgba(199, 228, 215, 0.3);
+  transform: translateY(-3px) scale(1.05);
 }
 
 .glass-section {
@@ -903,4 +940,371 @@ h4 { font-size: clamp(1.125rem, 2vw, 1.5rem); }
 
 .animate-spin {
   animation: spin 1s linear infinite;
+}
+
+/* Custom Scrollbar Styling - Frosted Glass Effect */
+::-webkit-scrollbar {
+  width: 12px !important;
+  height: 12px !important;
+  /* Force scrollbars to always be visible */
+  -webkit-appearance: none !important;
+  display: block !important;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(247, 252, 249, 0.8) !important; /* Match new background with opacity */
+  border-radius: 8px !important;
+  /* Ensure track is always visible */
+  opacity: 1 !important;
+  display: block !important;
+  /* Frosted glass effect */
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(199, 228, 215, 0.3) !important; /* Match new border color */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(6, 95, 70, 0.8) !important; /* Deep forest green from new palette */
+  border-radius: 8px !important;
+  border: 1px solid rgba(199, 228, 215, 0.4) !important; /* Match new border color */
+  /* Ensure thumb is always visible */
+  opacity: 1 !important;
+  /* Prevent thumb from disappearing */
+  min-height: 20px !important;
+  display: block !important;
+  /* Frosted glass effect */
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  box-shadow:
+    0 2px 4px rgba(4, 47, 35, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  /* Subtle gradient for glass effect */
+  background: linear-gradient(
+    135deg,
+    rgba(6, 95, 70, 0.9) 0%,
+    rgba(6, 95, 70, 0.7) 50%,
+    rgba(6, 95, 70, 0.8) 100%
+  ) !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(13, 122, 90, 0.95) 0%,
+    rgba(13, 122, 90, 0.8) 50%,
+    rgba(13, 122, 90, 0.9) 100%
+  ) !important; /* Secondary forest green on hover */
+  box-shadow:
+    0 3px 6px rgba(4, 47, 35, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+::-webkit-scrollbar-corner {
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+}
+
+/* Force scrollbars to always be visible on all scrollable elements */
+* {
+  /* Webkit browsers - force scrollbar visibility */
+  -webkit-overflow-scrolling: auto !important;
+}
+
+/* Ensure scrollbars are always visible */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(6, 95, 70, 0.8) rgba(247, 252, 249, 0.8);
+  /* Force scrollbar visibility */
+  overflow: scroll !important;
+  /* Ensure minimum scrollable area */
+  min-height: 100vh;
+}
+
+/* Ultra-Enhanced Background with Dramatic Visual Impact */
+body {
+  background:
+    radial-gradient(ellipse at top, rgba(6, 95, 70, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom, rgba(13, 122, 90, 0.06) 0%, transparent 50%),
+    linear-gradient(
+      135deg,
+      hsl(var(--background)) 0%,
+      hsl(158 25% 93%) 15%,
+      hsl(158 20% 95%) 35%,
+      hsl(158 15% 97%) 50%,
+      hsl(158 20% 94%) 65%,
+      hsl(158 25% 92%) 85%,
+      hsl(var(--background)) 100%
+    );
+  background-attachment: fixed;
+  min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(6, 95, 70, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(13, 122, 90, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 60% 30%, rgba(52, 168, 83, 0.02) 0%, transparent 35%);
+  background-size: 600px 600px, 400px 400px, 500px 500px;
+  pointer-events: none;
+  z-index: -1;
+  animation: subtle-shift 30s ease-in-out infinite;
+}
+
+@keyframes subtle-shift {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(10px, -10px); }
+  50% { transform: translate(-5px, 5px); }
+  75% { transform: translate(15px, 15px); }
+}
+
+/* Ultra-Enhanced Hero Section with Dramatic Lighting */
+#home {
+  background:
+    radial-gradient(circle at 30% 20%, rgba(6, 95, 70, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(13, 122, 90, 0.06) 0%, transparent 50%),
+    linear-gradient(
+      135deg,
+      rgba(6, 95, 70, 0.06) 0%,
+      rgba(6, 95, 70, 0.03) 25%,
+      transparent 50%,
+      rgba(13, 122, 90, 0.04) 75%,
+      rgba(6, 95, 70, 0.06) 100%
+    );
+  position: relative;
+  overflow: hidden;
+}
+
+#home::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background:
+    radial-gradient(
+      ellipse at 30% 30%,
+      rgba(6, 95, 70, 0.06) 0%,
+      rgba(6, 95, 70, 0.03) 30%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse at 70% 70%,
+      rgba(13, 122, 90, 0.05) 0%,
+      rgba(13, 122, 90, 0.02) 40%,
+      transparent 80%
+    );
+  animation: dramatic-float 25s ease-in-out infinite;
+  pointer-events: none;
+}
+
+#home::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.02) 50%, transparent 70%),
+    linear-gradient(-45deg, transparent 30%, rgba(255, 255, 255, 0.01) 50%, transparent 70%);
+  pointer-events: none;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+    box-shadow: 0 4px 12px rgba(52, 168, 83, 0.3);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+    box-shadow: 0 8px 24px rgba(52, 168, 83, 0.5), 0 4px 12px rgba(52, 168, 83, 0.4);
+  }
+}
+
+/* Ultra-Enhanced Card Styling with Dramatic Visual Impact */
+.glass-card-accent {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(247, 252, 249, 0.95) 30%, rgba(255, 255, 255, 0.98) 70%, rgba(247, 252, 249, 0.92) 100%),
+    linear-gradient(45deg, rgba(255, 255, 255, 0.8) 0%, transparent 50%, rgba(255, 255, 255, 0.4) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(199, 228, 215, 0.5);
+  box-shadow:
+    0 12px 40px rgba(6, 95, 70, 0.12),
+    0 6px 20px rgba(6, 95, 70, 0.08),
+    0 2px 8px rgba(6, 95, 70, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -1px 0 rgba(199, 228, 215, 0.2);
+  position: relative;
+}
+
+.glass-card-accent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.6) 50%, transparent 100%);
+}
+
+.glass-card-accent::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(199, 228, 215, 0.4) 50%, transparent 100%);
+}
+
+.glass-social-icon {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(247, 252, 249, 0.8) 50%, rgba(255, 255, 255, 0.9) 100%),
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.6) 0%, transparent 50%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(199, 228, 215, 0.4);
+  box-shadow:
+    0 6px 24px rgba(6, 95, 70, 0.1),
+    0 2px 8px rgba(6, 95, 70, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(199, 228, 215, 0.2);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ultra-Enhanced Button Styling */
+.btn-animate {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--primary)) 0%,
+    hsl(var(--secondary)) 50%,
+    hsl(var(--accent)) 100%
+  );
+  box-shadow:
+    0 6px 24px rgba(6, 95, 70, 0.4),
+    0 3px 12px rgba(6, 95, 70, 0.3),
+    0 1px 4px rgba(6, 95, 70, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-animate::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.btn-animate:hover::before {
+  left: 100%;
+}
+
+.btn-animate:hover {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--secondary)) 0%,
+    hsl(var(--accent)) 50%,
+    hsl(158 35% 45%) 100%
+  );
+  box-shadow:
+    0 12px 48px rgba(6, 95, 70, 0.5),
+    0 6px 24px rgba(6, 95, 70, 0.4),
+    0 2px 8px rgba(6, 95, 70, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px) scale(1.02);
+}
+
+.hover-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.hover-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+/* Enhanced Section Styling */
+section {
+  position: relative;
+}
+
+section:nth-child(even) {
+  background: linear-gradient(
+    180deg,
+    rgba(6, 95, 70, 0.02) 0%,
+    rgba(6, 95, 70, 0.01) 50%,
+    transparent 100%
+  );
+}
+
+section:nth-child(odd) {
+  background: linear-gradient(
+    180deg,
+    rgba(13, 122, 90, 0.01) 0%,
+    rgba(6, 95, 70, 0.02) 50%,
+    transparent 100%
+  );
+}
+
+/* Enhanced Typography Contrast */
+.subheading {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--primary)) 0%,
+    hsl(var(--secondary)) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* Enhanced Visual Elements */
+.hover-scale-sm:hover {
+  transform: scale(1.05) translateY(-2px);
+}
+
+.transition-all-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }

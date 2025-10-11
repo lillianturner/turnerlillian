@@ -1,9 +1,76 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Download } from 'lucide-react';
+import { Menu, X, Download, FileText } from 'lucide-react';
 import { Button } from './ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from './ui/dialog';
+import { PDFViewer } from './PDFViewer';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showResumeModal, setShowResumeModal] = useState(false);
+  const [showCVModal, setShowCVModal] = useState(false);
+  const [currentDocument, setCurrentDocument] = useState<'resume' | 'cv' | null>(null);
+
+  const documents = [
+    {
+      type: 'resume' as const,
+      title: 'Resume - Lillian Turner',
+      description: 'UX Designer & Technical Communicator',
+      filePath: '/pdfs/lillian-turner-resume.md',
+      downloadName: 'Lillian_Turner_Resume.md'
+    },
+    {
+      type: 'cv' as const,
+      title: 'CV - Lillian Turner',
+      description: 'Curriculum Vitae - UX Designer & Technical Communicator',
+      filePath: '/pdfs/lillian-turner-cv.md',
+      downloadName: 'Lillian_Turner_CV.md'
+    }
+  ];
+
+  const currentDocumentIndex = currentDocument ? documents.findIndex(doc => doc.type === currentDocument) : -1;
+
+  const navigateToDocument = (direction: 'prev' | 'next') => {
+    if (currentDocumentIndex === -1) return;
+
+    const newIndex = direction === 'next'
+      ? (currentDocumentIndex + 1) % documents.length
+      : (currentDocumentIndex - 1 + documents.length) % documents.length;
+
+    const newDoc = documents[newIndex];
+    setCurrentDocument(newDoc.type);
+
+    // Update modal states
+    if (newDoc.type === 'resume') {
+      setShowResumeModal(true);
+      setShowCVModal(false);
+    } else {
+      setShowResumeModal(false);
+      setShowCVModal(true);
+    }
+  };
+
+  const handleDocumentKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      navigateToDocument('prev');
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      navigateToDocument('next');
+    } else if (e.key === 'Escape') {
+      setShowResumeModal(false);
+      setShowCVModal(false);
+      setCurrentDocument(null);
+    }
+  };
+
+  const openDocumentModal = (type: 'resume' | 'cv') => {
+    setCurrentDocument(type);
+    if (type === 'resume') {
+      setShowResumeModal(true);
+    } else {
+      setShowCVModal(true);
+    }
+  };
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -76,10 +143,20 @@ export function Header() {
             <Button 
               size="sm" 
               className="bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-200 ml-4"
-              aria-label="Download Resume PDF"
+              aria-label="View Resume"
+              onClick={() => openDocumentModal('resume')}
             >
               <Download className="w-4 h-4 mr-2" aria-hidden="true" />
               Resume
+            </Button>
+            <Button 
+              size="sm" 
+              className="bg-secondary hover:bg-secondary/90 text-secondary-foreground transition-all duration-200 ml-2"
+              aria-label="View CV"
+              onClick={() => openDocumentModal('cv')}
+            >
+              <FileText className="w-4 h-4 mr-2" aria-hidden="true" />
+              CV
             </Button>
           </nav>
 
@@ -128,15 +205,189 @@ export function Header() {
               <Button 
                 size="sm" 
                 className="bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-200 self-start mt-4"
-                aria-label="Download Resume PDF"
+                aria-label="View Resume"
+                onClick={() => openDocumentModal('resume')}
               >
                 <Download className="w-4 h-4 mr-2" aria-hidden="true" />
                 Resume
+              </Button>
+              <Button 
+                size="sm" 
+                className="bg-secondary hover:bg-secondary/90 text-secondary-foreground transition-all duration-200 self-start mt-2"
+                aria-label="View CV"
+                onClick={() => openDocumentModal('cv')}
+              >
+                <FileText className="w-4 h-4 mr-2" aria-hidden="true" />
+                CV
               </Button>
             </nav>
           </div>
         )}
       </div>
+
+      {/* Resume Modal */}
+      <Dialog open={showResumeModal} onOpenChange={(open) => {
+        setShowResumeModal(open);
+        if (!open) setCurrentDocument(null);
+      }}>
+        <DialogContent
+          className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] max-w-7xl w-[95vw] h-[98vh] overflow-hidden flex flex-col"
+          onKeyDown={handleDocumentKeyDown}
+        >
+          {/* Skip link for screen readers */}
+          <a
+            href="#document-content"
+            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-primary-foreground px-3 py-2 rounded-md text-sm font-medium z-50"
+          >
+            Skip to content
+          </a>
+
+          <DialogHeader className="flex-shrink-0">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => navigateToDocument('prev')}
+                  className="p-2 h-8 w-8"
+                  aria-label={`Previous document: ${documents[(currentDocumentIndex - 1 + documents.length) % documents.length]?.title}`}
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </Button>
+                <div className="text-sm text-muted-foreground" aria-live="polite">
+                  {currentDocumentIndex + 1} of {documents.length}
+                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => navigateToDocument('next')}
+                  className="p-2 h-8 w-8"
+                  aria-label={`Next document: ${documents[(currentDocumentIndex + 1) % documents.length]?.title}`}
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Button>
+              </div>
+            </div>
+            <DialogTitle className="text-2xl font-bold text-primary mt-4">Resume - Lillian Turner</DialogTitle>
+            <DialogDescription>
+              UX Designer & Technical Communicator
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex justify-between items-center mb-4">
+            <div className="text-sm text-muted-foreground">
+              View or download my professional resume • Use arrow keys to navigate between documents
+            </div>
+            <Button
+              size="sm"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground"
+              onClick={() => {
+                const link = document.createElement('a');
+                link.href = '/pdfs/lillian-turner-resume.md';
+                link.download = 'Lillian_Turner_Resume.md';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+              }}
+            >
+              <Download className="w-4 h-4 mr-2" aria-hidden="true" />
+              Download Resume
+            </Button>
+          </div>
+          <div className="flex-1 overflow-hidden" id="document-content">
+            <iframe
+              src="/pdfs/lillian-turner-resume.md"
+              className="w-full h-full border-0 rounded-lg"
+              title="Resume - Lillian Turner"
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* CV Modal */}
+      <Dialog open={showCVModal} onOpenChange={(open) => {
+        setShowCVModal(open);
+        if (!open) setCurrentDocument(null);
+      }}>
+        <DialogContent
+          className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] max-w-7xl w-[95vw] h-[98vh] overflow-hidden flex flex-col"
+          onKeyDown={handleDocumentKeyDown}
+        >
+          {/* Skip link for screen readers */}
+          <a
+            href="#document-content"
+            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-primary-foreground px-3 py-2 rounded-md text-sm font-medium z-50"
+          >
+            Skip to content
+          </a>
+
+          <DialogHeader className="flex-shrink-0">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => navigateToDocument('prev')}
+                  className="p-2 h-8 w-8"
+                  aria-label={`Previous document: ${documents[(currentDocumentIndex - 1 + documents.length) % documents.length]?.title}`}
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </Button>
+                <div className="text-sm text-muted-foreground" aria-live="polite">
+                  {currentDocumentIndex + 1} of {documents.length}
+                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => navigateToDocument('next')}
+                  className="p-2 h-8 w-8"
+                  aria-label={`Next document: ${documents[(currentDocumentIndex + 1) % documents.length]?.title}`}
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Button>
+              </div>
+            </div>
+            <DialogTitle className="text-2xl font-bold text-primary mt-4">CV - Lillian Turner</DialogTitle>
+            <DialogDescription>
+              UX Designer & Technical Communicator
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex justify-between items-center mb-4">
+            <div className="text-sm text-muted-foreground">
+              View or download my professional CV • Use arrow keys to navigate between documents
+            </div>
+            <Button
+              size="sm"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground"
+              onClick={() => {
+                const link = document.createElement('a');
+                link.href = '/pdfs/lillian-turner-cv.md';
+                link.download = 'Lillian_Turner_CV.md';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+              }}
+            >
+              <Download className="w-4 h-4 mr-2" aria-hidden="true" />
+              Download CV
+            </Button>
+          </div>
+          <div className="flex-1 overflow-hidden" id="document-content">
+            <iframe
+              src="/pdfs/lillian-turner-cv.md"
+              className="w-full h-full border-0 rounded-lg"
+              title="CV - Lillian Turner"
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
     </header>
   );
 }
