@@ -5,7 +5,6 @@ import { PDFViewer } from './PDFViewer';
 import { ArrowUp, ArrowDown } from 'lucide-react';
 
 export function UXCaseStudies() {
-  const [showDownloadButton, setShowDownloadButton] = useState(true);
   const [showScrollDownButton, setShowScrollDownButton] = useState(true);
   const [isAtBottom, setIsAtBottom] = useState(false);
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -141,9 +140,6 @@ export function UXCaseStudies() {
     if (!modalContent) return;
 
     const handleScroll = () => {
-      // Hide download button while scrolling
-      setShowDownloadButton(false);
-      
       // Check if at top of modal (within 10px threshold)
       const isAtTop = modalContent.scrollTop <= 10;
       
@@ -153,16 +149,6 @@ export function UXCaseStudies() {
       
       // Show scroll button if at top OR at bottom
       setShowScrollDownButton(isAtTop || isNearBottom);
-      
-      // Clear existing timeout
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
-      
-      // Show download button again after scrolling stops (300ms delay)
-      scrollTimeoutRef.current = setTimeout(() => {
-        setShowDownloadButton(true);
-      }, 300);
     };
 
     modalContent.addEventListener('scroll', handleScroll);
@@ -178,7 +164,6 @@ export function UXCaseStudies() {
   // Reset button visibility when modal opens
   useEffect(() => {
     if (selectedStudy) {
-      setShowDownloadButton(true);
       setShowScrollDownButton(true);
       setIsAtBottom(false);
     }
@@ -290,107 +275,9 @@ export function UXCaseStudies() {
               <DialogTitle id="modal-title" className="text-xl md:text-2xl pr-8 text-green-800">{selectedStudy?.title}</DialogTitle>
             </DialogHeader>
 
-            {/* Sticky Download Button - Fixed to viewport, positioned above footer */}
-            {(selectedStudy?.pdfUrls || selectedStudy?.pdfUrl) && (
-              <div className={`fixed bottom-24 left-8 z-50 transition-opacity duration-300 ${showDownloadButton ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-                {selectedStudy?.pdfUrls && (
-                  <Button
-                    onClick={() => {
-                      selectedStudy.pdfUrls?.forEach((url, index) => {
-                        const link = document.createElement('a');
-                        link.href = url;
-                        link.download = url.split('/').pop() || `document-${index + 1}.pdf`;
-                        document.body.appendChild(link);
-                        link.click();
-                        document.body.removeChild(link);
-                      });
-                    }}
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-shadow rounded-full h-12 px-5 flex items-center gap-2 btn-animate hover-glow"
-                    title="Download all PDFs"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    <span className="hidden sm:inline">Download All</span>
-                    <span className="sm:hidden">All</span>
-                  </Button>
-                )}
-                {selectedStudy?.pdfUrl && (
-                  <Button
-                    onClick={() => {
-                      const link = document.createElement('a');
-                      link.href = selectedStudy.pdfUrl || '';
-                      link.download = selectedStudy.pdfUrl?.split('/').pop() || 'document.pdf';
-                      document.body.appendChild(link);
-                      link.click();
-                      document.body.removeChild(link);
-                    }}
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-shadow rounded-full h-12 px-5 flex items-center gap-2 btn-animate hover-glow"
-                    title="Download PDF"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    <span className="hidden sm:inline">Download</span>
-                  </Button>
-                )}
-              </div>
-            )}
 
-            {/* Sticky Open in New Tab Button - Fixed to viewport, positioned above footer */}
-            {selectedStudy?.webUrl && (
-              <div className={`fixed bottom-24 left-8 z-50 transition-opacity duration-300 ${showDownloadButton ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-                <Button
-                  onClick={() => window.open(selectedStudy.webUrl, '_blank')}
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-shadow rounded-full h-12 px-5 flex items-center gap-2 btn-animate hover-glow"
-                  title="Open project in new tab"
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                  <span className="hidden sm:inline">Open Project</span>
-                  <span className="sm:hidden">Open</span>
-                </Button>
-              </div>
-            )}
 
-            {/* Sticky Open PDFs in New Tab Button - Fixed to viewport, positioned bottom right */}
-            {(selectedStudy?.pdfUrls || selectedStudy?.pdfUrl) && (
-              <div className={`fixed bottom-24 right-8 z-50 transition-opacity duration-300 ${showDownloadButton ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-                {selectedStudy?.pdfUrls && (
-                  <Button
-                    onClick={() => {
-                      selectedStudy.pdfUrls?.forEach((url) => {
-                        window.open(url, '_blank');
-                      });
-                    }}
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-shadow rounded-full h-12 px-5 flex items-center gap-2 btn-animate hover-glow"
-                    title="Open all PDFs in new tabs"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                    <span className="hidden sm:inline">Open PDFs</span>
-                    <span className="sm:hidden">Open</span>
-                  </Button>
-                )}
-                {selectedStudy?.pdfUrl && (
-                  <Button
-                    onClick={() => {
-                      window.open(selectedStudy.pdfUrl, '_blank');
-                    }}
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-shadow rounded-full h-12 px-5 flex items-center gap-2 btn-animate hover-glow"
-                    title="Open PDF in new tab"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                    <span className="hidden sm:inline">Open PDF</span>
-                    <span className="sm:hidden">Open</span>
-                  </Button>
-                )}
-              </div>
-            )}
+
 
             {/* Scroll Button - Bottom center */}
             {showScrollDownButton && (
@@ -489,6 +376,7 @@ export function UXCaseStudies() {
                             className="w-full flex-1"
                             useIframe={true}
                             hideOverlayButton={true}
+                            hideScrollIndicator={true}
                           />
                         </div>
                       ))}
@@ -567,6 +455,7 @@ export function UXCaseStudies() {
                             className="w-full flex-1"
                             useIframe={true}
                             hideOverlayButton={true}
+                            hideScrollIndicator={true}
                           />
                         </div>
                       ))}
@@ -645,6 +534,7 @@ export function UXCaseStudies() {
                             className="w-full flex-1"
                             useIframe={true}
                             hideOverlayButton={true}
+                            hideScrollIndicator={true}
                           />
                         </div>
                       ))}
@@ -976,6 +866,7 @@ export function UXCaseStudies() {
                         className="w-full"
                         useIframe={true}
                         hideOverlayButton={true}
+                        hideScrollIndicator={selectedStudy?.title === "Pacific Northwest X-Ray Inc. Website Usability Test Report"}
                       />
                     </div>
                   </div>
