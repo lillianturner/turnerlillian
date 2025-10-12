@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Download, FileText } from 'lucide-react';
+import { Menu, X, Download, FileText, ChevronDown } from 'lucide-react';
 import { Button } from './ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from './ui/dialog';
 import { PDFViewer } from './PDFViewer';
@@ -9,6 +9,7 @@ export function Header() {
   const [showResumeModal, setShowResumeModal] = useState(false);
   const [showCVModal, setShowCVModal] = useState(false);
   const [currentDocument, setCurrentDocument] = useState<'resume' | 'cv' | null>(null);
+  const [isPortfolioDropdownOpen, setIsPortfolioDropdownOpen] = useState(false);
 
   const documents = [
     {
@@ -84,11 +85,14 @@ export function Header() {
 
   const navigation = [
     { name: 'Home', href: '#home' },
+    { name: 'About', href: '#about' },
+    { name: 'Contact', href: '#contact' },
+  ];
+
+  const portfolioItems = [
     { name: 'UX Case Studies', href: '#ux-studies' },
     { name: 'Technical Writing', href: '#tech-writing' },
     { name: 'Design Gallery', href: '#design-gallery' },
-    { name: 'About', href: '#about' },
-    { name: 'Contact', href: '#contact' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -111,24 +115,9 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b" role="banner">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
-          {/* Logo/Brand */}
-          <div className="flex items-center">
-            <a 
-              href="#home" 
-              onClick={(e) => handleNavClick(e, '#home')}
-              className="flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg transition-all-smooth" 
-              aria-label="Lillian Turner - Home"
-            >
-              <div className="w-10 h-10 glass-logo rounded-lg flex items-center justify-center mr-3">
-                <span className="text-primary font-bold" aria-hidden="true">LT</span>
-              </div>
-              <span className="text-xl font-semibold brand-name">LILLIAN TURNER</span>
-            </a>
-          </div>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-2" role="navigation" aria-label="Main navigation">
+        <div className="flex items-center py-4">
+          {/* Left side - Navigation */}
+          <nav className="hidden md:flex items-center space-x-2 flex-1" role="navigation" aria-label="Main navigation">
             {navigation.map((item) => (
               <a
                 key={item.name}
@@ -140,9 +129,58 @@ export function Header() {
                 <div className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
               </a>
             ))}
+            
+            {/* Portfolio Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setIsPortfolioDropdownOpen(!isPortfolioDropdownOpen)}
+                className="relative text-foreground/70 hover:text-foreground transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg px-4 py-2 group flex items-center"
+                aria-expanded={isPortfolioDropdownOpen}
+                aria-haspopup="true"
+              >
+                <span className="relative z-10">Portfolio</span>
+                <ChevronDown className={`ml-1 w-4 h-4 transition-transform duration-200 ${isPortfolioDropdownOpen ? 'rotate-180' : ''}`} />
+                <div className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+              </button>
+              
+              {/* Dropdown Menu */}
+              {isPortfolioDropdownOpen && (
+                <div className="absolute top-full left-0 mt-2 w-48 bg-background border rounded-lg shadow-lg z-50">
+                  {portfolioItems.map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      onClick={(e) => {
+                        handleNavClick(e, item.href);
+                        setIsPortfolioDropdownOpen(false);
+                      }}
+                      className="block px-4 py-2 text-foreground/70 hover:text-foreground hover:bg-primary/5 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg"
+                    >
+                      {item.name}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          </nav>
+
+          {/* Center - Brand Name */}
+          <div className="flex items-center justify-center flex-1 md:flex-initial">
+            <a 
+              href="#home" 
+              onClick={(e) => handleNavClick(e, '#home')}
+              className="flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg transition-all-smooth" 
+              aria-label="Lillian Turner - Home"
+            >
+              <span className="text-xl font-semibold brand-name">LILLIAN TURNER</span>
+            </a>
+          </div>
+
+          {/* Right side - Resume/CV Buttons */}
+          <div className="hidden md:flex items-center space-x-2 flex-1 justify-end">
             <Button 
               size="sm" 
-              className="bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-200 ml-4 shimmer-effect"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-200 shimmer-effect"
               aria-label="View Resume"
               onClick={() => openDocumentModal('resume')}
             >
@@ -151,14 +189,14 @@ export function Header() {
             </Button>
             <Button 
               size="sm" 
-              className="bg-secondary hover:bg-secondary/90 text-secondary-foreground transition-all duration-200 ml-2 shimmer-effect"
+              className="bg-secondary hover:bg-secondary/90 text-secondary-foreground transition-all duration-200 shimmer-effect"
               aria-label="View CV"
               onClick={() => openDocumentModal('cv')}
             >
               <FileText className="w-4 h-4 mr-2" aria-hidden="true" />
               CV
             </Button>
-          </nav>
+          </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden">
@@ -194,6 +232,22 @@ export function Header() {
                   key={item.name}
                   href={item.href}
                   className="text-foreground/70 hover:text-foreground hover:bg-primary/5 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg px-4 py-3"
+                  onClick={(e) => {
+                    handleNavClick(e, item.href);
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  {item.name}
+                </a>
+              ))}
+              
+              {/* Portfolio Section in Mobile */}
+              <div className="px-4 py-2 text-sm font-medium text-foreground/50">Portfolio</div>
+              {portfolioItems.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="text-foreground/70 hover:text-foreground hover:bg-primary/5 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg px-6 py-3 ml-4"
                   onClick={(e) => {
                     handleNavClick(e, item.href);
                     setIsMenuOpen(false);
