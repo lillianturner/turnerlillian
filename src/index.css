@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom lavender colors for flower blobs */
-.bg-lavender-200 { background-color: #e9d5ff; }
-.bg-lavender-300 { background-color: #d8b4fe; }
-.bg-lavender-400 { background-color: #c084fc; }
+/* Custom lavender colors for flower blobs - made much grayer */
+.bg-lavender-200 { background-color: #e8e8e8; }
+.bg-lavender-300 { background-color: #d1d1d1; }
+.bg-lavender-400 { background-color: #b8b8b8; }
 
 /* Custom light green and peach colors for flower blobs */
 .bg-light-green-200 { background-color: #d1fae5; }
@@ -13,6 +13,49 @@
 .bg-peach-200 { background-color: #fed7aa; }
 .bg-peach-300 { background-color: #fdba74; }
 .bg-peach-400 { background-color: #fb923c; }
+
+/* Custom light blue colors to replace yellow */
+.bg-blue-100 { background-color: #dbeafe; }
+.bg-blue-200 { background-color: #bfdbfe; }
+.bg-blue-300 { background-color: #93c5fd; }
+.bg-blue-400 { background-color: #60a5fa; }
+
+/* Focus ring color for lavender - made much grayer */
+.focus\:ring-lavender-400:focus { --tw-ring-color: #b8b8b8; }
+
+/* Lavender button effect like hero button but with lavender colors - made much grayer */
+.btn-lavender {
+  background: linear-gradient(135deg, rgba(214, 211, 209, 0.4), rgba(180, 180, 180, 0.25), rgba(140, 140, 140, 0.15));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(180, 180, 180, 0.2);
+  box-shadow: 0 4px 16px rgba(140, 140, 140, 0.1), 0 2px 8px rgba(140, 140, 140, 0.08), 0 1px 3px rgba(140, 140, 140, 0.05);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-lavender::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transition: left 0.6s ease;
+}
+
+.btn-lavender:hover::before {
+  left: 100%;
+}
+
+.btn-lavender:hover {
+  background: linear-gradient(135deg, rgba(214, 211, 209, 0.6), rgba(180, 180, 180, 0.4), rgba(140, 140, 140, 0.3));
+  border: 1px solid rgba(180, 180, 180, 0.3);
+  box-shadow: 0 8px 32px rgba(140, 140, 140, 0.15), 0 4px 16px rgba(140, 140, 140, 0.12), 0 2px 8px rgba(140, 140, 140, 0.08);
+  transform: translateY(-2px) scale(1.01);
+}
 
 /* Dynamic flower blob animations */
 @keyframes flower-pulse-1 {

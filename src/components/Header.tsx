@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Menu, X, Download, FileText, ChevronDown } from 'lucide-react';
 import { Button } from './ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from './ui/dialog';
@@ -10,6 +10,7 @@ export function Header() {
   const [showCVModal, setShowCVModal] = useState(false);
   const [currentDocument, setCurrentDocument] = useState<'resume' | 'cv' | null>(null);
   const [isPortfolioDropdownOpen, setIsPortfolioDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const documents = [
     {
@@ -83,6 +84,23 @@ export function Header() {
     }
   }, [isMenuOpen]);
 
+  // Handle clicks outside dropdown to close it
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsPortfolioDropdownOpen(false);
+      }
+    };
+
+    if (isPortfolioDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isPortfolioDropdownOpen]);
+
   const navigation = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
@@ -95,7 +113,7 @@ export function Header() {
     { name: 'Design Gallery', href: '#design-gallery' },
   ];
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLElement>, href: string) => {
     e.preventDefault();
     const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
@@ -119,29 +137,30 @@ export function Header() {
           {/* Left side - Navigation */}
           <nav className="hidden md:flex items-center space-x-2 flex-1" role="navigation" aria-label="Main navigation">
             {navigation.map((item) => (
-              <a
+              <Button
                 key={item.name}
-                href={item.href}
+                variant="outline"
+                size="sm"
+                className="text-sm px-3 py-2 border-2 border-primary text-primary hover:bg-primary/10 btn-animate"
                 onClick={(e) => handleNavClick(e, item.href)}
-                className="relative text-foreground/70 hover:text-foreground transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg px-4 py-2 group"
               >
-                <span className="relative z-10">{item.name}</span>
-                <div className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-              </a>
+                {item.name}
+              </Button>
             ))}
             
             {/* Portfolio Dropdown */}
-            <div className="relative">
-              <button
+            <div className="relative" ref={dropdownRef}>
+              <Button
+                variant="outline"
+                size="sm"
+                className="text-sm px-3 py-2 border-2 border-primary text-primary hover:bg-primary/10 btn-animate flex items-center"
                 onClick={() => setIsPortfolioDropdownOpen(!isPortfolioDropdownOpen)}
-                className="relative text-foreground/70 hover:text-foreground transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg px-4 py-2 group flex items-center"
                 aria-expanded={isPortfolioDropdownOpen}
                 aria-haspopup="true"
               >
-                <span className="relative z-10">Portfolio</span>
+                Portfolio
                 <ChevronDown className={`ml-1 w-4 h-4 transition-transform duration-200 ${isPortfolioDropdownOpen ? 'rotate-180' : ''}`} />
-                <div className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-              </button>
+              </Button>
               
               {/* Dropdown Menu */}
               {isPortfolioDropdownOpen && (
@@ -180,7 +199,7 @@ export function Header() {
           <div className="hidden md:flex items-center space-x-2 flex-1 justify-end">
             <Button 
               size="sm" 
-              className="bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-200 shimmer-effect"
+              className="bg-primary hover:bg-gradient-to-r hover:from-primary hover:to-blue-400/80 text-primary-foreground transition-all duration-200 shimmer-effect"
               aria-label="View Resume"
               onClick={() => openDocumentModal('resume')}
             >
@@ -189,7 +208,7 @@ export function Header() {
             </Button>
             <Button 
               size="sm" 
-              className="bg-secondary hover:bg-secondary/90 text-secondary-foreground transition-all duration-200 shimmer-effect"
+              className="bg-secondary hover:bg-gradient-to-r hover:from-secondary hover:to-lavender-400/80 text-secondary-foreground transition-all duration-200 shimmer-effect"
               aria-label="View CV"
               onClick={() => openDocumentModal('cv')}
             >
@@ -207,7 +226,7 @@ export function Header() {
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-              className="hover:bg-primary/10 transition-colors duration-200"
+              className="hover:bg-gradient-to-r hover:from-lavender-200/20 hover:to-peach-200/20 transition-colors duration-200"
             >
               <div className="relative w-5 h-5">
                 <Menu 
@@ -231,7 +250,7 @@ export function Header() {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-foreground/70 hover:text-foreground hover:bg-primary/5 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg px-4 py-3"
+                  className="text-foreground/70 hover:text-foreground hover:bg-gradient-to-r hover:from-blue-100/20 hover:to-lavender-100/20 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg px-4 py-3"
                   onClick={(e) => {
                     handleNavClick(e, item.href);
                     setIsMenuOpen(false);
@@ -247,7 +266,7 @@ export function Header() {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-foreground/70 hover:text-foreground hover:bg-primary/5 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg px-6 py-3 ml-4"
+                  className="text-foreground/70 hover:text-foreground hover:bg-gradient-to-r hover:from-peach-200/20 hover:to-blue-100/20 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg px-6 py-3 ml-4"
                   onClick={(e) => {
                     handleNavClick(e, item.href);
                     setIsMenuOpen(false);
@@ -337,7 +356,7 @@ export function Header() {
             </div>
             <Button
               size="sm"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground"
+              className="bg-primary hover:bg-gradient-to-r hover:from-primary hover:to-peach-400/80 text-primary-foreground transition-all duration-200"
               onClick={() => {
                 const link = document.createElement('a');
                 link.href = '/pdfs/lillian-turner-resume.md';
@@ -419,7 +438,7 @@ export function Header() {
             </div>
             <Button
               size="sm"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground"
+              className="bg-primary hover:bg-gradient-to-r hover:from-primary hover:to-lavender-400/80 text-primary-foreground transition-all duration-200"
               onClick={() => {
                 const link = document.createElement('a');
                 link.href = '/pdfs/lillian-turner-cv.md';
