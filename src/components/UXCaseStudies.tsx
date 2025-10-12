@@ -288,9 +288,6 @@ export function UXCaseStudies() {
                 <span>to close</span>
               </div>
               <DialogTitle id="modal-title" className="text-xl md:text-2xl pr-8 text-green-800">{selectedStudy?.title}</DialogTitle>
-              <DialogDescription id="modal-description" className="text-sm md:text-base mt-2">
-                {selectedStudy?.description}
-              </DialogDescription>
             </DialogHeader>
 
             {/* Sticky Download Button - Fixed to viewport, positioned above footer */}

@@ -1,9 +1,29 @@
 import { ArrowDown, Linkedin, Github, Mail } from 'lucide-react';
 import { Button } from './ui/button';
+import { useState, useEffect } from 'react';
 
 export function Hero() {
+  const [showScrollIndicator, setShowScrollIndicator] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setShowScrollIndicator(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToUXStudies = () => {
+    setShowScrollIndicator(false);
+    const element = document.getElementById('ux-studies');
+    element?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <section id="home" className="min-h-screen flex items-center pt-4 pb-16 lg:pt-8 lg:pb-20" role="main" aria-labelledby="hero-heading">
+    <section id="home" className="min-h-screen flex items-center pt-4 pb-16 lg:pt-8 lg:pb-20 relative hero-background" role="main" aria-labelledby="hero-heading">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
   <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Content */}
@@ -17,14 +37,6 @@ export function Hero() {
               <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl leading-relaxed">
                 I craft user-centered digital experiences and clear, compelling technical content 
                 that bridges the gap between complex technology and human understanding.
-              </p>
-            </div>
-
-            {/* Personal Brand Statement */}
-            <div className="glass-card-accent p-6 lg:p-7 rounded-xl border-l-4 border-l-accent">
-              <p className="text-lg lg:text-xl italic font-light leading-relaxed">
-                "Design is not just what it looks like and feels like. Design is how it works. 
-                And how it's communicated defines how it's understood."
               </p>
             </div>
 
@@ -105,6 +117,23 @@ export function Hero() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div 
+        className={`fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500 ease-out ${
+          showScrollIndicator 
+            ? 'opacity-100 translate-y-0' 
+            : 'opacity-0 translate-y-4 pointer-events-none'
+        }`}
+      >
+        <button
+          onClick={scrollToUXStudies}
+          className="flex items-center justify-center w-14 h-14 rounded-full glass-button-primary btn-animate hover-glow transition-all duration-300"
+          aria-label="Scroll to UX Case Studies"
+        >
+          <ArrowDown className="w-6 h-6" />
+        </button>
       </div>
     </section>
   );
