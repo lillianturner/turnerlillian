@@ -1,6 +1,7 @@
 import { ArrowDown, Linkedin, Github, Mail } from 'lucide-react';
 import { Button } from './ui/button';
 import { useState, useEffect } from 'react';
+import { getAssetPath } from '../lib/utils';
 
 export function Hero() {
   const [showScrollIndicator, setShowScrollIndicator] = useState(true);
@@ -128,7 +129,7 @@ export function Hero() {
           >
             <div className="aspect-square max-w-sm lg:max-w-md rounded-2xl lg:rounded-3xl flex items-center justify-center relative overflow-hidden hover-glow shimmer-effect">
               <img
-                src="/pdfs/headshot.jpeg"
+                src={getAssetPath("pdfs/headshot.jpeg")}
                 alt="Lillian Turner - UX Designer & Technical Communicator"
                 className="w-full h-full object-cover rounded-2xl lg:rounded-3xl"
               />

@@ -3,6 +3,7 @@ import { Button } from './ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogClose } from './ui/dialog';
 import { PDFViewer } from './PDFViewer';
 import { ArrowUp, ArrowDown } from 'lucide-react';
+import { getAssetPath } from '../lib/utils';
 
 export function UXCaseStudies() {
   const [showScrollDownButton, setShowScrollDownButton] = useState(true);
@@ -14,11 +15,11 @@ export function UXCaseStudies() {
       title: "Poppin' Joe's Kettle Corn E-Commerce Website Redesign",
       description: "Redesigned the website for a beloved family brand by conducting a site analysis, creating a content strategy report, and developing a full editorial style guide. The project improved navigation, clarified brand voice, and established a cohesive, accessible digital presence.",
       tags: ["User Research", "Information Architecture", "Style Guide", "Brand Voice", "Accessibility"],
-      image: "/pdfs/poppinjoes.png",
+      image: getAssetPath("pdfs/poppinjoes.png"),
       pdfUrls: [
-        "/pdfs/poppin-joe-site-analysis.pdf",
-        "/pdfs/poppin-joe-content-strategy.pdf",
-        "/pdfs/poppin-joe-style-guide.pdf"
+        getAssetPath("pdfs/poppin-joe-site-analysis.pdf"),
+        getAssetPath("pdfs/poppin-joe-content-strategy.pdf"),
+        getAssetPath("pdfs/poppin-joe-style-guide.pdf")
       ],
       pdfTitles: [
         "Site Analysis Report",
@@ -30,32 +31,32 @@ export function UXCaseStudies() {
       title: "Pacific Northwest X-Ray Inc. Website Usability Test Report",
       description: "Conducted comprehensive usability testing for Pacific Northwest X-Ray Inc.'s website, identifying key user experience issues and providing actionable recommendations for improvement.",
       tags: ["Usability Testing", "User Research", "Healthcare UX", "Accessibility", "User Experience"],
-      image: "/pdfs/PNWX.png",
-      pdfUrl: "/pdfs/Pacific Northwest X-Ray Inc. Website Usability Test Report.pdf"
+      image: getAssetPath("pdfs/PNWX.png"),
+      pdfUrl: getAssetPath("pdfs/Pacific Northwest X-Ray Inc. Website Usability Test Report.pdf")
     },
     {
       title: "Rowlly Properties Case Study",
       description: "Designed and built a fully functional property management website for Rowlly Properties, focused on improving discoverability, usability, and accessibility for buyers, renters, and investors.",
       tags: ["UX Research", "UI Design", "Responsive Design", "Prototyping", "Real Estate"],
-      image: "/pdfs/RowllyProperties.png",
+      image: getAssetPath("pdfs/RowllyProperties.png"),
       webUrl: "https://turnerlillian.github.io/refactored-goldfish/"
     },
     {
       title: "Charity: Water Fundraising Landing Page",
       description: "Developed a responsive fundraising landing page for charity: water as part of the Global Career Accelerator program. The page targeted Gen-Z donors and emphasized clear calls-to-action and mobile-first usability.",
       tags: ["HTML/CSS", "Responsive Design", "AI-Assisted Development", "GitHub Pages", "UX Best Practices"],
-      image: "/pdfs/Blog_Charity-Water.png",
+      image: getAssetPath("pdfs/Blog_Charity-Water.png"),
       webUrl: "https://lillianturner.github.io/CR-02-charity-water-lp/"
     },
     {
       title: "Suzanne Collins Website Heuristic Evaluation & Redesign",
       description: "Redesigned the official Suzanne Collins author website to improve usability, clarity, and modern appeal. This project began with a heuristic evaluation of the existing desktop and mobile site, followed by wireframe redesigns that focused on readability, navigation, and visual hierarchy.",
       tags: ["Heuristic Evaluation", "Website Redesign", "UX Research", "Visual Design", "Information Architecture"],
-      image: "/pdfs/SuzanneCollins.png",
+      image: getAssetPath("pdfs/SuzanneCollins.png"),
       pdfUrls: [
-        "/pdfs/SCHeuristicEvaluation.pdf",
-        "/pdfs/SCComps.pdf",
-        "/pdfs/SCDesignReport.pdf"
+        getAssetPath("pdfs/SCHeuristicEvaluation.pdf"),
+        getAssetPath("pdfs/SCComps.pdf"),
+        getAssetPath("pdfs/SCDesignReport.pdf")
       ],
       pdfTitles: [
         "Desktop & Mobile Heuristic Evaluation",
@@ -67,11 +68,11 @@ export function UXCaseStudies() {
       title: "Yale School of Art Website Homepage Redesign",
       description: "Redesigned the Yale School of Art website as part of a university UX project. While aware of the site's intentionally unconventional, wiki-like structure designed to reflect the school's experimental ethos, this redesign explored how the site's accessibility and usability could be improved without losing its creative identity.",
       tags: ["Website Redesign", "Institutional UX", "Wireframing", "Responsive Design", "Visual Hierarchy"],
-      image: "/pdfs/YSAPicture.png",
+      image: getAssetPath("pdfs/YSAPicture.png"),
       pdfUrls: [
-        "/pdfs/YSABefore.pdf",
-        "/pdfs/YSAWireframes.pdf",
-        "/pdfs/YSAFinalMockup.pdf"
+        getAssetPath("pdfs/YSABefore.pdf"),
+        getAssetPath("pdfs/YSAWireframes.pdf"),
+        getAssetPath("pdfs/YSAFinalMockup.pdf")
       ],
       pdfTitles: [
         "Homepage Before",

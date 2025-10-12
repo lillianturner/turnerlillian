@@ -3,6 +3,7 @@ import { Button } from './ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogClose } from './ui/dialog';
 import { PDFViewer } from './PDFViewer';
 import { ArrowUp, ArrowDown } from 'lucide-react';
+import { getAssetPath } from '../lib/utils';
 
 export function TechnicalWriting() {
   const [selectedCase, setSelectedCase] = useState<any>(null);
@@ -15,8 +16,8 @@ export function TechnicalWriting() {
       title: "Pacific Northwest X-Ray Website Usability Test Report",
       description: "Comprehensive usability testing report for a medical imaging company's website, identifying key user experience issues and providing actionable recommendations for improvement.",
       tags: ["Usability Testing", "Medical UX", "User Research", "Report Writing"],
-      image: "/pdfs/PNWX.png",
-      pdfUrl: "/pdfs/Pacific Northwest X-Ray Inc. Website Usability Test Report.pdf",
+      image: getAssetPath("pdfs/PNWX.png"),
+      pdfUrl: getAssetPath("pdfs/Pacific Northwest X-Ray Inc. Website Usability Test Report.pdf"),
       type: "Usability Report"
     },
     {
@@ -24,8 +25,8 @@ export function TechnicalWriting() {
       title: "Poppin' Joe's Content Strategy & Style Guide",
       description: "Complete content strategy and style guide development for a local coffee shop, including brand voice guidelines, content calendar templates, and social media strategy.",
       tags: ["Content Strategy", "Brand Guidelines", "Style Guide", "Social Media"],
-      image: "/pdfs/poppinjoes.png",
-      pdfUrl: "/pdfs/poppin-joe-content-strategy.pdf",
+      image: getAssetPath("pdfs/poppinjoes.png"),
+      pdfUrl: getAssetPath("pdfs/poppin-joe-content-strategy.pdf"),
       type: "Content Strategy"
     },
     {
@@ -33,8 +34,8 @@ export function TechnicalWriting() {
       title: "Poppin' Joe's Site Analysis Report",
       description: "Detailed analysis of a coffee shop's existing website, evaluating design effectiveness, user experience, and technical performance with specific improvement recommendations.",
       tags: ["Site Analysis", "Web Evaluation", "Technical Writing", "UX Audit"],
-      image: "/pdfs/poppinjoes.png",
-      pdfUrl: "/pdfs/poppin-joe-site-analysis.pdf",
+      image: getAssetPath("pdfs/poppinjoes.png"),
+      pdfUrl: getAssetPath("pdfs/poppin-joe-site-analysis.pdf"),
       type: "Site Analysis"
     },
     {
@@ -42,8 +43,8 @@ export function TechnicalWriting() {
       title: "Suzanne Collins Author Website Design Report",
       description: "Comprehensive design analysis and report for the official website of bestselling author Suzanne Collins, evaluating visual design, user experience, and content organization.",
       tags: ["Design Analysis", "Author Website", "Visual Design", "UX Evaluation"],
-      image: "/pdfs/SuzanneCollins.png",
-      pdfUrl: "/pdfs/SCDesignReport.pdf",
+      image: getAssetPath("pdfs/SuzanneCollins.png"),
+      pdfUrl: getAssetPath("pdfs/SCDesignReport.pdf"),
       type: "Design Report"
     },
     {
@@ -51,8 +52,8 @@ export function TechnicalWriting() {
       title: "Suzanne Collins Heuristic Evaluation",
       description: "Expert heuristic evaluation of Suzanne Collins' author website using Nielsen's 10 usability heuristics, identifying specific usability issues and severity ratings.",
       tags: ["Heuristic Evaluation", "Usability Heuristics", "Expert Review", "UX Assessment"],
-      image: "/pdfs/SuzanneCollins.png",
-      pdfUrl: "/pdfs/SCHeuristicEvaluation.pdf",
+      image: getAssetPath("pdfs/SuzanneCollins.png"),
+      pdfUrl: getAssetPath("pdfs/SCHeuristicEvaluation.pdf"),
       type: "Heuristic Evaluation"
     },
     {
@@ -60,8 +61,8 @@ export function TechnicalWriting() {
       title: "Suzanne Collins Component Compendium",
       description: "Detailed documentation of reusable UI components and design patterns identified from Suzanne Collins' website, including specifications and usage guidelines.",
       tags: ["Component Documentation", "UI Patterns", "Design Systems", "Technical Specs"],
-      image: "/pdfs/SuzanneCollins.png",
-      pdfUrl: "/pdfs/SCComps.pdf",
+      image: getAssetPath("pdfs/SuzanneCollins.png"),
+      pdfUrl: getAssetPath("pdfs/SCComps.pdf"),
       type: "Component Compendium"
     }
   ];

@@ -3,6 +3,7 @@ import { Menu, X, Download, FileText, ChevronDown } from 'lucide-react';
 import { Button } from './ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from './ui/dialog';
 import { PDFViewer } from './PDFViewer';
+import { getAssetPath } from '../lib/utils';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,14 +18,14 @@ export function Header() {
       type: 'resume' as const,
       title: 'Resume - Lillian Turner',
       description: 'UX Designer & Technical Communicator',
-      filePath: '/pdfs/lillian-turner-resume.md',
+      filePath: getAssetPath('pdfs/lillian-turner-resume.md'),
       downloadName: 'Lillian_Turner_Resume.md'
     },
     {
       type: 'cv' as const,
       title: 'CV - Lillian Turner',
       description: 'Curriculum Vitae - UX Designer & Technical Communicator',
-      filePath: '/pdfs/lillian-turner-cv.md',
+      filePath: getAssetPath('pdfs/lillian-turner-cv.md'),
       downloadName: 'Lillian_Turner_CV.md'
     }
   ];
@@ -359,7 +360,7 @@ export function Header() {
               className="bg-primary hover:bg-gradient-to-r hover:from-primary hover:to-peach-400/80 text-primary-foreground transition-all duration-200"
               onClick={() => {
                 const link = document.createElement('a');
-                link.href = '/pdfs/lillian-turner-resume.md';
+                link.href = getAssetPath('pdfs/lillian-turner-resume.md');
                 link.download = 'Lillian_Turner_Resume.md';
                 document.body.appendChild(link);
                 link.click();
@@ -372,7 +373,7 @@ export function Header() {
           </div>
           <div className="flex-1 overflow-hidden" id="document-content">
             <iframe
-              src="/pdfs/lillian-turner-resume.md"
+              src={getAssetPath("pdfs/lillian-turner-resume.md")}
               className="w-full h-full border-0 rounded-lg"
               title="Resume - Lillian Turner"
             />
@@ -441,7 +442,7 @@ export function Header() {
               className="bg-primary hover:bg-gradient-to-r hover:from-primary hover:to-lavender-400/80 text-primary-foreground transition-all duration-200"
               onClick={() => {
                 const link = document.createElement('a');
-                link.href = '/pdfs/lillian-turner-cv.md';
+                link.href = getAssetPath('pdfs/lillian-turner-cv.md');
                 link.download = 'Lillian_Turner_CV.md';
                 document.body.appendChild(link);
                 link.click();
@@ -454,7 +455,7 @@ export function Header() {
           </div>
           <div className="flex-1 overflow-hidden" id="document-content">
             <iframe
-              src="/pdfs/lillian-turner-cv.md"
+              src={getAssetPath("pdfs/lillian-turner-cv.md")}
               className="w-full h-full border-0 rounded-lg"
               title="CV - Lillian Turner"
             />
