@@ -91,7 +91,7 @@ export function Header() {
 
   const portfolioItems = [
     { name: 'UX Case Studies', href: '#ux-studies' },
-    { name: 'Technical Writing', href: '#tech-writing' },
+    { name: 'Technical Writing & Editing', href: '#tech-writing' },
     { name: 'Design Gallery', href: '#design-gallery' },
   ];
 

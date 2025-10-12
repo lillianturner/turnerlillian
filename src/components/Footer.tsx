@@ -58,7 +58,7 @@ export function Footer() {
             <ul className="space-y-3">
               <li><a href="#home" className="text-white/80 hover:text-white transition-colors focus:text-white focus:outline-none focus:underline">Home</a></li>
               <li><a href="#ux-studies" className="text-white/80 hover:text-white transition-colors focus:text-white focus:outline-none focus:underline">UX Case Studies</a></li>
-              <li><a href="#tech-writing" className="text-white/80 hover:text-white transition-colors focus:text-white focus:outline-none focus:underline">Technical Writing</a></li>
+              <li><a href="#tech-writing" className="text-white/80 hover:text-white transition-colors focus:text-white focus:outline-none focus:underline">Technical Writing & Editing</a></li>
               <li><a href="#design-gallery" className="text-white/80 hover:text-white transition-colors focus:text-white focus:outline-none focus:underline">Design Gallery</a></li>
               <li><a href="#about" className="text-white/80 hover:text-white transition-colors focus:text-white focus:outline-none focus:underline">About</a></li>
               <li><a href="#contact" className="text-white/80 hover:text-white transition-colors focus:text-white focus:outline-none focus:underline">Contact</a></li>
@@ -71,7 +71,7 @@ export function Footer() {
             <ul className="space-y-3" aria-label="Services offered">
               <li className="text-white/80">UX/UI Design</li>
               <li className="text-white/80">User Research</li>
-              <li className="text-white/80">Technical Writing</li>
+              <li className="text-white/80">Technical Writing & Editing</li>
               <li className="text-white/80">Content Strategy</li>
               <li className="text-white/80">Design Systems</li>
               <li className="text-white/80">API Documentation</li>

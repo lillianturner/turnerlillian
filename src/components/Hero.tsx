@@ -23,8 +23,26 @@ export function Hero() {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center pt-4 pb-16 lg:pt-8 lg:pb-20 relative hero-background" role="main" aria-labelledby="hero-heading">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="home" className="min-h-screen flex items-center pt-4 pb-16 lg:pt-8 lg:pb-20 relative hero-background overflow-hidden" role="main" aria-labelledby="hero-heading">
+      {/* Colorful Flower-like Blobs */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-20 left-10 w-48 h-48 bg-yellow-300 rounded-full opacity-60 blur-xl animate-flower-1"></div>
+        <div className="absolute top-40 right-20 w-64 h-64 bg-lavender-200 rounded-full opacity-50 blur-2xl animate-flower-2"></div>
+        <div className="absolute bottom-32 left-1/4 w-56 h-56 bg-yellow-200 rounded-full opacity-65 blur-xl animate-flower-3"></div>
+        <div className="absolute top-1/3 right-10 w-44 h-44 bg-lavender-300 rounded-full opacity-55 blur-xl animate-flower-1"></div>
+        <div className="absolute bottom-20 right-1/3 w-72 h-72 bg-yellow-400 rounded-full opacity-45 blur-2xl animate-flower-2"></div>
+        <div className="absolute top-1/2 left-20 w-48 h-48 bg-lavender-200 rounded-full opacity-50 blur-xl animate-flower-3"></div>
+        <div className="absolute bottom-40 left-1/2 w-64 h-64 bg-yellow-300 rounded-full opacity-60 blur-xl animate-flower-1"></div>
+        <div className="absolute top-10 right-1/2 w-56 h-56 bg-lavender-200 rounded-full opacity-65 blur-xl animate-flower-2"></div>
+        {/* New light green and peach blobs */}
+        <div className="absolute top-32 left-1/3 w-52 h-52 bg-light-green-200 rounded-full opacity-55 blur-xl animate-flower-3"></div>
+        <div className="absolute bottom-24 right-16 w-60 h-60 bg-light-green-200 rounded-full opacity-50 blur-xl animate-flower-1"></div>
+        <div className="absolute top-2/3 right-2/3 w-48 h-48 bg-peach-200 rounded-full opacity-60 blur-xl animate-flower-2"></div>
+        <div className="absolute bottom-16 left-16 w-56 h-56 bg-peach-200 rounded-full opacity-55 blur-xl animate-flower-3"></div>
+        <div className="absolute top-16 right-1/4 w-44 h-44 bg-peach-300 rounded-full opacity-50 blur-xl animate-flower-1"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
   <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Content */}
           <div className="space-y-8 lg:space-y-10 lg:pt-0">
