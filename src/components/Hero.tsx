@@ -30,9 +30,9 @@ export function Hero() {
           <div className="space-y-8 lg:space-y-10 lg:pt-0">
             <div className="space-y-5 lg:space-y-6">
               <p className="subheading text-primary text-lg mb-3" aria-label="Introduction">Lillian Turner</p>
-              <h1 id="hero-heading" className="text-4xl md:text-5xl lg:text-6xl leading-tight font-bold">
+              <h1 id="hero-heading" className="text-3xl md:text-4xl lg:text-5xl leading-tight font-bold">
                 UX Designer &
-                <span className="block text-primary text-3xl md:text-4xl lg:text-5xl mt-2 lg:mt-3">Technical Communicator</span>
+                <span className="block hero-subtitle text-3xl md:text-4xl lg:text-5xl mt-2 lg:mt-3">Technical Communicator</span>
               </h1>
               <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl leading-relaxed">
                 I craft user-centered digital experiences and clear, compelling technical content 
