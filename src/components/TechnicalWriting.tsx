@@ -260,7 +260,7 @@ export function TechnicalWriting() {
                   </Button>
                   <Button
                     size="sm"
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground btn-animate hover-glow h-9 px-3"
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground btn-animate hover-glow h-9 px-5"
                     onClick={toggleScroll}
                     aria-label={isScrolledToBottom ? "Scroll to top" : "Scroll to bottom"}
                   >

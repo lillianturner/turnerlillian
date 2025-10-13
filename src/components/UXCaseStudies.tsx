@@ -217,7 +217,7 @@ export function UXCaseStudies() {
                   </Button>
                   <Button
                     size="sm"
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground btn-animate hover-glow h-9 px-3"
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground btn-animate hover-glow h-9 px-5"
                     onClick={toggleScroll}
                     aria-label={isScrolledToBottom ? "Scroll to top" : "Scroll to bottom"}
                   >
@@ -260,7 +260,7 @@ export function UXCaseStudies() {
                             <Button
                               size="sm"
                               onClick={() => window.open(pdfUrl, '_blank')}
-                              className="flex items-center gap-1 bg-green-800 hover:bg-green-700 text-white btn-animate hover-glow h-7 px-2 text-xs"
+                              className="flex items-center gap-2 bg-green-800 hover:bg-green-700 text-white btn-animate hover-glow h-9 px-5"
                               title="Open PDF in full screen"
                             >
                               <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -645,7 +645,7 @@ export function UXCaseStudies() {
                       <Button
                         size="sm"
                         onClick={() => window.open(selectedStudy?.pdfUrl || "", '_blank')}
-                        className="flex items-center gap-2 bg-green-800 hover:bg-green-700 text-white btn-animate hover-glow"
+                        className="flex items-center gap-2 bg-green-800 hover:bg-green-700 text-white btn-animate hover-glow h-9 px-5"
                         title="Open PDF in full screen"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
