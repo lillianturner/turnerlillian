@@ -17,18 +17,18 @@ export function TechnicalWriting() {
       title: "Instruction Writing: Granny Square Crochet Pattern",
       description: "Detailed crochet pattern instructions for creating beautiful granny square designs, including step-by-step guidance, materials list, and variations for different skill levels.",
       tags: ["Instruction Writing", "Technical Writing", "Craft Instructions", "Pattern Design"],
-      image: getAssetPath("pdfs/GrannySquare.pdf"),
+      image: getAssetPath("pdfs/GrannySquarePic.png"),
       pdfUrl: getAssetPath("pdfs/GrannySquare.pdf"),
-      type: "Instruction Writing"
+      type: ["Instruction Writing"]
     },
     {
       id: 2,
-      title: "Pacific Northwest X-Ray Website Usability Test Report",
-      description: "Comprehensive usability testing report for a medical imaging company's website, identifying key user experience issues and providing actionable recommendations for improvement.",
-      tags: ["Usability Testing", "Medical UX", "User Research", "Report Writing"],
-      image: getAssetPath("pdfs/PNWX.png"),
-      pdfUrl: getAssetPath("pdfs/Pacific Northwest X-Ray Inc. Website Usability Test Report.pdf"),
-      type: "Usability Report"
+      title: "Memo Writing & Instruction Editing: Granny Square Pattern Refined for Intercultural Audiences",
+      description: "Refined the first version of my instructional document, How to Crochet a Basic Granny Square, as part of a technical communication course. This second iteration focused on improving clarity, localization potential, and visual readability while maintaining an accessible, beginner-friendly tone.",
+      tags: ["Technical Writing", "Localization", "Instruction Writing", "Cultural Adaptation"],
+      image: getAssetPath("pdfs/Yarn.png"),
+      pdfUrl: getAssetPath("pdfs/InterculturalGrannySquare.pdf"),
+      type: ["Instruction Editing", "Memo Writing"]
     },
     {
       id: 3,
@@ -37,7 +37,7 @@ export function TechnicalWriting() {
       tags: ["Content Strategy", "Brand Guidelines", "Style Guide", "Social Media"],
       image: getAssetPath("pdfs/poppinjoes.png"),
       pdfUrl: getAssetPath("pdfs/poppin-joe-content-strategy.pdf"),
-      type: "Content Strategy"
+      type: ["Content Strategy"]
     },
     {
       id: 4,
@@ -46,7 +46,7 @@ export function TechnicalWriting() {
       tags: ["Site Analysis", "Web Evaluation", "Technical Writing", "UX Audit"],
       image: getAssetPath("pdfs/poppinjoes.png"),
       pdfUrl: getAssetPath("pdfs/poppin-joe-site-analysis.pdf"),
-      type: "Site Analysis"
+      type: ["Site Analysis"]
     },
     {
       id: 5,
@@ -162,7 +162,7 @@ export function TechnicalWriting() {
                 <img
                   src={caseStudy.image}
                   alt={`Preview for ${caseStudy.title}`}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-contain"
                 />
               </div>
               <div className="p-6 flex flex-col flex-grow">
@@ -295,9 +295,25 @@ export function TechnicalWriting() {
               <div className="space-y-6">
                 {/* PDF Viewer - Above project information */}
                 <div className="border-t pt-6">
-                  <h4 className="font-semibold mb-3 text-lg">Project Documentation</h4>
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="font-semibold text-lg">Project Documentation</h4>
+                    <Button
+                      size="sm"
+                      className="bg-primary hover:bg-primary/90 text-primary-foreground btn-animate hover-glow whitespace-nowrap h-9 px-5"
+                      onClick={() => window.open(selectedCase?.pdfUrl, '_blank')}
+                      title="Open PDF in full screen"
+                    >
+                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 3H3a2 2 0 00-2 2v14a2 2 0 002 2h18a2 2 0 002-2V5a2 2 0 00-2-2z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 14l-9-9-9 9" />
+                      </svg>
+                      Full Screen
+                    </Button>
+                  </div>
                   <PDFViewer
                     pdfUrl={selectedCase?.pdfUrl}
+                    useIframe={true}
+                    hideOverlayButton={true}
                     hideScrollIndicator={true}
                   />
                 </div>
@@ -335,9 +351,13 @@ export function TechnicalWriting() {
                     </div>
                     <div>
                       <h4 className="font-semibold mb-3 text-lg">Writing Type</h4>
-                      <span className="px-3 py-1 bg-secondary text-secondary-foreground rounded-full text-sm">
-                        {selectedCase?.type}
-                      </span>
+                      <div className="flex flex-wrap gap-2">
+                        {selectedCase?.type.map((type: string, index: number) => (
+                          <span key={index} className="px-3 py-1 bg-secondary text-secondary-foreground rounded-full text-sm">
+                            {type}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>

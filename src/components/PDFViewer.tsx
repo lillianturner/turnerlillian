@@ -87,9 +87,9 @@ export function PDFViewer({ pdfUrl, title, className = "", useIframe = false, hi
 
   return (
     <div className={`pdf-viewer ${className}`}>
-      {title && (
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold">{title}</h3>
+      {/* Full screen button always positioned above the PDF */}
+      {!hideOverlayButton && (
+        <div className="flex justify-end mb-2">
           <Button
             size="sm"
             onClick={() => window.open(pdfUrl, '_blank')}
@@ -106,23 +106,6 @@ export function PDFViewer({ pdfUrl, title, className = "", useIframe = false, hi
       )}
 
       <div className="border rounded-lg overflow-hidden bg-white relative group">
-        {/* Full screen button overlay for PDFs without titles */}
-        {!title && !hideOverlayButton && (
-          <div className="absolute top-3 right-3 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-            <Button
-              size="sm"
-              onClick={() => window.open(pdfUrl, '_blank')}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground btn-animate hover-glow whitespace-nowrap h-9 px-5 flex items-center gap-2"
-              title="Open PDF in full screen"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 3H3a2 2 0 00-2 2v14a2 2 0 002 2h18a2 2 0 002-2V5a2 2 0 00-2-2z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 14l-9-9-9 9" />
-              </svg>
-              Full Screen
-            </Button>
-          </div>
-        )}
         {loading && !useIframe && (
           <div className="flex flex-col items-center justify-center h-96 bg-gray-50 rounded-lg border-2 border-dashed border-gray-200">
             <div className="text-center">
