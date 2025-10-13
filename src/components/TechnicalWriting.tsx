@@ -182,13 +182,13 @@ export function TechnicalWriting() {
                 </div>
                 <Button
                   className="w-full bg-primary hover:bg-primary/90 text-primary-foreground focus:ring-2 focus:ring-primary focus:ring-offset-2 mt-auto btn-animate hover-glow"
-                  aria-label={`View writing and editing sample for ${caseStudy.title}`}
+                  aria-label={`View project documentation for ${caseStudy.title}`}
                   onClick={(e) => {
                     e.stopPropagation();
                     openModal(caseStudy);
                   }}
                 >
-                  View Writing & Editing Sample
+                  View Project Documentation
                 </Button>
               </div>
             </article>
@@ -245,7 +245,7 @@ export function TechnicalWriting() {
                     size="sm"
                     onClick={() => navigateCase('prev')}
                     className="p-2 h-8 w-8"
-                    aria-label={`Previous writing and editing sample: ${technicalWritingCases[(technicalWritingCases.findIndex(c => c.id === selectedCase?.id) - 1 + technicalWritingCases.length) % technicalWritingCases.length]?.title}`}
+                    aria-label={`Previous project documentation: ${technicalWritingCases[(technicalWritingCases.findIndex(c => c.id === selectedCase?.id) - 1 + technicalWritingCases.length) % technicalWritingCases.length]?.title}`}
                     disabled={technicalWritingCases.length <= 1}
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -260,7 +260,7 @@ export function TechnicalWriting() {
                     size="sm"
                     onClick={() => navigateCase('next')}
                     className="p-2 h-8 w-8"
-                    aria-label={`Next writing and editing sample: ${technicalWritingCases[(technicalWritingCases.findIndex(c => c.id === selectedCase?.id) + 1) % technicalWritingCases.length]?.title}`}
+                    aria-label={`Next project documentation: ${technicalWritingCases[(technicalWritingCases.findIndex(c => c.id === selectedCase?.id) + 1) % technicalWritingCases.length]?.title}`}
                     disabled={technicalWritingCases.length <= 1}
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -295,7 +295,7 @@ export function TechnicalWriting() {
               <div className="space-y-6">
                 {/* PDF Viewer - Above project information */}
                 <div className="border-t pt-6">
-                  <h4 className="font-semibold mb-3 text-lg">Full Writing & Editing Sample</h4>
+                  <h4 className="font-semibold mb-3 text-lg">Project Documentation</h4>
                   <PDFViewer
                     pdfUrl={selectedCase?.pdfUrl}
                     title={selectedCase?.title}
