@@ -1,14 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogClose } from './ui/dialog';
 import { PDFViewer } from './PDFViewer';
-import { ArrowUp, ArrowDown } from 'lucide-react';
 import { getAssetPath } from '../lib/utils';
 
 export function UXCaseStudies() {
-  const [showScrollDownButton, setShowScrollDownButton] = useState(true);
-  const [isAtBottom, setIsAtBottom] = useState(false);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
   const caseStudies = [
     {
@@ -83,6 +79,12 @@ export function UXCaseStudies() {
   ];
 
   const [selectedStudy, setSelectedStudy] = useState<typeof caseStudies[0] | null>(null);
+  const [isScrolledToBottom, setIsScrolledToBottom] = useState(false);
+
+  // Reset scroll state when study changes
+  useEffect(() => {
+    setIsScrolledToBottom(false);
+  }, [selectedStudy]);
 
   const currentStudyIndex = selectedStudy ? caseStudies.findIndex(study => study.title === selectedStudy.title) : -1;
 
@@ -96,6 +98,19 @@ export function UXCaseStudies() {
     setSelectedStudy(caseStudies[newIndex]);
   };
 
+  const toggleScroll = () => {
+    const modalContent = document.getElementById('modal-content');
+    if (modalContent) {
+      if (isScrolledToBottom) {
+        modalContent.scrollTo({ top: 0, behavior: 'smooth' });
+        setIsScrolledToBottom(false);
+      } else {
+        modalContent.scrollTo({ top: modalContent.scrollHeight, behavior: 'smooth' });
+        setIsScrolledToBottom(true);
+      }
+    }
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'ArrowLeft') {
       e.preventDefault();
@@ -107,68 +122,6 @@ export function UXCaseStudies() {
       setSelectedStudy(null);
     }
   };
-
-  const scrollToTop = () => {
-    const modalContent = document.getElementById('modal-content');
-    if (modalContent) {
-      modalContent.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    }
-  };
-
-  const scrollToProjectDocs = () => {
-    // Determine which section to scroll to based on the case study
-    const isLivePreviewStudy = selectedStudy?.title === "Charity: Water Fundraising Landing Page" || 
-                                selectedStudy?.title === "Rowlly Properties Case Study";
-    
-    const targetId = isLivePreviewStudy ? 'live-project-preview' : 'project-documentation';
-    const targetElement = document.getElementById(targetId);
-    
-    if (targetElement) {
-      targetElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  };
-
-  // Handle scroll to hide/show buttons and track position
-  useEffect(() => {
-    const modalContent = document.getElementById('modal-content');
-    
-    if (!modalContent) return;
-
-    const handleScroll = () => {
-      // Check if at top of modal (within 10px threshold)
-      const isAtTop = modalContent.scrollTop <= 10;
-      
-      // Check if at bottom of modal (within 10px threshold)
-      const isNearBottom = modalContent.scrollHeight - modalContent.scrollTop - modalContent.clientHeight <= 10;
-      setIsAtBottom(isNearBottom);
-      
-      // Show scroll button if at top OR at bottom
-      setShowScrollDownButton(isAtTop || isNearBottom);
-    };
-
-    modalContent.addEventListener('scroll', handleScroll);
-    
-    return () => {
-      modalContent.removeEventListener('scroll', handleScroll);
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
-    };
-  }, [selectedStudy]);
-
-  // Reset button visibility when modal opens
-  useEffect(() => {
-    if (selectedStudy) {
-      setShowScrollDownButton(true);
-      setIsAtBottom(false);
-    }
-  }, [selectedStudy]);
 
   return (
     <section id="ux-studies" className="py-20" aria-labelledby="ux-studies-heading">
@@ -262,50 +215,74 @@ export function UXCaseStudies() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </Button>
+                  <Button
+                    size="sm"
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground btn-animate hover-glow h-9 px-3"
+                    onClick={toggleScroll}
+                    aria-label={isScrolledToBottom ? "Scroll to top" : "Scroll to bottom"}
+                  >
+                    {isScrolledToBottom ? "↑" : "↓"}
+                  </Button>
                 </div>
               </div>
-              <div className="text-xs text-muted-foreground flex items-center gap-1 mb-3">
-                <span>Use</span>
-                <kbd className="px-2 py-0.5 bg-muted rounded text-xs font-mono">←</kbd>
-                <kbd className="px-2 py-0.5 bg-muted rounded text-xs font-mono">→</kbd>
-                <span>to navigate</span>
-                <span className="mx-1">•</span>
-                <kbd className="px-2 py-0.5 bg-muted rounded text-xs font-mono">ESC</kbd>
-                <span>to close</span>
+              <div className="flex items-center justify-between">
+                <DialogTitle id="modal-title" className="text-xl md:text-2xl text-green-800">{selectedStudy?.title}</DialogTitle>
+                <div className="text-xs text-muted-foreground flex items-center gap-1">
+                  <span>Use</span>
+                  <kbd className="px-2 py-0.5 bg-muted rounded text-xs font-mono">←</kbd>
+                  <kbd className="px-2 py-0.5 bg-muted rounded text-xs font-mono">→</kbd>
+                  <span>to navigate</span>
+                  <span className="mx-1">•</span>
+                  <kbd className="px-2 py-0.5 bg-muted rounded text-xs font-mono">ESC</kbd>
+                  <span>to close</span>
+                </div>
               </div>
-              <DialogTitle id="modal-title" className="text-xl md:text-2xl pr-8 text-green-800">{selectedStudy?.title}</DialogTitle>
             </DialogHeader>
 
 
 
 
 
-            {/* Scroll Button - Bottom center */}
-            {showScrollDownButton && (
-              <div className="fixed bottom-24 left-1/2 transform -translate-x-1/2 z-50 transition-opacity duration-300">
-                <Button
-                  onClick={() => {
-                    if (isAtBottom) {
-                      scrollToTop();
-                    } else {
-                      scrollToProjectDocs();
-                    }
-                    setShowScrollDownButton(false);
-                  }}
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all rounded-full h-12 w-12 p-0 flex items-center justify-center btn-animate hover-glow animate-gentle-bounce"
-                  title={isAtBottom ? "Scroll to top" : "Scroll to Project Documentation"}
-                  aria-label={isAtBottom ? "Scroll to top of modal" : "Scroll to Project Documentation section"}
-                >
-                  {isAtBottom ? <ArrowUp className="w-5 h-5" /> : <ArrowDown className="w-5 h-5" />}
-                </Button>
-              </div>
-            )}
+
 
             <div className="flex-1 overflow-y-scroll" id="modal-content">
               {/* Special layout for Poppin Joe's with multiple PDFs */}
               {selectedStudy?.title === "Poppin' Joe's Kettle Corn E-Commerce Website Redesign" ? (
                 <div className="space-y-6">
-                  {/* Project Information - First */}
+                  {/* PDF Grid - Above project information */}
+                  <div className="space-y-4">
+                    <h4 id="project-documentation" className="font-semibold mb-3 text-lg">Project Documentation</h4>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
+                      {selectedStudy.pdfUrls?.map((pdfUrl, index) => (
+                        <div key={index} className="flex flex-col">
+                          <div className="flex items-center justify-between mb-2">
+                            <h5 className="font-medium text-sm">{selectedStudy.pdfTitles?.[index] || `Document ${index + 1}`}</h5>
+                            <Button
+                              size="sm"
+                              onClick={() => window.open(pdfUrl, '_blank')}
+                              className="flex items-center gap-1 bg-green-800 hover:bg-green-700 text-white btn-animate hover-glow h-7 px-2 text-xs"
+                              title="Open PDF in full screen"
+                            >
+                              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 3H3a2 2 0 00-2 2v14a2 2 0 002 2h18a2 2 0 002-2V5a2 2 0 00-2-2z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 14l-9-9-9 9" />
+                              </svg>
+                              <span className="hidden sm:inline">Full Screen</span>
+                            </Button>
+                          </div>
+                          <PDFViewer
+                            pdfUrl={pdfUrl}
+                            className="w-full flex-1"
+                            useIframe={true}
+                            hideOverlayButton={true}
+                            hideScrollIndicator={true}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Project Information - Below PDF grid */}
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div className="lg:col-span-2 space-y-4">
                       <div>
@@ -350,10 +327,13 @@ export function UXCaseStudies() {
                       </div>
                     </div>
                   </div>
-
-                  {/* PDF Grid - Below project information */}
+                </div>
+              ) : selectedStudy?.title === "Suzanne Collins Website Heuristic Evaluation & Redesign" ? (
+                /* Special layout for Suzanne Collins - multiple PDFs like Poppin Joe's */
+                <div className="space-y-6">
+                  {/* PDF Grid - Above project information */}
                   <div className="space-y-4">
-                    <h4 id="project-documentation" className="font-semibold text-xl md:text-2xl text-green-800">Project Documentation</h4>
+                    <h4 id="project-documentation" className="font-semibold mb-3 text-lg">Project Documentation</h4>
                     <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
                       {selectedStudy.pdfUrls?.map((pdfUrl, index) => (
                         <div key={index} className="flex flex-col">
@@ -362,10 +342,10 @@ export function UXCaseStudies() {
                             <Button
                               size="sm"
                               onClick={() => window.open(pdfUrl, '_blank')}
-                              className="flex items-center gap-1 bg-green-800 hover:bg-green-700 text-white btn-animate hover-glow h-7 px-2 text-xs"
+                              className="flex items-center gap-2 bg-green-800 hover:bg-green-700 text-white btn-animate hover-glow h-9 px-5"
                               title="Open PDF in full screen"
                             >
-                              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 3H3a2 2 0 00-2 2v14a2 2 0 002 2h18a2 2 0 002-2V5a2 2 0 00-2-2z" />
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 14l-9-9-9 9" />
                               </svg>
@@ -383,11 +363,8 @@ export function UXCaseStudies() {
                       ))}
                     </div>
                   </div>
-                </div>
-              ) : selectedStudy?.title === "Suzanne Collins Website Heuristic Evaluation & Redesign" ? (
-                /* Special layout for Suzanne Collins - multiple PDFs like Poppin Joe's */
-                <div className="space-y-6">
-                  {/* Project Information - First */}
+
+                  {/* Project Information - Below PDF grid */}
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div className="lg:col-span-2 space-y-4">
                       <div>
@@ -429,10 +406,13 @@ export function UXCaseStudies() {
                       </div>
                     </div>
                   </div>
-
-                  {/* PDF Grid - Below project information */}
+                </div>
+              ) : selectedStudy?.title === "Yale School of Art Website Homepage Redesign" ? (
+                /* Special layout for Yale School of Art - multiple PDFs like Poppin Joe's */
+                <div className="space-y-6">
+                  {/* PDF Grid - Above project information */}
                   <div className="space-y-4">
-                    <h4 id="project-documentation" className="font-semibold text-xl md:text-2xl text-green-800">Project Documentation</h4>
+                    <h4 id="project-documentation" className="font-semibold mb-3 text-lg">Project Documentation</h4>
                     <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
                       {selectedStudy.pdfUrls?.map((pdfUrl, index) => (
                         <div key={index} className="flex flex-col">
@@ -441,10 +421,10 @@ export function UXCaseStudies() {
                             <Button
                               size="sm"
                               onClick={() => window.open(pdfUrl, '_blank')}
-                              className="flex items-center gap-1 bg-green-800 hover:bg-green-700 text-white btn-animate hover-glow h-7 px-2 text-xs"
+                              className="flex items-center gap-2 bg-green-800 hover:bg-green-700 text-white btn-animate hover-glow h-9 px-5"
                               title="Open PDF in full screen"
                             >
-                              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 3H3a2 2 0 00-2 2v14a2 2 0 002 2h18a2 2 0 002-2V5a2 2 0 00-2-2z" />
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 14l-9-9-9 9" />
                               </svg>
@@ -462,11 +442,8 @@ export function UXCaseStudies() {
                       ))}
                     </div>
                   </div>
-                </div>
-              ) : selectedStudy?.title === "Yale School of Art Website Homepage Redesign" ? (
-                /* Special layout for Yale School of Art - multiple PDFs like Poppin Joe's */
-                <div className="space-y-6">
-                  {/* Project Information - First */}
+
+                  {/* Project Information - Below PDF grid */}
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div className="lg:col-span-2 space-y-4">
                       <div>
@@ -508,44 +485,39 @@ export function UXCaseStudies() {
                       </div>
                     </div>
                   </div>
-
-                  {/* PDF Grid - Below project information */}
-                  <div className="space-y-4">
-                    <h4 id="project-documentation" className="font-semibold text-xl md:text-2xl text-green-800">Project Documentation</h4>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
-                      {selectedStudy.pdfUrls?.map((pdfUrl, index) => (
-                        <div key={index} className="flex flex-col">
-                          <div className="flex items-center justify-between mb-2">
-                            <h5 className="font-medium text-sm">{selectedStudy.pdfTitles?.[index] || `Document ${index + 1}`}</h5>
-                            <Button
-                              size="sm"
-                              onClick={() => window.open(pdfUrl, '_blank')}
-                              className="flex items-center gap-1 bg-green-800 hover:bg-green-700 text-white btn-animate hover-glow h-7 px-2 text-xs"
-                              title="Open PDF in full screen"
-                            >
-                              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 3H3a2 2 0 00-2 2v14a2 2 0 002 2h18a2 2 0 002-2V5a2 2 0 00-2-2z" />
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 14l-9-9-9 9" />
-                              </svg>
-                              <span className="hidden sm:inline">Full Screen</span>
-                            </Button>
-                          </div>
-                          <PDFViewer
-                            pdfUrl={pdfUrl}
-                            className="w-full flex-1"
-                            useIframe={true}
-                            hideOverlayButton={true}
-                            hideScrollIndicator={true}
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
                 </div>
               ) : selectedStudy?.title === "Charity: Water Fundraising Landing Page" ? (
                 /* Special layout for Charity: Water - webpage preview */
                 <div className="space-y-6">
-                  {/* Project Information - First */}
+                  {/* Webpage Preview - Above project information */}
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <h4 id="live-project-preview" className="font-semibold mb-3 text-lg">Live Project Preview</h4>
+                      {/* Open in new tab button aligned with heading */}
+                      <Button
+                        size="sm"
+                        onClick={() => window.open(selectedStudy.webUrl, '_blank')}
+                        className="flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground btn-animate hover-glow"
+                        title="Open webpage in new tab"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                        Open in New Tab
+                      </Button>
+                    </div>
+                    <div className="w-full">
+                      <iframe
+                        src={selectedStudy.webUrl}
+                        title="Charity: Water Fundraising Landing Page"
+                        className="w-full h-96 border rounded-lg"
+                        scrolling="auto"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Project Information - Below webpage preview */}
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div className="lg:col-span-2 space-y-4">
                       <div>
@@ -587,11 +559,14 @@ export function UXCaseStudies() {
                       </div>
                     </div>
                   </div>
-
-                  {/* Webpage Preview - Below project information */}
+                </div>
+              ) : selectedStudy?.title === "Rowlly Properties Case Study" ? (
+                /* Special layout for Rowlly Properties - webpage preview */
+                <div className="space-y-6">
+                  {/* Webpage Preview - Above project information */}
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <h4 id="live-project-preview" className="font-semibold text-xl md:text-2xl text-green-800">Live Project Preview</h4>
+                      <h4 id="live-project-preview" className="font-semibold mb-3 text-lg">Live Project Preview</h4>
                       {/* Open in new tab button aligned with heading */}
                       <Button
                         size="sm"
@@ -608,18 +583,15 @@ export function UXCaseStudies() {
                     <div className="w-full">
                       <iframe
                         src={selectedStudy.webUrl}
-                        title="Charity: Water Fundraising Landing Page"
+                        title="Rowlly Properties Case Study"
                         className="w-full h-96 border rounded-lg"
                         scrolling="auto"
                         loading="lazy"
                       />
                     </div>
                   </div>
-                </div>
-              ) : selectedStudy?.title === "Rowlly Properties Case Study" ? (
-                /* Special layout for Rowlly Properties - webpage preview */
-                <div className="space-y-6">
-                  {/* Project Information - First */}
+
+                  {/* Project Information - Below webpage preview */}
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div className="lg:col-span-2 space-y-4">
                       <div>
@@ -661,39 +633,40 @@ export function UXCaseStudies() {
                       </div>
                     </div>
                   </div>
-
-                  {/* Webpage Preview - Below project information */}
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <h4 id="live-project-preview" className="font-semibold text-xl md:text-2xl text-green-800">Live Project Preview</h4>
-                      {/* Open in new tab button aligned with heading */}
-                      <Button
-                        size="sm"
-                        onClick={() => window.open(selectedStudy.webUrl, '_blank')}
-                        className="flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground btn-animate hover-glow"
-                        title="Open webpage in new tab"
-                      >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                        Open in New Tab
-                      </Button>
-                    </div>
-                    <div className="w-full">
-                      <iframe
-                        src={selectedStudy.webUrl}
-                        title="Rowlly Properties Case Study"
-                        className="w-full h-96 border rounded-lg"
-                        scrolling="auto"
-                        loading="lazy"
-                      />
-                    </div>
-                  </div>
                 </div>
               ) : (
                 /* Default layout for other case studies - matching Poppin Joe's structure */
                 <div className="space-y-6">
-                  {/* Project Information - First */}
+                  {/* PDF Grid - Above project information */}
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <h4 id="project-documentation" className="font-semibold mb-3 text-lg">Project Documentation</h4>
+                      {/* Full screen button aligned with heading */}
+                      <Button
+                        size="sm"
+                        onClick={() => window.open(selectedStudy?.pdfUrl || "", '_blank')}
+                        className="flex items-center gap-2 bg-green-800 hover:bg-green-700 text-white btn-animate hover-glow"
+                        title="Open PDF in full screen"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 3H3a2 2 0 00-2 2v14a2 2 0 002 2h18a2 2 0 002-2V5a2 2 0 00-2-2z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 14l-9-9-9 9" />
+                        </svg>
+                        Full Screen
+                      </Button>
+                    </div>
+                    <div className="grid grid-cols-1 gap-4 md:gap-6">
+                      <PDFViewer
+                        pdfUrl={selectedStudy?.pdfUrl || ""}
+                        className="w-full"
+                        useIframe={true}
+                        hideOverlayButton={true}
+                        hideScrollIndicator={selectedStudy?.title === "Pacific Northwest X-Ray Inc. Website Usability Test Report"}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Project Information - Below PDF grid */}
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div className="lg:col-span-2 space-y-4">
                       <div>
@@ -842,35 +815,6 @@ export function UXCaseStudies() {
                       </div>
                     </div>
                   </div>
-
-                  {/* PDF Grid - Below project information */}
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <h4 id="project-documentation" className="font-semibold text-xl md:text-2xl text-green-800">Project Documentation</h4>
-                      {/* Full screen button aligned with heading */}
-                      <Button
-                        size="sm"
-                        onClick={() => window.open(selectedStudy?.pdfUrl || "", '_blank')}
-                        className="flex items-center gap-2 bg-green-800 hover:bg-green-700 text-white btn-animate hover-glow"
-                        title="Open PDF in full screen"
-                      >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 3H3a2 2 0 00-2 2v14a2 2 0 002 2h18a2 2 0 002-2V5a2 2 0 00-2-2z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 14l-9-9-9 9" />
-                        </svg>
-                        Full Screen
-                      </Button>
-                    </div>
-                    <div className="grid grid-cols-1 gap-4 md:gap-6">
-                      <PDFViewer
-                        pdfUrl={selectedStudy?.pdfUrl || ""}
-                        className="w-full"
-                        useIframe={true}
-                        hideOverlayButton={true}
-                        hideScrollIndicator={selectedStudy?.title === "Pacific Northwest X-Ray Inc. Website Usability Test Report"}
-                      />
-                    </div>
-                  </div>
                 </div>
               )}
             </div>
@@ -898,15 +842,6 @@ export function UXCaseStudies() {
           </DialogContent>
         </Dialog>
       </div>
-
-      {/* Mobile-only floating back to top button */}
-      <Button
-        onClick={scrollToTop}
-        className="fixed bottom-6 right-6 z-40 md:hidden bg-primary hover:bg-primary/90 text-primary-foreground rounded-full w-12 h-12 p-0 shadow-lg"
-        aria-label="Scroll to top"
-      >
-        <ArrowUp className="w-5 h-5" />
-      </Button>
     </section>
   );
 }

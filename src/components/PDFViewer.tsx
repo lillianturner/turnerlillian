@@ -91,10 +91,9 @@ export function PDFViewer({ pdfUrl, title, className = "", useIframe = false, hi
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold">{title}</h3>
           <Button
-            variant="outline"
             size="sm"
             onClick={() => window.open(pdfUrl, '_blank')}
-            className="flex items-center gap-2 hover:bg-primary hover:text-primary-foreground"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground btn-animate hover-glow whitespace-nowrap h-9 px-5 flex items-center gap-2"
             title="Open PDF in full screen"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -111,10 +110,9 @@ export function PDFViewer({ pdfUrl, title, className = "", useIframe = false, hi
         {!title && !hideOverlayButton && (
           <div className="absolute top-3 right-3 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
             <Button
-              variant="secondary"
               size="sm"
               onClick={() => window.open(pdfUrl, '_blank')}
-              className="bg-white/90 hover:bg-white shadow-lg flex items-center gap-2"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground btn-animate hover-glow whitespace-nowrap h-9 px-5 flex items-center gap-2"
               title="Open PDF in full screen"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -8,6 +8,7 @@ import { getAssetPath } from '../lib/utils';
 export function TechnicalWriting() {
   const [selectedCase, setSelectedCase] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isScrolledToBottom, setIsScrolledToBottom] = useState(false);
   const modalRef = useRef(null);
 
   const technicalWritingCases = [
@@ -77,6 +78,17 @@ export function TechnicalWriting() {
     setSelectedCase(null);
   };
 
+  const navigateCase = (direction: string) => {
+    const currentIndex = technicalWritingCases.findIndex(c => c.id === selectedCase?.id);
+    let newIndex;
+    if (direction === 'next') {
+      newIndex = (currentIndex + 1) % technicalWritingCases.length;
+    } else {
+      newIndex = currentIndex === 0 ? technicalWritingCases.length - 1 : currentIndex - 1;
+    }
+    setSelectedCase(technicalWritingCases[newIndex]);
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'ArrowLeft') {
       e.preventDefault();
@@ -89,39 +101,23 @@ export function TechnicalWriting() {
     }
   };
 
-  const navigateCase = (direction: string) => {
-    const currentIndex = technicalWritingCases.findIndex(c => c.id === selectedCase?.id);
-    let newIndex;
-    if (direction === 'next') {
-      newIndex = (currentIndex + 1) % technicalWritingCases.length;
-    } else {
-      newIndex = currentIndex === 0 ? technicalWritingCases.length - 1 : currentIndex - 1;
-    }
-    setSelectedCase(technicalWritingCases[newIndex]);
-  };
-
+  // Reset scroll state when modal opens/closes or case changes
   useEffect(() => {
-    const handleGlobalKeyDown = (e: KeyboardEvent) => {
-      if (!isModalOpen) return;
-      if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        navigateCase('prev');
-      } else if (e.key === 'ArrowRight') {
-        e.preventDefault();
-        navigateCase('next');
-      } else if (e.key === 'Escape') {
-        setIsModalOpen(false);
-      }
-    };
-
-    if (isModalOpen) {
-      document.addEventListener('keydown', handleGlobalKeyDown);
-    }
-
-    return () => {
-      document.removeEventListener('keydown', handleGlobalKeyDown);
-    };
+    setIsScrolledToBottom(false);
   }, [isModalOpen, selectedCase]);
+
+  const toggleScroll = () => {
+    const modalContent = document.getElementById('modal-content');
+    if (modalContent) {
+      if (isScrolledToBottom) {
+        modalContent.scrollTo({ top: 0, behavior: 'smooth' });
+        setIsScrolledToBottom(false);
+      } else {
+        modalContent.scrollTo({ top: modalContent.scrollHeight, behavior: 'smooth' });
+        setIsScrolledToBottom(true);
+      }
+    }
+  };
 
   return (
     <section id="tech-writing" className="py-20 bg-muted/50" aria-labelledby="tech-writing-heading">
@@ -262,26 +258,43 @@ export function TechnicalWriting() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </Button>
+                  <Button
+                    size="sm"
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground btn-animate hover-glow h-9 px-3"
+                    onClick={toggleScroll}
+                    aria-label={isScrolledToBottom ? "Scroll to top" : "Scroll to bottom"}
+                  >
+                    {isScrolledToBottom ? "↑" : "↓"}
+                  </Button>
                 </div>
               </div>
-              <div className="text-xs text-muted-foreground flex items-center gap-1 mb-3">
-                <span>Use</span>
-                <kbd className="px-2 py-0.5 bg-muted rounded text-xs font-mono">←</kbd>
-                <kbd className="px-2 py-0.5 bg-muted rounded text-xs font-mono">→</kbd>
-                <span>to navigate</span>
-                <span className="mx-1">•</span>
-                <kbd className="px-2 py-0.5 bg-muted rounded text-xs font-mono">ESC</kbd>
-                <span>to close</span>
+              <div className="flex items-center justify-between">
+                <DialogTitle id="modal-title" className="text-xl md:text-2xl text-green-800">{selectedCase?.title}</DialogTitle>
+                <div className="text-xs text-muted-foreground flex items-center gap-1">
+                  <span>Use</span>
+                  <kbd className="px-2 py-0.5 bg-muted rounded text-xs font-mono">←</kbd>
+                  <kbd className="px-2 py-0.5 bg-muted rounded text-xs font-mono">→</kbd>
+                  <span>to navigate</span>
+                  <span className="mx-1">•</span>
+                  <kbd className="px-2 py-0.5 bg-muted rounded text-xs font-mono">ESC</kbd>
+                  <span>to close</span>
+                </div>
               </div>
-              <DialogTitle id="modal-title" className="text-xl md:text-2xl pr-8 text-green-800">{selectedCase?.title}</DialogTitle>
-              <DialogDescription id="modal-description" className="text-muted-foreground mt-2">
-                {selectedCase?.description}
-              </DialogDescription>
             </DialogHeader>
 
             <div className="flex-1 overflow-y-scroll" id="modal-content">
               <div className="space-y-6">
-                {/* Project Information */}
+                {/* PDF Viewer - Above project information */}
+                <div className="border-t pt-6">
+                  <h4 className="font-semibold mb-3 text-lg">Full Writing & Editing Sample</h4>
+                  <PDFViewer
+                    pdfUrl={selectedCase?.pdfUrl}
+                    title={selectedCase?.title}
+                    hideScrollIndicator={true}
+                  />
+                </div>
+
+                {/* Project Information - Below PDF viewer */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                   <div className="lg:col-span-2 space-y-4">
                     <div>
@@ -320,17 +333,27 @@ export function TechnicalWriting() {
                     </div>
                   </div>
                 </div>
-
-                {/* PDF Viewer */}
-                <div className="border-t pt-6">
-                  <h4 className="text-xl md:text-2xl pr-8 text-green-800 font-semibold mb-4">Full Writing & Editing Sample</h4>
-                  <PDFViewer
-                    pdfUrl={selectedCase?.pdfUrl}
-                    title={selectedCase?.title}
-                    hideScrollIndicator={true}
-                  />
-                </div>
               </div>
+            </div>
+            {/* CTA Section at Bottom */}
+            <div className="flex-shrink-0 mt-4 pt-4 border-t flex flex-col sm:flex-row items-center justify-between gap-3 bg-muted/30 -mx-6 px-6 py-4 -mb-6 rounded-b-xl">
+              <div className="text-center sm:text-left">
+                <h4 className="font-semibold text-base mb-1">Interested in similar work?</h4>
+                <p className="text-sm text-muted-foreground">Let's discuss how I can help with your project</p>
+              </div>
+              <Button
+                size="sm"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground btn-animate hover-glow whitespace-nowrap h-9 px-5"
+                onClick={() => {
+                  setIsModalOpen(false);
+                  setTimeout(() => {
+                    const element = document.getElementById('contact');
+                    element?.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
+                }}
+              >
+                Get In Touch
+              </Button>
             </div>
           </DialogContent>
         </Dialog>
