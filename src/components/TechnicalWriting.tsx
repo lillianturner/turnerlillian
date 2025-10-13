@@ -120,7 +120,7 @@ export function TechnicalWriting() {
   };
 
   return (
-    <section id="tech-writing" className="pt-20 pb-32 bg-muted/50" aria-labelledby="tech-writing-heading">
+    <section id="tech-writing" className="pt-20 pb-40 bg-muted/50" aria-labelledby="tech-writing-heading">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <p className="subheading text-primary text-lg mb-4" role="text">Content Strategy, Documentation & Editing</p>
@@ -187,7 +187,7 @@ export function TechnicalWriting() {
         </div>
 
         {/* Tools & Methodology */}
-        <aside className="glass-card-accent p-8 rounded-xl" aria-labelledby="tools-heading">
+        <aside className="glass-card-accent p-8 rounded-xl mb-12" aria-labelledby="tools-heading">
           <h3 id="tools-heading" className="text-2xl font-semibold mb-6 text-center">Tools & Methodology</h3>
           <div className="grid md:grid-cols-2 gap-8">
             <div>
