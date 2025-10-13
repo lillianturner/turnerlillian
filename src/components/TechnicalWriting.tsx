@@ -187,7 +187,7 @@ export function TechnicalWriting() {
         </div>
 
         {/* Tools & Methodology */}
-        <aside className="glass-card-accent p-8 rounded-xl mb-12 mt-8" aria-labelledby="tools-heading">
+        <aside className="glass-card-accent p-8 rounded-xl mt-8" aria-labelledby="tools-heading">
           <h3 id="tools-heading" className="text-2xl font-semibold mb-6 text-center">Tools & Methodology</h3>
           <div className="grid md:grid-cols-2 gap-8">
             <div>
