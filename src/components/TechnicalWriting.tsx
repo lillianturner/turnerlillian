@@ -14,6 +14,15 @@ export function TechnicalWriting() {
   const technicalWritingCases = [
     {
       id: 1,
+      title: "Instruction Writing: Granny Square Crochet Pattern",
+      description: "Detailed crochet pattern instructions for creating beautiful granny square designs, including step-by-step guidance, materials list, and variations for different skill levels.",
+      tags: ["Instruction Writing", "Technical Writing", "Craft Instructions", "Pattern Design"],
+      image: getAssetPath("pdfs/GrannySquare.pdf"),
+      pdfUrl: getAssetPath("pdfs/GrannySquare.pdf"),
+      type: "Instruction Writing"
+    },
+    {
+      id: 2,
       title: "Pacific Northwest X-Ray Website Usability Test Report",
       description: "Comprehensive usability testing report for a medical imaging company's website, identifying key user experience issues and providing actionable recommendations for improvement.",
       tags: ["Usability Testing", "Medical UX", "User Research", "Report Writing"],
@@ -22,7 +31,7 @@ export function TechnicalWriting() {
       type: "Usability Report"
     },
     {
-      id: 2,
+      id: 3,
       title: "Poppin' Joe's Content Strategy & Style Guide",
       description: "Complete content strategy and style guide development for a local coffee shop, including brand voice guidelines, content calendar templates, and social media strategy.",
       tags: ["Content Strategy", "Brand Guidelines", "Style Guide", "Social Media"],
@@ -31,7 +40,7 @@ export function TechnicalWriting() {
       type: "Content Strategy"
     },
     {
-      id: 3,
+      id: 4,
       title: "Poppin' Joe's Site Analysis Report",
       description: "Detailed analysis of a coffee shop's existing website, evaluating design effectiveness, user experience, and technical performance with specific improvement recommendations.",
       tags: ["Site Analysis", "Web Evaluation", "Technical Writing", "UX Audit"],
@@ -40,7 +49,7 @@ export function TechnicalWriting() {
       type: "Site Analysis"
     },
     {
-      id: 4,
+      id: 5,
       title: "Suzanne Collins Author Website Design Report",
       description: "Comprehensive design analysis and report for the official website of bestselling author Suzanne Collins, evaluating visual design, user experience, and content organization.",
       tags: ["Design Analysis", "Author Website", "Visual Design", "UX Evaluation"],
@@ -49,7 +58,7 @@ export function TechnicalWriting() {
       type: "Design Report"
     },
     {
-      id: 5,
+      id: 6,
       title: "Suzanne Collins Heuristic Evaluation",
       description: "Expert heuristic evaluation of Suzanne Collins' author website using Nielsen's 10 usability heuristics, identifying specific usability issues and severity ratings.",
       tags: ["Heuristic Evaluation", "Usability Heuristics", "Expert Review", "UX Assessment"],
@@ -58,7 +67,7 @@ export function TechnicalWriting() {
       type: "Heuristic Evaluation"
     },
     {
-      id: 6,
+      id: 7,
       title: "Suzanne Collins Component Compendium",
       description: "Detailed documentation of reusable UI components and design patterns identified from Suzanne Collins' website, including specifications and usage guidelines.",
       tags: ["Component Documentation", "UI Patterns", "Design Systems", "Technical Specs"],
