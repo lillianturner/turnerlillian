@@ -298,7 +298,6 @@ export function TechnicalWriting() {
                   <h4 className="font-semibold mb-3 text-lg">Project Documentation</h4>
                   <PDFViewer
                     pdfUrl={selectedCase?.pdfUrl}
-                    title={selectedCase?.title}
                     hideScrollIndicator={true}
                   />
                 </div>
