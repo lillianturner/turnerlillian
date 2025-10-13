@@ -263,7 +263,7 @@ export function UXCaseStudies() {
                               className="flex items-center gap-2 bg-green-800 hover:bg-green-700 text-white btn-animate hover-glow h-9 px-5"
                               title="Open PDF in full screen"
                             >
-                              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 3H3a2 2 0 00-2 2v14a2 2 0 002 2h18a2 2 0 002-2V5a2 2 0 00-2-2z" />
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 14l-9-9-9 9" />
                               </svg>
@@ -497,7 +497,7 @@ export function UXCaseStudies() {
                       <Button
                         size="sm"
                         onClick={() => window.open(selectedStudy.webUrl, '_blank')}
-                        className="flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground btn-animate hover-glow"
+                        className="flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground btn-animate hover-glow h-9 px-5"
                         title="Open webpage in new tab"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -571,7 +571,7 @@ export function UXCaseStudies() {
                       <Button
                         size="sm"
                         onClick={() => window.open(selectedStudy.webUrl, '_blank')}
-                        className="flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground btn-animate hover-glow"
+                        className="flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground btn-animate hover-glow h-9 px-5"
                         title="Open webpage in new tab"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
