@@ -120,7 +120,7 @@ export function TechnicalWriting() {
   };
 
   return (
-    <section id="tech-writing" className="py-20 bg-muted/50" aria-labelledby="tech-writing-heading">
+    <section id="tech-writing" className="pt-20 pb-32 bg-muted/50" aria-labelledby="tech-writing-heading">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <p className="subheading text-primary text-lg mb-4" role="text">Content Strategy, Documentation & Editing</p>
