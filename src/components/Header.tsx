@@ -199,8 +199,9 @@ export function Header() {
           {/* Right side - Resume/CV Buttons */}
           <div className="hidden md:flex items-center space-x-2 flex-1 justify-end">
             <Button 
+              variant="orange"
               size="sm" 
-              className="bg-primary hover:bg-gradient-to-r hover:from-primary hover:to-blue-400/80 text-primary-foreground transition-all duration-200 shimmer-effect"
+              className="transition-all duration-200 shimmer-effect"
               aria-label="View Resume"
               onClick={() => openDocumentModal('resume')}
             >
@@ -208,8 +209,9 @@ export function Header() {
               Resume
             </Button>
             <Button 
+              variant="yellow"
               size="sm" 
-              className="bg-secondary hover:bg-gradient-to-r hover:from-secondary hover:to-lavender-400/80 text-secondary-foreground transition-all duration-200 shimmer-effect"
+              className="transition-all duration-200 shimmer-effect"
               aria-label="View CV"
               onClick={() => openDocumentModal('cv')}
             >
@@ -277,8 +279,9 @@ export function Header() {
                 </a>
               ))}
               <Button 
+                variant="orange"
                 size="sm" 
-                className="bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-200 self-start mt-4"
+                className="transition-all duration-200 self-start mt-4"
                 aria-label="View Resume"
                 onClick={() => openDocumentModal('resume')}
               >
@@ -286,8 +289,9 @@ export function Header() {
                 Resume
               </Button>
               <Button 
+                variant="yellow"
                 size="sm" 
-                className="bg-secondary hover:bg-secondary/90 text-secondary-foreground transition-all duration-200 self-start mt-2"
+                className="transition-all duration-200 self-start mt-2"
                 aria-label="View CV"
                 onClick={() => openDocumentModal('cv')}
               >

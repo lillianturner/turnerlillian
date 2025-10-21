@@ -222,6 +222,32 @@ export function TechnicalWriting() {
           </div>
         </aside>
 
+        {/* Button Color Demonstration */}
+        <aside className="glass-card-primary p-8 rounded-xl mt-8" aria-labelledby="button-demo-heading">
+          <h3 id="button-demo-heading" className="text-2xl font-semibold mb-6 text-center">Button Color Options</h3>
+          <p className="text-center text-muted-foreground mb-6">Explore different button styles available in the design system</p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button variant="default" className="btn-animate hover-glow">
+              Primary Button
+            </Button>
+            <Button variant="secondary" className="btn-animate hover-glow">
+              Secondary Button
+            </Button>
+            <Button variant="yellow" className="btn-animate hover-glow">
+              Yellow Button
+            </Button>
+            <Button variant="orange" className="btn-animate hover-glow">
+              Orange Button
+            </Button>
+            <Button variant="outline" className="btn-animate hover-glow">
+              Outline Button
+            </Button>
+            <Button variant="ghost" className="btn-animate hover-glow">
+              Ghost Button
+            </Button>
+          </div>
+        </aside>
+
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
           <DialogContent
             className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] max-w-7xl w-[95vw] max-h-[90vh] flex flex-col z-50"

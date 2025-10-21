@@ -150,7 +150,7 @@
 
   /* Secondary: Rich forest green for accents */
   --secondary: 158 58% 26%; /* Primary light #0D7A5A */
-  --secondary-foreground: 0 0% 100%;
+  --secondary-foreground: 158 85% 15%; /* Darker green text */
 
   /* Accent: Vibrant forest green complement */
   --accent: 158 45% 35%; /* Light Forest Green #34A853 */
@@ -169,6 +169,12 @@
   --input: 0 0% 100%; /* White inputs #FFFFFF */
   --ring: 158 64% 20%; /* Primary green focus ring #065F46 */
   --radius: 0.75rem;
+
+  /* Button colors */
+  --yellow: 45 86% 58%; /* Bright yellow #EAB308 */
+  --yellow-foreground: 25 30% 35%; /* Muted warm brown text */
+  --orange: 25 95% 53%; /* Bright orange #F97316 */
+  --orange-foreground: 25 60% 25%; /* Muted darkish orange text */
 }
 
 .dark {
@@ -186,7 +192,7 @@
 
   /* Secondary: Medium forest green for accents */
   --secondary: 158 58% 26%; /* Medium Forest Green #0D7A5A */
-  --secondary-foreground: 0 0% 100%;
+  --secondary-foreground: 158 85% 15%; /* Darker green text */
 
   /* Accent: Bright forest green for highlights */
   --accent: 158 35% 45%; /* Bright Forest Green #4CAF50 */
@@ -204,6 +210,12 @@
   --border: 158 35% 20%; /* Medium forest green border #2D5A47 */
   --input: 158 64% 15%; /* Dark forest green inputs #0A4A3A */
   --ring: 158 45% 35%; /* Light green focus ring #34A853 */
+
+  /* Button colors for dark mode */
+  --yellow: 45 86% 58%; /* Bright yellow #EAB308 */
+  --yellow-foreground: 25 30% 35%; /* Muted warm brown text */
+  --orange: 25 95% 53%; /* Bright orange #F97316 */
+  --orange-foreground: 25 60% 25%; /* Muted darkish orange text */
 }
 
 /* 
@@ -330,7 +342,7 @@ p, span, div, li, button {
 .glass-button-accent {
   background: rgba(52, 168, 83, 0.25) !important; /* Light Forest Green #34A853 with transparency */
   border: 1px solid rgba(52, 168, 83, 0.35) !important;
-  color: #FFFFFF !important;
+  color: hsl(var(--secondary-foreground)) !important;
   box-shadow: 0 2px 8px rgba(52, 168, 83, 0.15) !important;
   transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease !important;
 }
@@ -355,6 +367,69 @@ p, span, div, li, button {
   background: rgba(4, 47, 35, 0.3) !important;
   border: 1px solid rgba(4, 47, 35, 0.4) !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Yellow glass button */
+.glass-button-yellow {
+  background: hsl(var(--yellow) / 0.25) !important;
+  border: 1px solid hsl(var(--yellow) / 0.35) !important;
+  color: hsl(var(--yellow-foreground)) !important;
+  box-shadow: 0 2px 8px hsl(var(--yellow) / 0.15) !important;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.glass-button-yellow:hover {
+  background: hsl(var(--yellow) / 0.35) !important;
+  border: 1px solid hsl(var(--yellow) / 0.5) !important;
+  box-shadow: 0 4px 12px hsl(var(--yellow) / 0.25) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Orange glass button */
+.glass-button-orange {
+  background: hsl(var(--orange) / 0.25) !important;
+  border: 1px solid hsl(var(--orange) / 0.35) !important;
+  color: hsl(var(--orange-foreground)) !important;
+  box-shadow: 0 2px 8px hsl(var(--orange) / 0.15) !important;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.glass-button-orange:hover {
+  background: hsl(var(--orange) / 0.35) !important;
+  border: 1px solid hsl(var(--orange) / 0.5) !important;
+  box-shadow: 0 4px 12px hsl(var(--orange) / 0.25) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Outline button with deep forest green text */
+.glass-button-outline {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  color: hsl(158 85% 9%) !important; /* Deep forest green */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.glass-button-outline:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Ghost button with deep forest green text */
+.glass-button-ghost {
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  color: hsl(158 85% 9%) !important; /* Deep forest green */
+  box-shadow: none !important;
+  transition: background 0.2s ease, transform 0.2s ease !important;
+}
+
+.glass-button-ghost:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
   transform: translateY(-1px) !important;
 }
 

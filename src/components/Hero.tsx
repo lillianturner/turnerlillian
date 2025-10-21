@@ -92,8 +92,8 @@ export function Hero() {
                 rel="noopener noreferrer"
                 role="listitem"
               >
-                <Button variant="ghost" size="lg" className="w-12 h-12 lg:w-14 lg:h-14 glass-social-icon hover-scale-sm transition-all-smooth" aria-label="LinkedIn profile">
-                  <Linkedin className="w-5 h-5 lg:w-6 lg:h-6 text-primary" aria-hidden="true" />
+                <Button variant="default" size="lg" className="w-12 h-12 lg:w-14 lg:h-14 glass-social-icon hover-scale-sm transition-all-smooth" aria-label="LinkedIn profile">
+                  <Linkedin className="w-5 h-5 lg:w-6 lg:h-6" aria-hidden="true" />
                 </Button>
               </a>
               <a 
@@ -102,16 +102,16 @@ export function Hero() {
                 rel="noopener noreferrer"
                 role="listitem"
               >
-                <Button variant="ghost" size="lg" className="w-12 h-12 lg:w-14 lg:h-14 glass-social-icon hover-scale-sm transition-all-smooth" aria-label="GitHub profile">
-                  <Github className="w-5 h-5 lg:w-6 lg:h-6 text-primary" aria-hidden="true" />
+                <Button variant="yellow" size="lg" className="w-12 h-12 lg:w-14 lg:h-14 glass-social-icon hover-scale-sm transition-all-smooth" aria-label="GitHub profile">
+                  <Github className="w-5 h-5 lg:w-6 lg:h-6" aria-hidden="true" />
                 </Button>
               </a>
               <a 
                 href="mailto:turnerlillianc@gmail.com"
                 role="listitem"
               >
-                <Button variant="ghost" size="lg" className="w-12 h-12 lg:w-14 lg:h-14 glass-social-icon hover-scale-sm transition-all-smooth" aria-label="Email contact">
-                  <Mail className="w-5 h-5 lg:w-6 lg:h-6 text-primary" aria-hidden="true" />
+                <Button variant="orange" size="lg" className="w-12 h-12 lg:w-14 lg:h-14 glass-social-icon hover-scale-sm transition-all-smooth" aria-label="Email contact">
+                  <Mail className="w-5 h-5 lg:w-6 lg:h-6" aria-hidden="true" />
                 </Button>
               </a>
             </div>

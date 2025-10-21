@@ -14,11 +14,15 @@ const buttonVariants = cva(
         destructive:
           "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         outline:
-          "glass-button text-foreground",
+          "glass-button-outline",
         secondary:
           "glass-button-accent",
-        ghost: "glass-button text-foreground",
+        ghost: "glass-button-ghost",
         link: "text-primary underline-offset-4 hover:underline",
+        yellow:
+          "glass-button-yellow",
+        orange:
+          "glass-button-orange",
       },
       size: {
         default: "h-9 px-4 py-2",
