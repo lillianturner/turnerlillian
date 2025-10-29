@@ -172,7 +172,7 @@
 
   /* Button colors */
   --yellow: 45 86% 58%; /* Bright yellow #EAB308 */
-  --yellow-foreground: 25 30% 35%; /* Muted warm brown text */
+  --yellow-foreground: 25 30% 25%; /* Darker warm brown text */
   --orange: 25 95% 53%; /* Bright orange #F97316 */
   --orange-foreground: 25 85% 15%; /* Super dark orange text */
 }
@@ -213,7 +213,7 @@
 
   /* Button colors for dark mode */
   --yellow: 45 86% 58%; /* Bright yellow #EAB308 */
-  --yellow-foreground: 25 30% 35%; /* Muted warm brown text */
+  --yellow-foreground: 25 30% 25%; /* Darker warm brown text */
   --orange: 25 95% 53%; /* Bright orange #F97316 */
   --orange-foreground: 25 85% 15%; /* Super dark orange text */
 }
