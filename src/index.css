@@ -1923,3 +1923,79 @@ div[role="dialog"].tech-writing-modal::-webkit-scrollbar-thumb:hover {
     0 3px 6px rgba(194, 65, 12, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
 }
+
+/* Section gradient transitions */
+/* Gradient from hero (transparent/white) to UX Studies (transparent) */
+#home::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: linear-gradient(to bottom, transparent, rgba(247, 252, 249, 0));
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Gradient from UX Studies (transparent) to Tech Writing (orange) */
+#ux-studies::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: linear-gradient(to bottom, transparent, rgba(251, 146, 60, 0.05));
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Gradient from Tech Writing (orange) to Design Gallery (yellow) */
+#tech-writing::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: linear-gradient(to bottom, rgba(251, 146, 60, 0.05), rgba(234, 179, 8, 0.05));
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Gradient from Design Gallery (yellow) to About (muted) */
+#design-gallery::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: linear-gradient(to bottom, rgba(234, 179, 8, 0.05), rgba(247, 252, 249, 0.5));
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Gradient from About (muted) to Contact (muted) - subtle transition */
+#about::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: linear-gradient(to bottom, rgba(247, 252, 249, 0.5), rgba(247, 252, 249, 0.5));
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Make sections positioned relative for pseudo-elements */
+#home,
+#ux-studies,
+#tech-writing,
+#design-gallery,
+#about,
+#contact {
+  position: relative;
+}

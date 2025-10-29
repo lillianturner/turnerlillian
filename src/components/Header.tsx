@@ -166,19 +166,28 @@ export function Header() {
               {/* Dropdown Menu */}
               {isPortfolioDropdownOpen && (
                 <div className="absolute top-full left-0 mt-2 w-48 bg-background border rounded-lg shadow-lg z-50">
-                  {portfolioItems.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      onClick={(e) => {
-                        handleNavClick(e, item.href);
-                        setIsPortfolioDropdownOpen(false);
-                      }}
-                      className="block px-4 py-2 text-foreground/70 hover:text-foreground hover:bg-primary/5 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg"
-                    >
-                      {item.name}
-                    </a>
-                  ))}
+                  {portfolioItems.map((item, index) => {
+                    // Determine color theme based on item
+                    const colorClass = index === 0 
+                      ? 'hover:text-primary hover:bg-primary/10' 
+                      : index === 1 
+                      ? 'hover:text-orange-foreground hover:bg-orange/10' 
+                      : 'hover:text-yellow-foreground hover:bg-yellow/10';
+                    
+                    return (
+                      <a
+                        key={item.name}
+                        href={item.href}
+                        onClick={(e) => {
+                          handleNavClick(e, item.href);
+                          setIsPortfolioDropdownOpen(false);
+                        }}
+                        className={`block px-4 py-2 text-foreground/70 hover:text-foreground transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg ${colorClass}`}
+                      >
+                        {item.name}
+                      </a>
+                    );
+                  })}
                 </div>
               )}
             </div>
@@ -201,7 +210,7 @@ export function Header() {
             <Button 
               variant="orange"
               size="sm" 
-              className="transition-all duration-200 shimmer-effect"
+              className="transition-all duration-200 shimmer-effect btn-animate hover-glow"
               aria-label="View Resume"
               onClick={() => openDocumentModal('resume')}
             >
@@ -211,7 +220,7 @@ export function Header() {
             <Button 
               variant="yellow"
               size="sm" 
-              className="transition-all duration-200 shimmer-effect"
+              className="transition-all duration-200 shimmer-effect btn-animate hover-glow"
               aria-label="View CV"
               onClick={() => openDocumentModal('cv')}
             >
@@ -229,7 +238,7 @@ export function Header() {
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-              className="hover:bg-gradient-to-r hover:from-lavender-200/20 hover:to-peach-200/20 transition-colors duration-200"
+              className="hover:bg-primary/10 text-primary transition-colors duration-200"
             >
               <div className="relative w-5 h-5">
                 <Menu 
