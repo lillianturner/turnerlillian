@@ -1663,6 +1663,8 @@ section:nth-child(odd) {
   background-clip: text !important;
 }
 
+
+
 /* Enhanced Visual Elements */
 .hover-scale-sm:hover {
   transform: scale(1.05) translateY(-2px);
