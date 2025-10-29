@@ -174,7 +174,7 @@
   --yellow: 45 86% 58%; /* Bright yellow #EAB308 */
   --yellow-foreground: 25 30% 35%; /* Muted warm brown text */
   --orange: 25 95% 53%; /* Bright orange #F97316 */
-  --orange-foreground: 25 60% 25%; /* Muted darkish orange text */
+  --orange-foreground: 25 85% 15%; /* Super dark orange text */
 }
 
 .dark {
@@ -215,7 +215,7 @@
   --yellow: 45 86% 58%; /* Bright yellow #EAB308 */
   --yellow-foreground: 25 30% 35%; /* Muted warm brown text */
   --orange: 25 95% 53%; /* Bright orange #F97316 */
-  --orange-foreground: 25 60% 25%; /* Muted darkish orange text */
+  --orange-foreground: 25 85% 15%; /* Super dark orange text */
 }
 
 /* 
@@ -432,6 +432,107 @@ p, span, div, li, button {
   border: 1px solid rgba(255, 255, 255, 0.2) !important;
   transform: translateY(-1px) !important;
 }
+
+/* Orange glass card */
+.glass-card-orange {
+  background: linear-gradient(135deg, 
+    hsl(var(--orange) / 0.15), 
+    hsl(var(--orange) / 0.10), 
+    hsl(var(--orange) / 0.05)
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid hsl(var(--orange) / 0.2);
+  box-shadow: 
+    0 8px 32px hsl(var(--orange) / 0.12),
+    0 4px 16px hsl(var(--orange) / 0.08),
+    0 2px 8px hsl(var(--orange) / 0.05);
+  color: hsl(var(--orange-foreground));
+}
+
+/* Yellow glass card */
+.glass-card-yellow {
+  background: linear-gradient(135deg, 
+    hsl(var(--yellow) / 0.15), 
+    hsl(var(--yellow) / 0.10), 
+    hsl(var(--yellow) / 0.05)
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid hsl(var(--yellow) / 0.2);
+  box-shadow: 
+    0 8px 32px hsl(var(--yellow) / 0.12),
+    0 4px 16px hsl(var(--yellow) / 0.08),
+    0 2px 8px hsl(var(--yellow) / 0.05);
+  color: hsl(var(--yellow-foreground));
+}
+
+/* Orange scrollbar for technical writing modals */
+.tech-writing-modal::-webkit-scrollbar,
+.tech-writing-modal *::-webkit-scrollbar,
+.tech-writing-modal .overflow-y-scroll::-webkit-scrollbar,
+.tech-writing-modal .overflow-y-auto::-webkit-scrollbar {
+  width: 12px !important;
+  height: 12px !important;
+}
+
+.tech-writing-modal::-webkit-scrollbar-track,
+.tech-writing-modal *::-webkit-scrollbar-track,
+.tech-writing-modal .overflow-y-scroll::-webkit-scrollbar-track,
+.tech-writing-modal .overflow-y-auto::-webkit-scrollbar-track {
+  background: rgba(251, 146, 60, 0.1) !important; /* Orange tint */
+  border-radius: 8px !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(251, 146, 60, 0.2) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+.tech-writing-modal::-webkit-scrollbar-thumb,
+.tech-writing-modal *::-webkit-scrollbar-thumb,
+.tech-writing-modal .overflow-y-scroll::-webkit-scrollbar-thumb,
+.tech-writing-modal .overflow-y-auto::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    135deg,
+    rgba(194, 65, 12, 0.9) 0%,
+    rgba(194, 65, 12, 0.7) 50%,
+    rgba(194, 65, 12, 0.8) 100%
+  ) !important; /* Dark orange gradient */
+  border-radius: 8px !important;
+  border: 1px solid rgba(251, 146, 60, 0.3) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  box-shadow:
+    0 2px 4px rgba(194, 65, 12, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+.tech-writing-modal::-webkit-scrollbar-thumb:hover,
+.tech-writing-modal *::-webkit-scrollbar-thumb:hover,
+.tech-writing-modal .overflow-y-scroll::-webkit-scrollbar-thumb:hover,
+.tech-writing-modal .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(234, 88, 12, 0.95) 0%,
+    rgba(234, 88, 12, 0.8) 50%,
+    rgba(234, 88, 12, 0.9) 100%
+  ) !important; /* Brighter orange on hover */
+  box-shadow:
+    0 3px 6px rgba(194, 65, 12, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Orange close button for technical writing modals */
+.tech-writing-modal [data-radix-dialog-close] {
+  background: hsl(var(--orange) / 0.1) !important;
+  color: hsl(var(--orange-foreground)) !important;
+}
+
+.tech-writing-modal [data-radix-dialog-close]:hover {
+  background: hsl(var(--orange) / 0.2) !important;
+}
+
+
 
 /* Frosted Glass Cards and Boxes - Optimized */
 .glass-card {
@@ -1538,6 +1639,30 @@ section:nth-child(odd) {
   letter-spacing: 0.05em;
 }
 
+/* Override subheading styling for tech writing section with orange gradient */
+#tech-writing .subheading {
+  background: linear-gradient(
+    135deg,
+    hsl(25, 95%, 53%) 0%,
+    hsl(25, 85%, 15%) 100%
+  ) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* Override subheading styling for design gallery section with yellow gradient */
+#design-gallery .subheading {
+  background: linear-gradient(
+    135deg,
+    hsl(45, 95%, 50%) 0%,
+    hsl(45, 85%, 15%) 100%
+  ) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
 /* Enhanced Visual Elements */
 .hover-scale-sm:hover {
   transform: scale(1.05) translateY(-2px);
@@ -1644,4 +1769,155 @@ section:nth-child(odd) {
     transform: scale(1) translate3d(0, 0, 0);
     opacity: 0.3;
   }
+}
+
+/* OVERRIDE: Orange scrollbar for technical writing modals - MUST BE AT END */
+.tech-writing-modal::-webkit-scrollbar,
+.tech-writing-modal *::-webkit-scrollbar,
+.tech-writing-modal .overflow-y-scroll::-webkit-scrollbar,
+.tech-writing-modal .overflow-y-auto::-webkit-scrollbar,
+div[role="dialog"].tech-writing-modal::-webkit-scrollbar {
+  width: 12px !important;
+  height: 12px !important;
+}
+
+.tech-writing-modal::-webkit-scrollbar-track,
+.tech-writing-modal *::-webkit-scrollbar-track,
+.tech-writing-modal .overflow-y-scroll::-webkit-scrollbar-track,
+.tech-writing-modal .overflow-y-auto::-webkit-scrollbar-track,
+div[role="dialog"].tech-writing-modal::-webkit-scrollbar-track {
+  background: rgba(251, 146, 60, 0.1) !important;
+  border-radius: 8px !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(251, 146, 60, 0.2) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+.tech-writing-modal::-webkit-scrollbar-thumb,
+.tech-writing-modal *::-webkit-scrollbar-thumb,
+.tech-writing-modal .overflow-y-scroll::-webkit-scrollbar-thumb,
+.tech-writing-modal .overflow-y-auto::-webkit-scrollbar-thumb,
+div[role="dialog"].tech-writing-modal::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    135deg,
+    rgba(194, 65, 12, 0.9) 0%,
+    rgba(194, 65, 12, 0.7) 50%,
+    rgba(194, 65, 12, 0.8) 100%
+  ) !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(251, 146, 60, 0.3) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  box-shadow:
+    0 2px 4px rgba(194, 65, 12, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+.tech-writing-modal::-webkit-scrollbar-thumb:hover,
+.tech-writing-modal *::-webkit-scrollbar-thumb:hover,
+.tech-writing-modal .overflow-y-scroll::-webkit-scrollbar-thumb:hover,
+.tech-writing-modal .overflow-y-auto::-webkit-scrollbar-thumb:hover,
+div[role="dialog"].tech-writing-modal::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(234, 88, 12, 0.95) 0%,
+    rgba(234, 88, 12, 0.8) 50%,
+    rgba(234, 88, 12, 0.9) 100%
+  ) !important;
+  box-shadow:
+    0 3px 6px rgba(194, 65, 12, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Ultra-specific orange scrollbar using data attribute */
+[data-theme="orange"]::-webkit-scrollbar,
+[data-theme="orange"] *::-webkit-scrollbar {
+  width: 12px !important;
+  height: 12px !important;
+}
+
+[data-theme="orange"]::-webkit-scrollbar-track,
+[data-theme="orange"] *::-webkit-scrollbar-track {
+  background: rgba(251, 146, 60, 0.1) !important;
+  border-radius: 8px !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(251, 146, 60, 0.2) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="orange"]::-webkit-scrollbar-thumb,
+[data-theme="orange"] *::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    135deg,
+    rgba(194, 65, 12, 0.9) 0%,
+    rgba(194, 65, 12, 0.7) 50%,
+    rgba(194, 65, 12, 0.8) 100%
+  ) !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(251, 146, 60, 0.3) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  box-shadow:
+    0 2px 4px rgba(194, 65, 12, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  min-height: 20px !important;
+}
+
+[data-theme="orange"]::-webkit-scrollbar-thumb:hover,
+[data-theme="orange"] *::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(234, 88, 12, 0.95) 0%,
+    rgba(234, 88, 12, 0.8) 50%,
+    rgba(234, 88, 12, 0.9) 100%
+  ) !important;
+  box-shadow:
+    0 3px 6px rgba(194, 65, 12, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Nuclear option: ID + class selector for maximum specificity */
+#modal-content.orange-scrollbar::-webkit-scrollbar {
+  width: 12px !important;
+  height: 12px !important;
+}
+
+#modal-content.orange-scrollbar::-webkit-scrollbar-track {
+  background: rgba(251, 146, 60, 0.1) !important;
+  border-radius: 8px !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(251, 146, 60, 0.2) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+#modal-content.orange-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    135deg,
+    rgba(194, 65, 12, 0.9) 0%,
+    rgba(194, 65, 12, 0.7) 50%,
+    rgba(194, 65, 12, 0.8) 100%
+  ) !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(251, 146, 60, 0.3) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  box-shadow:
+    0 2px 4px rgba(194, 65, 12, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  min-height: 20px !important;
+}
+
+#modal-content.orange-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(234, 88, 12, 0.95) 0%,
+    rgba(234, 88, 12, 0.8) 50%,
+    rgba(234, 88, 12, 0.9) 100%
+  ) !important;
+  box-shadow:
+    0 3px 6px rgba(194, 65, 12, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
 }
