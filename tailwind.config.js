@@ -18,9 +18,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        'heading': ['Oswald', 'sans-serif'],
+        'heading': ['Sora', 'sans-serif'],
         'subheading': ['Montserrat', 'sans-serif'],
-        'body': ['Nunito Sans', 'sans-serif'],
+        'body': ['Geist', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",

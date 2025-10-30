@@ -12,6 +12,7 @@ export function Header() {
   const [currentDocument, setCurrentDocument] = useState<'resume' | 'cv' | null>(null);
   const [isPortfolioDropdownOpen, setIsPortfolioDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const dropdownMenuRef = useRef<HTMLDivElement>(null);
 
   const documents = [
     {
@@ -132,9 +133,10 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b" role="banner">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center py-4">
+    <>
+      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b overflow-visible" role="banner">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 overflow-visible">
+        <div className="flex items-center py-4 overflow-visible">
           {/* Left side - Navigation */}
           <nav className="hidden md:flex items-center space-x-2 flex-1" role="navigation" aria-label="Main navigation">
             {navigation.map((item) => (
@@ -165,7 +167,10 @@ export function Header() {
               
               {/* Dropdown Menu */}
               {isPortfolioDropdownOpen && (
-                <div className="absolute top-full left-0 mt-2 w-48 bg-background border rounded-lg shadow-lg z-50">
+                <div 
+                  className="absolute top-full left-0 mt-2 w-64 bg-background/80 backdrop-blur-xl border border-white/20 rounded-xl shadow-2xl z-[60]"
+                  ref={dropdownMenuRef}
+                >
                   {portfolioItems.map((item) => (
                     <a
                       key={item.name}
@@ -174,7 +179,7 @@ export function Header() {
                         handleNavClick(e, item.href);
                         setIsPortfolioDropdownOpen(false);
                       }}
-                      className="block px-4 py-2 text-foreground/70 hover:text-foreground hover:bg-primary/5 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg"
+                      className="block px-4 py-3 text-foreground/70 hover:text-primary hover:bg-primary/10 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl"
                     >
                       {item.name}
                     </a>
@@ -185,16 +190,26 @@ export function Header() {
           </nav>
 
           {/* Center - Brand Name */}
-          <div className="flex items-center justify-center flex-1 md:flex-initial">
-            <a 
-              href="#home" 
-              onClick={(e) => handleNavClick(e, '#home')}
-              className="flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg transition-all-smooth" 
-              aria-label="Lillian Turner - Home"
-            >
-              <span className="text-xl font-semibold brand-name">LILLIAN TURNER</span>
-            </a>
+          <div className="flex items-center justify-center flex-1 md:flex-initial relative overflow-visible">
+            <div className="relative flex items-center justify-center z-10">
+              <a 
+                href="#home" 
+                onClick={(e) => handleNavClick(e, '#home')}
+                className="relative flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg transition-all-smooth" 
+                aria-label="Lillian Turner - Home"
+              >
+                <span className="text-xl font-semibold brand-name">LILLIAN TURNER</span>
+              </a>
+            </div>
           </div>
+
+          {/* Vines background - positioned fixed to viewport, centered in header area */}
+          <iframe
+            src="/processing-header/index.html"
+            className="fixed top-[62px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-32 pointer-events-none opacity-70 z-0"
+            title="Decorative vines background"
+            aria-hidden="true"
+          />
 
           {/* Right side - Resume/CV Buttons */}
           <div className="hidden md:flex items-center space-x-2 flex-1 justify-end">
@@ -467,5 +482,9 @@ export function Header() {
         </DialogContent>
       </Dialog>
     </header>
+
+    {/* Resume Modal */}
+
+    </>
   );
 }
