@@ -168,7 +168,7 @@ export function Header() {
               {/* Dropdown Menu */}
               {isPortfolioDropdownOpen && (
                 <div 
-                  className="absolute top-full left-0 mt-2 w-64 bg-background/80 backdrop-blur-xl border border-white/20 rounded-xl shadow-2xl z-[60]"
+                  className="absolute top-full left-0 mt-2 w-64 bg-background/60 backdrop-blur-2xl border border-white/20 rounded-xl shadow-2xl z-[60]"
                   ref={dropdownMenuRef}
                 >
                   {portfolioItems.map((item) => (

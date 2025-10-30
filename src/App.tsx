@@ -23,12 +23,12 @@ export default function App() {
         <Header />
         <main id="main-content">
           <Hero />
-        <UXCaseStudies />
-        <TechnicalWriting />
-        <DesignGallery />
-        <About />
-        <Contact />
-      </main>
+          <UXCaseStudies />
+          <TechnicalWriting />
+          <DesignGallery />
+          <About />
+          <Contact />
+        </main>
       <Footer />
       </div>
     </div>
