@@ -26,11 +26,20 @@ function draw() {
   clear(); // Transparent background
   
   // Update and display vines with varied growth rates
+  let allStopped = true;
   for (let vine of vines) {
-    if (random() < vine.growthRate) {
-      vine.grow();
+    if (vine.growing) {
+      allStopped = false;
+      if (random() < vine.growthRate) {
+        vine.grow();
+      }
     }
     vine.show();
+  }
+  
+  // Stop the animation loop once all vines are done growing
+  if (allStopped) {
+    noLoop();
   }
 }
 

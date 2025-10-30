@@ -1,4 +1,4 @@
-// Background Only - Just the colorful blobs and noise
+// Background Only - Optimized grain overlay
 let backgroundColor;
 let noiseOverlay;
 
@@ -6,6 +6,7 @@ function setup() {
   createCanvas(window.innerWidth || 800, window.innerHeight || 600);
   backgroundColor = createBackground();
   noiseOverlay = createNoiseOverlay();
+  noLoop(); // Static background, no need to redraw
 }
 
 function draw() {
@@ -41,4 +42,5 @@ function windowResized() {
   resizeCanvas(window.innerWidth || 800, window.innerHeight || 600);
   backgroundColor = createBackground();
   noiseOverlay = createNoiseOverlay();
+  redraw();
 }

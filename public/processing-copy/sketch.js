@@ -111,15 +111,14 @@ function createBackground() {
 
 function createNoiseOverlay() {
   let overlay = createGraphics(width, height);
-  overlay.clear(); // Start with transparent canvas
+  overlay.clear();
   overlay.loadPixels();
   for (let i = 0; i < overlay.pixels.length; i += 4) {
     let grain = random(-12, 12);
-    // Only set alpha to the grain value for subtle overlay
-    overlay.pixels[i] = 128;         // Mid gray
-    overlay.pixels[i + 1] = 128;     // Mid gray
-    overlay.pixels[i + 2] = 128;     // Mid gray
-    overlay.pixels[i + 3] = abs(grain) * 3.5; // More visible grain effect
+    overlay.pixels[i] = 128;
+    overlay.pixels[i + 1] = 128;
+    overlay.pixels[i + 2] = 128;
+    overlay.pixels[i + 3] = abs(grain) * 3.5;
   }
   overlay.updatePixels();
   return overlay;

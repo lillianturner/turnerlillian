@@ -148,24 +148,36 @@ export function Header() {
 
   return (
     <header className="sticky top-4 z-50 px-4 sm:px-6 lg:px-8" role="banner">
-      <div className={`mx-auto transition-all duration-500 ${isExpanded ? 'max-w-6xl' : 'max-w-md'}`}>
+      <div 
+        className="mx-auto"
+        style={{
+          maxWidth: '72rem', // Always full width for the container
+        }}
+      >
         <div 
           ref={headerRef}
-          className="rounded-full relative overflow-visible transition-all duration-500"
+          className="rounded-full relative backdrop-blur-md overflow-visible"
           style={{
             backdropFilter: 'blur(16px) saturate(180%)',
             WebkitBackdropFilter: 'blur(16px) saturate(180%)',
             background: 'rgba(255, 255, 255, 0.25)',
             border: '1px solid rgba(255, 255, 255, 0.6)',
             boxShadow: 'inset 0 2px 4px rgba(255, 255, 255, 0.3), inset 0 -2px 4px rgba(0, 0, 0, 0.05), 0 10px 40px rgba(0, 0, 0, 0.15), 0 25px 70px rgba(0, 0, 0, 0.2)',
+            transform: isExpanded ? 'scaleX(1)' : 'scaleX(0.39)', // 28rem / 72rem = 0.39
+            transformOrigin: 'center',
+            transition: 'transform 500ms cubic-bezier(0.4, 0, 0.2, 1)',
+            willChange: 'transform',
           }}
           onMouseEnter={() => setIsHeaderHovered(true)}
           onMouseLeave={() => setIsHeaderHovered(false)}
         >
-          {/* Processing Vines Background */}
+          {/* Processing Vines Background - Always visible inside the pill */}
           <div 
-            className="absolute inset-0 pointer-events-none z-0 transition-opacity duration-300" 
-            style={{ opacity: isExpanded ? 0.4 : 0.2 }}
+            className="absolute inset-0 pointer-events-none z-0"
+            style={{ 
+              opacity: 0.4,
+              overflow: 'visible',
+            }}
           >
             <iframe
               src="/processing-header/index.html"
@@ -179,9 +191,12 @@ export function Header() {
             <div className="flex items-center py-4">
           {/* Left side - Navigation */}
           <nav 
-            className={`hidden md:flex items-center space-x-2 flex-1 transition-all duration-300 ${
-              isExpanded ? 'opacity-100 max-w-full' : 'opacity-0 max-w-0 overflow-hidden'
-            }`}
+            className="hidden md:flex items-center space-x-2 flex-1 transition-all duration-500"
+            style={{
+              opacity: isExpanded ? 1 : 0,
+              visibility: isExpanded ? 'visible' : 'hidden',
+              pointerEvents: isExpanded ? 'auto' : 'none',
+            }}
             role="navigation" 
             aria-label="Main navigation"
           >
@@ -198,7 +213,7 @@ export function Header() {
             ))}
             
             {/* Portfolio Dropdown */}
-            <div className="relative" ref={dropdownRef}>
+            <div className="relative z-50" ref={dropdownRef}>
               <Button
                 variant="outline"
                 size="sm"
@@ -211,11 +226,13 @@ export function Header() {
                 <ChevronDown className={`ml-1 w-4 h-4 transition-transform duration-200 ${isPortfolioDropdownOpen ? 'rotate-180' : ''}`} />
               </Button>
               
-              {/* Dropdown Menu */}
+              {/* Dropdown Menu - Fixed positioning to escape parent overflow */}
               {isPortfolioDropdownOpen && (
                 <div 
-                  className="absolute top-full left-0 mt-2 w-56 rounded-lg shadow-xl z-50"
+                  className="fixed mt-2 w-56 rounded-lg shadow-xl z-[9999]"
                   style={{
+                    top: dropdownRef.current ? `${dropdownRef.current.getBoundingClientRect().bottom + 8}px` : 'auto',
+                    left: dropdownRef.current ? `${dropdownRef.current.getBoundingClientRect().left}px` : 'auto',
                     backdropFilter: 'blur(40px) saturate(200%)',
                     WebkitBackdropFilter: 'blur(40px) saturate(200%)',
                     background: 'rgba(255, 255, 255, 0.35)',
@@ -249,7 +266,9 @@ export function Header() {
           </nav>
 
           {/* Center - Brand Name */}
-          <div className={`flex items-center justify-center transition-all duration-500 ${isExpanded ? 'flex-1 md:flex-initial' : 'flex-1'}`}>
+          <div 
+            className="flex items-center justify-center flex-1"
+          >
             <a 
               href="#home" 
               onClick={(e) => handleNavClick(e, '#home')}
@@ -262,9 +281,12 @@ export function Header() {
 
           {/* Right side - Resume/CV Buttons */}
           <div 
-            className={`hidden md:flex items-center space-x-2 flex-1 justify-end transition-all duration-300 ${
-              isExpanded ? 'opacity-100 max-w-full' : 'opacity-0 max-w-0 overflow-hidden'
-            }`}
+            className="hidden md:flex items-center space-x-2 flex-1 justify-end transition-all duration-500"
+            style={{
+              opacity: isExpanded ? 1 : 0,
+              visibility: isExpanded ? 'visible' : 'hidden',
+              pointerEvents: isExpanded ? 'auto' : 'none',
+            }}
           >
             <Button 
               variant="orange"
