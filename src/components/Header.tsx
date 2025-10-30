@@ -11,10 +11,7 @@ export function Header() {
   const [showCVModal, setShowCVModal] = useState(false);
   const [currentDocument, setCurrentDocument] = useState<'resume' | 'cv' | null>(null);
   const [isPortfolioDropdownOpen, setIsPortfolioDropdownOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isHeaderHovered, setIsHeaderHovered] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
 
   const documents = [
     {
@@ -88,16 +85,6 @@ export function Header() {
     }
   }, [isMenuOpen]);
 
-  // Handle scroll for header collapse
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   // Handle clicks outside dropdown to close it
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -144,62 +131,12 @@ export function Header() {
     }
   };
 
-  const isExpanded = !isScrolled || isHeaderHovered || isPortfolioDropdownOpen;
-
   return (
-    <header className="sticky top-4 z-50 px-4 sm:px-6 lg:px-8" role="banner">
-      <div 
-        className="mx-auto"
-        style={{
-          maxWidth: '72rem', // Always full width for the container
-        }}
-      >
-        <div 
-          ref={headerRef}
-          className="rounded-full relative backdrop-blur-md overflow-visible"
-          style={{
-            backdropFilter: 'blur(16px) saturate(180%)',
-            WebkitBackdropFilter: 'blur(16px) saturate(180%)',
-            background: 'rgba(255, 255, 255, 0.25)',
-            border: '1px solid rgba(255, 255, 255, 0.6)',
-            boxShadow: 'inset 0 2px 4px rgba(255, 255, 255, 0.3), inset 0 -2px 4px rgba(0, 0, 0, 0.05), 0 10px 40px rgba(0, 0, 0, 0.15), 0 25px 70px rgba(0, 0, 0, 0.2)',
-            transform: isExpanded ? 'scaleX(1)' : 'scaleX(0.39)', // 28rem / 72rem = 0.39
-            transformOrigin: 'center',
-            transition: 'transform 500ms cubic-bezier(0.4, 0, 0.2, 1)',
-            willChange: 'transform',
-          }}
-          onMouseEnter={() => setIsHeaderHovered(true)}
-          onMouseLeave={() => setIsHeaderHovered(false)}
-        >
-          {/* Processing Vines Background - Always visible inside the pill */}
-          <div 
-            className="absolute inset-0 pointer-events-none z-0"
-            style={{ 
-              opacity: 0.4,
-              overflow: 'visible',
-            }}
-          >
-            <iframe
-              src="/processing-header/index.html"
-              className="w-full h-full border-0"
-              title="Header Vines Decoration"
-              style={{ pointerEvents: 'none' }}
-            />
-          </div>
-          
-          <div className="relative z-10 px-6">
-            <div className="flex items-center py-4">
+    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b" role="banner">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center py-4">
           {/* Left side - Navigation */}
-          <nav 
-            className="hidden md:flex items-center space-x-2 flex-1 transition-all duration-500"
-            style={{
-              opacity: isExpanded ? 1 : 0,
-              visibility: isExpanded ? 'visible' : 'hidden',
-              pointerEvents: isExpanded ? 'auto' : 'none',
-            }}
-            role="navigation" 
-            aria-label="Main navigation"
-          >
+          <nav className="hidden md:flex items-center space-x-2 flex-1" role="navigation" aria-label="Main navigation">
             {navigation.map((item) => (
               <Button
                 key={item.name}
@@ -213,7 +150,7 @@ export function Header() {
             ))}
             
             {/* Portfolio Dropdown */}
-            <div className="relative z-50" ref={dropdownRef}>
+            <div className="relative" ref={dropdownRef}>
               <Button
                 variant="outline"
                 size="sm"
@@ -226,21 +163,10 @@ export function Header() {
                 <ChevronDown className={`ml-1 w-4 h-4 transition-transform duration-200 ${isPortfolioDropdownOpen ? 'rotate-180' : ''}`} />
               </Button>
               
-              {/* Dropdown Menu - Fixed positioning to escape parent overflow */}
+              {/* Dropdown Menu */}
               {isPortfolioDropdownOpen && (
-                <div 
-                  className="fixed mt-2 w-56 rounded-lg shadow-xl z-[9999]"
-                  style={{
-                    top: dropdownRef.current ? `${dropdownRef.current.getBoundingClientRect().bottom + 8}px` : 'auto',
-                    left: dropdownRef.current ? `${dropdownRef.current.getBoundingClientRect().left}px` : 'auto',
-                    backdropFilter: 'blur(40px) saturate(200%)',
-                    WebkitBackdropFilter: 'blur(40px) saturate(200%)',
-                    background: 'rgba(255, 255, 255, 0.35)',
-                    border: '1px solid rgba(255, 255, 255, 0.6)',
-                    boxShadow: 'inset 0 2px 4px rgba(255, 255, 255, 0.3), inset 0 -2px 4px rgba(0, 0, 0, 0.05), 0 10px 40px rgba(0, 0, 0, 0.15), 0 25px 70px rgba(0, 0, 0, 0.2)',
-                  }}
-                >
-                  {portfolioItems.map((item, index) => (
+                <div className="absolute top-full left-0 mt-2 w-48 bg-background border rounded-lg shadow-lg z-50">
+                  {portfolioItems.map((item) => (
                     <a
                       key={item.name}
                       href={item.href}
@@ -248,14 +174,7 @@ export function Header() {
                         handleNavClick(e, item.href);
                         setIsPortfolioDropdownOpen(false);
                       }}
-                      className={`block px-4 py-3 text-foreground/80 hover:text-foreground hover:bg-white/20 transition-all duration-200 ${
-                        index === 0 ? 'rounded-t-lg' : ''
-                      } ${
-                        index === portfolioItems.length - 1 ? 'rounded-b-lg' : ''
-                      }`}
-                      style={{
-                        backdropFilter: 'blur(8px)',
-                      }}
+                      className="block px-4 py-2 text-foreground/70 hover:text-foreground hover:bg-primary/5 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg"
                     >
                       {item.name}
                     </a>
@@ -266,9 +185,7 @@ export function Header() {
           </nav>
 
           {/* Center - Brand Name */}
-          <div 
-            className="flex items-center justify-center flex-1"
-          >
+          <div className="flex items-center justify-center flex-1 md:flex-initial">
             <a 
               href="#home" 
               onClick={(e) => handleNavClick(e, '#home')}
@@ -280,14 +197,7 @@ export function Header() {
           </div>
 
           {/* Right side - Resume/CV Buttons */}
-          <div 
-            className="hidden md:flex items-center space-x-2 flex-1 justify-end transition-all duration-500"
-            style={{
-              opacity: isExpanded ? 1 : 0,
-              visibility: isExpanded ? 'visible' : 'hidden',
-              pointerEvents: isExpanded ? 'auto' : 'none',
-            }}
-          >
+          <div className="hidden md:flex items-center space-x-2 flex-1 justify-end">
             <Button 
               variant="orange"
               size="sm" 
@@ -556,8 +466,6 @@ export function Header() {
           </div>
         </DialogContent>
       </Dialog>
-        </div>
-      </div>
     </header>
   );
 }
