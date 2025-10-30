@@ -2,6 +2,7 @@ import { Palette, Smartphone, Globe, Target, BarChart3, Zap, Eye, Layers, MouseP
 import { Button } from './ui/button';
 
 export function DesignGallery() {
+
   const designCategories = [
     {
       icon: <Palette className="w-12 h-12" />,
@@ -9,6 +10,9 @@ export function DesignGallery() {
       description: "Clean, intuitive interfaces that delight users and drive conversions.",
       projects: ["E-commerce Dashboard", "Healthcare App", "SaaS Platform"],
       glassClass: "glass-category-primary",
+      detailedDescription: "I specialize in creating user-centered interfaces that balance aesthetics with functionality. My UI/UX design work focuses on understanding user needs, crafting intuitive navigation patterns, and ensuring accessibility for all users. I use design systems, user research, and iterative testing to create interfaces that not only look beautiful but also drive measurable business results.",
+      skills: ["User Research", "Wireframing", "Prototyping", "Usability Testing", "Design Systems", "Accessibility"],
+      tools: ["Figma", "Sketch", "Adobe XD", "InVision", "Principle", "Framer"]
     },
     {
       icon: <Smartphone className="w-12 h-12" />,
@@ -16,6 +20,9 @@ export function DesignGallery() {
       description: "Responsive, touch-first experiences optimized for mobile devices.",
       projects: ["Banking App", "Fitness Tracker", "Food Delivery"],
       glassClass: "glass-category-secondary",
+      detailedDescription: "Mobile design requires a unique approach that prioritizes touch interactions, limited screen real estate, and context-aware experiences. I design mobile-first experiences that work seamlessly across different devices and screen sizes, with careful attention to gesture-based interactions, thumb-friendly layouts, and performance optimization.",
+      skills: ["Mobile-First Design", "Touch Interactions", "Responsive Design", "iOS/Android Guidelines", "Performance Optimization"],
+      tools: ["Figma", "Sketch", "Adobe XD", "InVision Studio", "Principle"]
     },
     {
       icon: <Globe className="w-12 h-12" />,
@@ -23,6 +30,9 @@ export function DesignGallery() {
       description: "Scalable web interfaces that work beautifully across all devices.",
       projects: ["CRM System", "Learning Platform", "Analytics Dashboard"],
       glassClass: "glass-category-neutral",
+      detailedDescription: "Modern web applications require sophisticated interfaces that handle complex workflows while maintaining excellent user experience. I design scalable web applications that adapt to different user roles, data complexity, and interaction patterns. My work includes designing for performance, accessibility, and future growth.",
+      skills: ["Complex UI Design", "Data Visualization", "Progressive Web Apps", "Scalable Design Systems", "Cross-Platform Compatibility"],
+      tools: ["React", "Vue.js", "Angular", "Figma", "Sketch", "Adobe XD"]
     },
     {
       icon: <Target className="w-12 h-12" />,
@@ -30,6 +40,9 @@ export function DesignGallery() {
       description: "Cohesive visual systems that communicate brand values effectively.",
       projects: ["Tech Startup", "Wellness Brand", "Creative Agency"],
       glassClass: "glass-category-green",
+      detailedDescription: "Brand identity goes beyond logos and color palettes—it's about creating a cohesive visual language that tells your brand story. I develop comprehensive brand systems that include typography, color palettes, iconography, and design guidelines that ensure consistency across all touchpoints while allowing for creative expression.",
+      skills: ["Brand Strategy", "Visual Identity", "Typography", "Color Theory", "Brand Guidelines", "Style Guides"],
+      tools: ["Adobe Illustrator", "Adobe Photoshop", "Figma", "Sketch", "InDesign"]
     },
     {
       icon: <BarChart3 className="w-12 h-12" />,
@@ -37,6 +50,9 @@ export function DesignGallery() {
       description: "Complex data transformed into clear, actionable insights.",
       projects: ["Sales Analytics", "User Behavior", "Performance Metrics"],
       glassClass: "glass-category-dark",
+      detailedDescription: "Data visualization transforms complex information into understandable, actionable insights. I design dashboards and data interfaces that make it easy for users to understand trends, identify patterns, and make data-driven decisions. My approach combines information architecture with visual design to create interfaces that are both informative and intuitive.",
+      skills: ["Information Architecture", "Data Design", "Dashboard Design", "Chart & Graph Design", "Interactive Data Visualization"],
+      tools: ["Tableau", "D3.js", "Chart.js", "Figma", "Adobe Illustrator", "Sketch"]
     },
     {
       icon: <Zap className="w-12 h-12" />,
@@ -44,6 +60,9 @@ export function DesignGallery() {
       description: "High-fidelity prototypes that bring designs to life.",
       projects: ["AR Shopping", "Voice Interface", "Gesture Controls"],
       glassClass: "glass-category-secondary",
+      detailedDescription: "Interactive prototypes bridge the gap between static designs and final products. I create high-fidelity prototypes that demonstrate complex interactions, user flows, and micro-interactions. These prototypes help stakeholders understand the user experience and make informed decisions about product development.",
+      skills: ["Interaction Design", "Micro-interactions", "Animation", "User Flow Design", "Prototyping", "User Testing"],
+      tools: ["Figma", "Principle", "Framer", "After Effects", "Protopie", "InVision Studio"]
     },
   ];
 
@@ -66,7 +85,7 @@ export function DesignGallery() {
   ];
 
   return (
-    <section id="design-gallery" className="py-20 bg-yellow/5" aria-labelledby="design-gallery-heading">
+    <section id="design-gallery" className="py-20" aria-labelledby="design-gallery-heading">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <p className="subheading text-lg mb-4" role="text">Visual Design & User Experience</p>

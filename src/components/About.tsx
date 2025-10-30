@@ -40,7 +40,7 @@ export function About() {
   ];
 
   return (
-    <section id="about" className="py-20 bg-muted/50" aria-labelledby="about-heading">
+    <section id="about" className="py-20" aria-labelledby="about-heading">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <p className="subheading text-primary text-lg mb-4" role="text">Professional Background</p>

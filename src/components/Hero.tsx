@@ -5,7 +5,7 @@ export function Hero() {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden" role="main" aria-labelledby="hero-heading">
       {/* Processing Sketch Background */}
-      <div className="absolute inset-0 pointer-events-none z-0 bg-white">
+      <div className="absolute inset-0 pointer-events-none z-0">
         <iframe
           src="/processing-copy/index.html"
           className="w-full h-full border-0"
@@ -15,14 +15,14 @@ export function Hero() {
       
       {/* Frosted Glass Circle Background - Absolute Position Centered in Hero Section */}
       <div 
-        className="absolute top-1/2 left-1/2 w-[78vmin] h-[78vmin] glass-card pointer-events-none z-[5]"
+        className="absolute top-1/2 left-1/2 w-[78vmin] h-[78vmin] pointer-events-none z-[5]"
         style={{
           transform: 'translate(-50%, -50%)',
           borderRadius: '50%',
           backdropFilter: 'blur(16px) saturate(180%)',
           WebkitBackdropFilter: 'blur(16px) saturate(180%)',
           background: 'rgba(255, 255, 255, 0.25)',
-          border: '2.5px solid rgba(255, 255, 255, 0.6)',
+          border: '1.75px solid rgba(255, 255, 255, 0.5)',
           boxShadow: 'inset 0 2px 4px rgba(255, 255, 255, 0.3), inset 0 -2px 4px rgba(0, 0, 0, 0.05), 0 10px 40px rgba(0, 0, 0, 0.15), 0 25px 70px rgba(0, 0, 0, 0.2)',
         }}
         aria-hidden="true"
@@ -69,14 +69,41 @@ export function Hero() {
 
             {/* Social Links */}
             <div className="flex space-x-3 justify-center" role="list" aria-label="Social media links">
-              <Button variant="ghost" size="default" className="w-10 h-10 glass-social-icon hover-scale-sm transition-all-smooth" aria-label="LinkedIn profile" role="listitem">
-                <Linkedin className="w-5 h-5 text-primary" aria-hidden="true" />
+              <Button 
+                variant="orange" 
+                size="icon" 
+                className="w-10 h-10 shimmer-effect" 
+                asChild
+                aria-label="LinkedIn profile" 
+                role="listitem"
+              >
+                <a href="https://linkedin.com/in/lillianturner" target="_blank" rel="noopener noreferrer">
+                  <Linkedin className="w-5 h-5" aria-hidden="true" />
+                </a>
               </Button>
-              <Button variant="ghost" size="default" className="w-10 h-10 glass-social-icon hover-scale-sm transition-all-smooth" aria-label="GitHub profile" role="listitem">
-                <Github className="w-5 h-5 text-primary" aria-hidden="true" />
+              <Button 
+                variant="yellow" 
+                size="icon" 
+                className="w-10 h-10 shimmer-effect" 
+                asChild
+                aria-label="GitHub profile" 
+                role="listitem"
+              >
+                <a href="https://github.com/lillianturner" target="_blank" rel="noopener noreferrer">
+                  <Github className="w-5 h-5" aria-hidden="true" />
+                </a>
               </Button>
-              <Button variant="ghost" size="default" className="w-10 h-10 glass-social-icon hover-scale-sm transition-all-smooth" aria-label="Email contact" role="listitem">
-                <Mail className="w-5 h-5 text-primary" aria-hidden="true" />
+              <Button 
+                variant="secondary" 
+                size="icon" 
+                className="w-10 h-10 shimmer-effect" 
+                asChild
+                aria-label="Email contact" 
+                role="listitem"
+              >
+                <a href="mailto:hello@lillianturner.com">
+                  <Mail className="w-5 h-5" aria-hidden="true" />
+                </a>
               </Button>
             </div>
           </div>

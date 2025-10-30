@@ -1,0 +1,590 @@
+// Growing Vines Sketch
+let vines = [];
+let vineCount = 10;
+let dewdrops = [];
+let dewdropCount = 20;
+let backgroundColor;
+
+function setup() {
+  // Create canvas - use window dimensions for iframe
+  let canvasWidth = window.innerWidth || 800;
+  let canvasHeight = window.innerHeight || 600;
+  createCanvas(canvasWidth, canvasHeight);
+
+  // Create a gradient background
+  backgroundColor = createBackground();
+
+  // Initialize vines with different starting positions across full width
+  for (let i = 0; i < vineCount; i++) {
+    let startX = map(i, 0, vineCount - 1, 0, canvasWidth);
+    vines.push(new Vine(startX, 0));
+  }
+
+  // Initialize dewdrops
+  for (let i = 0; i < dewdropCount; i++) {
+    dewdrops.push(new Dewdrop());
+  }
+}
+
+function draw() {
+  // Draw gradient background
+  image(backgroundColor, 0, 0);
+
+  // Update and draw all vines
+  for (let vine of vines) {
+    vine.grow();
+    vine.display();
+  }
+
+  // Occasionally spawn new dewdrops
+  if (frameCount % 180 === 0 && dewdrops.length < 30) { // Every 3 seconds, max 30 dewdrops
+    dewdrops.push(new Dewdrop());
+  }
+
+  // Update and draw all dewdrops
+  for (let dewdrop of dewdrops) {
+    dewdrop.update();
+    dewdrop.display();
+  }
+}
+
+function windowResized() {
+  let canvasWidth = window.innerWidth || 800;
+  let canvasHeight = window.innerHeight || 600;
+  resizeCanvas(canvasWidth, canvasHeight);
+  backgroundColor = createBackground();
+  // Reset vines on resize
+  vines = [];
+  for (let i = 0; i < vineCount; i++) {
+    let startX = map(i, 0, vineCount - 1, 0, canvasWidth);
+    vines.push(new Vine(startX, 0));
+  }
+  // Reset dewdrops on resize
+  dewdrops = [];
+  for (let i = 0; i < dewdropCount; i++) {
+    dewdrops.push(new Dewdrop());
+  }
+}
+
+function createBackground() {
+  let bg = createGraphics(width, height);
+  bg.noFill();
+  
+  // Create solid white background to match UX Case Studies section
+  bg.background(255, 255, 255);
+  
+  return bg;
+}
+
+class Vine {
+  constructor(startX, startY) {
+    this.segments = [];
+    this.segments.push(createVector(startX, startY));
+    
+    this.angle = PI/2; // Start growing downward
+    this.angleVariation = 0.25; // More curves!
+    this.segmentLength = 3;
+    this.thickness = random(8, 15);
+    this.growthRate = random(0.3, 0.8);
+    this.maxLength = random(150, 250); // Shorter since growing down from top
+    this.growing = true;
+    
+    // Branching properties
+    this.branches = [];
+    this.branchChance = 0.02;
+    this.maxBranches = 3;
+    
+    // Leaf properties
+    this.leaves = [];
+    this.leafChance = 0.05;
+    
+    // Flower properties
+    this.flower = null;
+    this.flowerBloomProgress = 0;
+    this.flowerBloomSpeed = 0.005; // Slow but visible blooming
+    
+    // Wind properties
+    this.windOffset = random(TWO_PI);
+    this.windStrength = random(0.3, 0.8);
+    this.windFrequency = random(0.01, 0.02);
+  }
+  
+  grow() {
+    if (!this.growing) return;
+    
+    // Update wind offset for continuous wind effect
+    this.windOffset += this.windFrequency;
+    
+    if (frameCount % 3 == 0) { // Slow down growth
+      if (this.segments.length < this.maxLength) {
+        let lastSegment = this.segments[this.segments.length - 1];
+        
+        // Add some organic curve to the growth
+        this.angle += random(-this.angleVariation, this.angleVariation);
+        
+        // Add subtle wind influence
+        let windInfluence = sin(this.windOffset) * this.windStrength * 0.1;
+        this.angle += windInfluence;
+        
+        // Slight downward bias (less bias = more curves)
+        this.angle = lerp(this.angle, PI/2, 0.01);
+        
+        // Calculate new segment position
+        let newX = lastSegment.x + cos(this.angle) * this.segmentLength;
+        let newY = lastSegment.y + sin(this.angle) * this.segmentLength;
+        
+        // Keep vine within canvas bounds
+        if (newX > 0 && newX < width && newY < height) {
+          this.segments.push(createVector(newX, newY));
+          
+          // Chance to create a branch
+          if (random() < this.branchChance && this.branches.length < this.maxBranches) {
+            this.createBranch(newX, newY);
+          }
+          
+          // Chance to create a leaf
+          if (random() < this.leafChance) {
+            this.createLeaf(newX, newY);
+          }
+          
+          // Start flower blooming after vine grows to a certain length
+          if (this.segments.length > 80 && this.flower === null) {
+            this.flower = {
+              x: newX,
+              y: newY,
+              petals: 5,
+              maxSize: random(8, 15)
+            };
+          }
+        } else {
+          this.growing = false;
+        }
+      } else {
+        this.growing = false;
+      }
+    }
+    
+    // Update branches
+    for (let branch of this.branches) {
+      branch.grow();
+    }
+    
+    // Update flower blooming (extremely slow)
+    if (this.flower !== null && this.flowerBloomProgress < 1) {
+      this.flowerBloomProgress += this.flowerBloomSpeed;
+      this.flowerBloomProgress = min(this.flowerBloomProgress, 1);
+    }
+  }
+  
+  createBranch(x, y) {
+    let branch = new Vine(x, y);
+    branch.angle = this.angle + random(-PI/3, PI/3);
+    branch.thickness = this.thickness * 0.6;
+    branch.maxLength = this.maxLength * 0.5;
+    branch.segmentLength = this.segmentLength * 0.8;
+    branch.baseColor = this.baseColor;
+    branch.leafColor = this.leafColor;
+    // Inherit wind properties with slight variation
+    branch.windOffset = this.windOffset + random(-PI/4, PI/4);
+    branch.windStrength = this.windStrength * random(0.8, 1.2);
+    branch.windFrequency = this.windFrequency * random(0.9, 1.1);
+    this.branches.push(branch);
+  }
+  
+  createLeaf(x, y) {
+    this.leaves.push({
+      pos: createVector(x, y),
+      size: random(5, 12),
+      angle: random(TWO_PI),
+      sway: random(0.01, 0.03)
+    });
+  }
+  
+  display() {
+    // Draw vine segments
+    if (this.segments.length > 1) {
+      strokeCap(ROUND);
+      noFill();
+      
+      for (let i = 1; i < this.segments.length; i++) {
+        let thickness = map(i, 0, this.segments.length, this.thickness, 2);
+        stroke(this.baseColor);
+        strokeWeight(thickness);
+        
+        line(this.segments[i-1].x, this.segments[i-1].y, 
+             this.segments[i].x, this.segments[i].y);
+      }
+    }
+    
+    // Draw leaves
+    fill(this.leafColor);
+    noStroke();
+    for (let leaf of this.leaves) {
+      push();
+      translate(leaf.pos.x, leaf.pos.y);
+      // Combine individual leaf sway with vine wind for natural movement
+      let windSway = sin(this.windOffset + leaf.pos.y * 0.01) * this.windStrength * 0.2;
+      rotate(leaf.angle + sin(frameCount * leaf.sway) * 0.3 + windSway);
+      ellipse(0, 0, leaf.size, leaf.size * 1.5);
+      pop();
+    }
+    
+    // Draw branches
+    for (let branch of this.branches) {
+      branch.display();
+    }
+    
+    // Draw flower (extremely slow blooming)
+    if (this.flower !== null) {
+      push();
+      translate(this.flower.x, this.flower.y);
+      
+      // Flower center (small bud that grows)
+      let centerSize = this.flowerBloomProgress * 3;
+      fill(60, 100, 40); // Dark green center
+      noStroke();
+      ellipse(0, 0, centerSize, centerSize);
+      
+      // Petals (bloom outward extremely slowly)
+      if (this.flowerBloomProgress > 0.1) {
+        let petalSize = (this.flowerBloomProgress - 0.1) / 0.9 * this.flower.maxSize;
+        fill(255, 220, 100); // Soft yellow petals
+        stroke(255, 200, 80);
+        strokeWeight(1);
+        
+        for (let i = 0; i < this.flower.petals; i++) {
+          let angle = (TWO_PI / this.flower.petals) * i;
+          push();
+          rotate(angle);
+          ellipse(petalSize * 0.7, 0, petalSize, petalSize * 0.6);
+          pop();
+        }
+      }
+      
+      pop();
+    }
+  }
+}
+
+class Dewdrop {
+  constructor() {
+    this.x = random(0, window.innerWidth || 800);
+    this.y = random(-200, -10); // Start higher above the canvas for more continuous effect
+    this.segmentLength = 3;
+    this.thickness = random(8, 15);
+    this.growthRate = random(0.3, 0.8);
+    this.maxLength = random(150, 250); // Shorter since growing down from top
+    this.growing = true;
+    
+    // Branching properties
+    this.branches = [];
+    this.branchChance = 0.02;
+    this.maxBranches = 3;
+    
+    // Leaf properties
+    this.leaves = [];
+    this.leafChance = 0.05;
+    
+    // Flower properties
+    this.flower = null;
+    this.flowerBloomProgress = 0;
+    this.flowerBloomSpeed = 0.005; // Slow but visible blooming
+    
+    // Wind properties
+    this.windOffset = random(TWO_PI);
+    this.windStrength = random(0.3, 0.8);
+    this.windFrequency = random(0.01, 0.02);
+  }
+  
+  grow() {
+    if (!this.growing) return;
+    
+    // Update wind offset for continuous wind effect
+    this.windOffset += this.windFrequency;
+    
+    if (frameCount % 3 == 0) { // Slow down growth
+      if (this.segments.length < this.maxLength) {
+        let lastSegment = this.segments[this.segments.length - 1];
+        
+        // Add some organic curve to the growth
+        this.angle += random(-this.angleVariation, this.angleVariation);
+        
+        // Add subtle wind influence
+        let windInfluence = sin(this.windOffset) * this.windStrength * 0.1;
+        this.angle += windInfluence;
+        
+        // Slight downward bias (less bias = more curves)
+        this.angle = lerp(this.angle, PI/2, 0.01);
+        
+        // Calculate new segment position
+        let newX = lastSegment.x + cos(this.angle) * this.segmentLength;
+        let newY = lastSegment.y + sin(this.angle) * this.segmentLength;
+        
+        // Keep vine within canvas bounds
+        if (newX > 0 && newX < width && newY < height) {
+          this.segments.push(createVector(newX, newY));
+          
+          // Chance to create a branch
+          if (random() < this.branchChance && this.branches.length < this.maxBranches) {
+            this.createBranch(newX, newY);
+          }
+          
+          // Chance to create a leaf
+          if (random() < this.leafChance) {
+            this.createLeaf(newX, newY);
+          }
+          
+          // Start flower blooming after vine grows to a certain length
+          if (this.segments.length > 80 && this.flower === null) {
+            this.flower = {
+              x: newX,
+              y: newY,
+              petals: 5,
+              maxSize: random(8, 15)
+            };
+          }
+        } else {
+          this.growing = false;
+        }
+      } else {
+        this.growing = false;
+        // Start flower blooming when vine stops growing
+        if (this.flower === null) {
+          let lastSegment = this.segments[this.segments.length - 1];
+          this.flower = {
+            x: lastSegment.x,
+            y: lastSegment.y,
+            petals: 5,
+            maxSize: random(8, 15)
+          };
+        }
+      }
+    }
+    
+    // Update branches
+    for (let branch of this.branches) {
+      branch.grow();
+    }
+    
+    // Update flower blooming (extremely slow)
+    if (this.flower !== null && this.flowerBloomProgress < 1) {
+      this.flowerBloomProgress += this.flowerBloomSpeed;
+      this.flowerBloomProgress = min(this.flowerBloomProgress, 1);
+    }
+  }
+  
+  createBranch(x, y) {
+    let branch = new Vine(x, y);
+    branch.angle = this.angle + random(-PI/3, PI/3);
+    branch.thickness = this.thickness * 0.6;
+    branch.maxLength = this.maxLength * 0.5;
+    branch.segmentLength = this.segmentLength * 0.8;
+    branch.baseColor = this.baseColor;
+    branch.leafColor = this.leafColor;
+    // Inherit wind properties with slight variation
+    branch.windOffset = this.windOffset + random(-PI/4, PI/4);
+    branch.windStrength = this.windStrength * random(0.8, 1.2);
+    branch.windFrequency = this.windFrequency * random(0.9, 1.1);
+    this.branches.push(branch);
+  }
+  
+  createLeaf(x, y) {
+    this.leaves.push({
+      pos: createVector(x, y),
+      size: random(5, 12),
+      angle: random(TWO_PI),
+      sway: random(0.01, 0.03)
+    });
+  }
+  
+  display() {
+    // Draw vine segments
+    if (this.segments.length > 1) {
+      strokeCap(ROUND);
+      noFill();
+      
+      for (let i = 1; i < this.segments.length; i++) {
+        let thickness = map(i, 0, this.segments.length, this.thickness, 2);
+        stroke(this.baseColor);
+        strokeWeight(thickness);
+        
+        line(this.segments[i-1].x, this.segments[i-1].y, 
+             this.segments[i].x, this.segments[i].y);
+      }
+    }
+    
+    // Draw leaves
+    fill(this.leafColor);
+    noStroke();
+    for (let leaf of this.leaves) {
+      push();
+      translate(leaf.pos.x, leaf.pos.y);
+      // Combine individual leaf sway with vine wind for natural movement
+      let windSway = sin(this.windOffset + leaf.pos.y * 0.01) * this.windStrength * 0.2;
+      rotate(leaf.angle + sin(frameCount * leaf.sway) * 0.3 + windSway);
+      ellipse(0, 0, leaf.size, leaf.size * 1.5);
+      pop();
+    }
+    
+    // Draw branches
+    for (let branch of this.branches) {
+      branch.display();
+    }
+    
+    // Draw flower (extremely slow blooming)
+    if (this.flower !== null) {
+      push();
+      translate(this.flower.x, this.flower.y);
+      
+      // Flower center (small bud that grows)
+      let centerSize = this.flowerBloomProgress * 3;
+      fill(60, 100, 40); // Dark green center
+      noStroke();
+      ellipse(0, 0, centerSize, centerSize);
+      
+      // Petals (bloom outward extremely slowly)
+      if (this.flowerBloomProgress > 0.1) {
+        let petalSize = (this.flowerBloomProgress - 0.1) / 0.9 * this.flower.maxSize;
+        fill(255, 220, 100); // Soft yellow petals
+        stroke(255, 200, 80);
+        strokeWeight(1);
+        
+        for (let i = 0; i < this.flower.petals; i++) {
+          let angle = (TWO_PI / this.flower.petals) * i;
+          push();
+          rotate(angle);
+          ellipse(petalSize * 0.7, 0, petalSize, petalSize * 0.6);
+          pop();
+        }
+      }
+      
+      pop();
+    }
+  }
+}
+
+class Dewdrop {
+  constructor() {
+    this.x = random(0, window.innerWidth || 800);
+    this.y = random(-200, -10); // Start higher above the canvas for more continuous effect
+    this.size = random(5, 18);
+    this.speed = random(0.3, 2.0);
+    this.sway = random(0.01, 0.08);
+    this.windOffset = random(TWO_PI); // Add wind offset for more natural movement
+    this.alpha = random(120, 200);
+    this.highlightAlpha = random(180, 255);
+  }
+  
+  update() {
+    // Move downward
+    this.y += this.speed;
+    
+    // Add subtle wind effect
+    this.windOffset += this.sway;
+    this.x += sin(this.windOffset) * 0.5;
+    
+    // Reset to top when it reaches bottom (with some variation)
+    if (this.y > height + 50) {
+      this.y = random(-200, -50);
+      this.x = random(0, window.innerWidth || 800);
+      this.size = random(5, 18);
+      this.speed = random(0.3, 2.0);
+      this.sway = random(0.01, 0.08);
+      this.windOffset = random(TWO_PI); // Reset wind offset
+      this.alpha = random(120, 200);
+      this.highlightAlpha = random(180, 255);
+    }
+  }
+  
+  display() {
+    push();
+    translate(this.x, this.y);
+    
+    // Draw the main dewdrop body (glass-like with transparency)
+    fill(220, 220, 220, this.alpha);
+    stroke(255, 255, 255, this.alpha + 30);
+    strokeWeight(1);
+    ellipse(0, 0, this.size, this.size * 1.3);
+    
+    // Add highlight for glass effect
+    fill(255, 255, 255, this.highlightAlpha);
+    noStroke();
+    ellipse(-this.size * 0.2, -this.size * 0.3, this.size * 0.4, this.size * 0.4);
+    
+    pop();
+  }
+}
+
+// Click to add a new vine at mouse position
+function mousePressed() {
+  if (mouseY < height * 0.7) { // Only allow vines in upper portion
+    vines.push(new Vine(mouseX, 0));
+  }
+}
+
+// Press 'r' to reset and start over
+function keyPressed() {
+  if (key === 'r' || key === 'R') {
+    vines = [];
+    for (let i = 0; i < vineCount; i++) {
+      let startX = map(i, 0, vineCount - 1, 0, width);
+      vines.push(new Vine(startX, 0));
+    }
+    dewdrops = [];
+    for (let i = 0; i < dewdropCount; i++) {
+      dewdrops.push(new Dewdrop());
+    }
+  }
+}
+
+class Dewdrop {
+  constructor() {
+    this.x = random(0, window.innerWidth || 800);
+    this.y = random(-200, -10); // Start higher above the canvas for more continuous effect
+    this.size = random(5, 18);
+    this.speed = random(0.3, 2.0);
+    this.sway = random(0.01, 0.08);
+    this.windOffset = random(TWO_PI); // Add wind offset for more natural movement
+    this.alpha = random(120, 200);
+    this.highlightAlpha = random(180, 255);
+  }
+  
+  update() {
+    // Move downward
+    this.y += this.speed;
+    
+    // Add subtle wind effect
+    this.windOffset += this.sway;
+    this.x += sin(this.windOffset) * 0.5;
+    
+    // Reset to top when it reaches bottom (with some variation)
+    if (this.y > height + 50) {
+      this.y = random(-200, -50);
+      this.x = random(0, window.innerWidth || 800);
+      this.size = random(5, 18);
+      this.speed = random(0.3, 2.0);
+      this.sway = random(0.01, 0.08);
+      this.windOffset = random(TWO_PI); // Reset wind offset
+      this.alpha = random(120, 200);
+      this.highlightAlpha = random(180, 255);
+    }
+  }
+  
+  display() {
+    push();
+    translate(this.x, this.y);
+    
+    // Draw the main dewdrop body (glass-like with transparency)
+    fill(220, 220, 220, this.alpha);
+    stroke(255, 255, 255, this.alpha + 30);
+    strokeWeight(1);
+    ellipse(0, 0, this.size, this.size * 1.3);
+    
+    // Add highlight for glass effect
+    fill(255, 255, 255, this.highlightAlpha);
+    noStroke();
+    ellipse(-this.size * 0.2, -this.size * 0.3, this.size * 0.4, this.size * 0.4);
+    
+    pop();
+  }
+}

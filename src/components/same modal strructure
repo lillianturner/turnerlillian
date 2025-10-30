@@ -1,0 +1,36 @@
+// Same modal structure as UXCaseStudies but with orange theme
+{selectedItem && (
+  <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+    <div className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] max-w-7xl w-[95vw] max-h-[90vh] flex flex-col bg-white rounded-lg shadow-2xl">
+      {/* Orange-themed modal content */}
+      <div className="flex justify-between items-center p-6 border-b border-orange-200">
+        <h2 className="text-2xl font-bold text-orange-800">{selectedItem.title}</h2>
+        <button onClick={() => setSelectedItem(null)} className="text-gray-500 hover:text-gray-700">
+          <X size={24} />
+        </button>
+      </div>
+      
+      <div className={`flex-1 overflow-auto p-6 ${showScroll ? 'overflow-auto' : 'overflow-hidden'}`}>
+        <p className="text-lg mb-4 text-gray-700">{selectedItem.description}</p>
+        {selectedItem.pdf && (
+          <a href={selectedItem.pdf} target="_blank" rel="noopener noreferrer" 
+             className="inline-block bg-orange-500 text-white px-6 py-2 rounded hover:bg-orange-600">
+            View PDF
+          </a>
+        )}
+      </div>
+      
+      <div className="flex justify-between items-center p-6 border-t border-orange-200">
+        <button onClick={navigateToPrevious} className="flex items-center gap-2 text-orange-500 hover:text-orange-700">
+          <ChevronLeft size={20} /> Previous
+        </button>
+        <button onClick={() => setShowScroll(!showScroll)} className="text-gray-500 hover:text-gray-700">
+          {showScroll ? 'Hide Scroll' : 'Show Scroll'}
+        </button>
+        <button onClick={navigateToNext} className="flex items-center gap-2 text-orange-500 hover:text-orange-700">
+          Next <ChevronRight size={20} />
+        </button>
+      </div>
+    </div>
+  </div>
+)}

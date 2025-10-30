@@ -1,0 +1,73 @@
+// Modal state and navigation
+const [selectedStudy, setSelectedStudy] = useState<Study | null>(null);
+const [showScroll, setShowScroll] = useState(false);
+
+// Keyboard navigation
+useEffect(() => {
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (!selectedStudy) return;
+    if (e.key === 'Escape') setSelectedStudy(null);
+    if (e.key === 'ArrowLeft') navigateToPrevious();
+    if (e.key === 'ArrowRight') navigateToNext();
+  };
+  window.addEventListener('keydown', handleKeyDown);
+  return () => window.removeEventListener('keydown', handleKeyDown);
+}, [selectedStudy]);
+
+// Navigation functions
+const navigateToPrevious = () => {
+  const currentIndex = studies.findIndex(study => study.title === selectedStudy?.title);
+  const previousIndex = currentIndex > 0 ? currentIndex - 1 : studies.length - 1;
+  setSelectedStudy(studies[previousIndex]);
+};
+
+const navigateToNext = () => {
+  const currentIndex = studies.findIndex(study => study.title === selectedStudy?.title);
+  const nextIndex = currentIndex < studies.length - 1 ? currentIndex + 1 : 0;
+  setSelectedStudy(studies[nextIndex]);
+};
+
+// Modal JSX (exact from commit)
+{selectedStudy && (
+  <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+    <div className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] max-w-7xl w-[95vw] max-h-[90vh] flex flex-col bg-white rounded-lg shadow-2xl">
+      {/* Modal content from commit */}
+      <div className="flex justify-between items-center p-6 border-b">
+        <h2 className="text-2xl font-bold">{selectedStudy.title}</h2>
+        <button onClick={() => setSelectedStudy(null)} className="text-gray-500 hover:text-gray-700">
+          <X size={24} />
+        </button>
+      </div>
+      
+      <div className={`flex-1 overflow-auto p-6 ${showScroll ? 'overflow-auto' : 'overflow-hidden'}`}>
+        <img src={selectedStudy.image} alt={selectedStudy.title} className="w-full h-auto mb-6 rounded" />
+        <p className="text-lg mb-4">{selectedStudy.description}</p>
+        <div className="flex flex-wrap gap-2 mb-4">
+          {selectedStudy.tags.map(tag => (
+            <span key={tag} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+              {tag}
+            </span>
+          ))}
+        </div>
+        {selectedStudy.pdf && (
+          <a href={selectedStudy.pdf} target="_blank" rel="noopener noreferrer" 
+             className="inline-block bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600">
+            View PDF
+          </a>
+        )}
+      </div>
+      
+      <div className="flex justify-between items-center p-6 border-t">
+        <button onClick={navigateToPrevious} className="flex items-center gap-2 text-blue-500 hover:text-blue-700">
+          <ChevronLeft size={20} /> Previous
+        </button>
+        <button onClick={() => setShowScroll(!showScroll)} className="text-gray-500 hover:text-gray-700">
+          {showScroll ? 'Hide Scroll' : 'Show Scroll'}
+        </button>
+        <button onClick={navigateToNext} className="flex items-center gap-2 text-blue-500 hover:text-blue-700">
+          Next <ChevronRight size={20} />
+        </button>
+      </div>
+    </div>
+  </div>
+)}

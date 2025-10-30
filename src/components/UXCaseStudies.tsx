@@ -171,20 +171,20 @@ export function UXCaseStudies() {
         </div>
 
         <Dialog open={!!selectedStudy} onOpenChange={() => setSelectedStudy(null)}>
-          <DialogContent 
-            className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] max-w-7xl w-[95vw] max-h-[90vh] flex flex-col z-50"
+          <DialogContent
+            className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] max-w-7xl w-[95vw] max-h-[90vh] flex flex-col z-[9999] bg-white"
             onKeyDown={handleKeyDown}
             aria-labelledby="modal-title"
             aria-describedby="modal-description"
           >
             {/* Skip link for screen readers */}
-            <a 
-              href="#modal-content" 
+            <a
+              href="#modal-content"
               className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-primary-foreground px-3 py-2 rounded-md text-sm font-medium z-50"
             >
               Skip to content
             </a>
-            
+
             <DialogHeader className="flex-shrink-0">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-3">
@@ -239,12 +239,6 @@ export function UXCaseStudies() {
               </div>
             </DialogHeader>
 
-
-
-
-
-
-
             <div className="flex-1 overflow-y-scroll" id="modal-content">
               {/* Special layout for Poppin Joe's with multiple PDFs */}
               {selectedStudy?.title === "Poppin' Joe's Kettle Corn E-Commerce Website Redesign" ? (
@@ -296,7 +290,7 @@ export function UXCaseStudies() {
                       </div>
                       <div>
                         <h4 className="font-semibold mb-3 text-lg">Key Deliverables</h4>
-                                                <ul className="text-muted-foreground space-y-2 list-disc pl-6">
+                        <ul className="text-muted-foreground space-y-2 list-disc pl-6">
                           <li>Gained hands-on experience in full-stack web development using React and Node.js</li>
                           <li>Learned to integrate complex features like property search and map functionality</li>
                           <li>Developed skills in responsive design and cross-device compatibility</li>
@@ -818,14 +812,13 @@ export function UXCaseStudies() {
                 </div>
               )}
             </div>
-
             {/* CTA Section at Bottom */}
             <div className="flex-shrink-0 mt-4 pt-4 border-t flex flex-col sm:flex-row items-center justify-between gap-3 bg-muted/30 -mx-6 px-6 py-4 -mb-6 rounded-b-xl">
               <div className="text-center sm:text-left">
                 <h4 className="font-semibold text-base mb-1">Interested in similar work?</h4>
                 <p className="text-sm text-muted-foreground">Let's discuss how I can help with your project</p>
               </div>
-              <Button 
+              <Button
                 size="sm"
                 className="bg-primary hover:bg-primary/90 text-primary-foreground btn-animate hover-glow whitespace-nowrap h-9 px-5"
                 onClick={() => {

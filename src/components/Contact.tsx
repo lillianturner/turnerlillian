@@ -2,7 +2,7 @@ import { Button } from './ui/button';
 
 export function Contact() {
   return (
-    <section id="contact" className="py-20 bg-muted/50" aria-labelledby="contact-heading">
+    <section id="contact" className="py-20" aria-labelledby="contact-heading">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <p className="subheading text-primary text-lg mb-4">Get In Touch</p>

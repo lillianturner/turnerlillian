@@ -55,7 +55,7 @@ export function TechnicalWriting() {
       tags: ["Design Analysis", "Author Website", "Visual Design", "UX Evaluation"],
       image: getAssetPath("pdfs/SuzanneCollins.png"),
       pdfUrl: getAssetPath("pdfs/SCDesignReport.pdf"),
-      type: "Design Report"
+      type: ["Design Report"]
     },
     {
       id: 6,
@@ -64,16 +64,7 @@ export function TechnicalWriting() {
       tags: ["Heuristic Evaluation", "Usability Heuristics", "Expert Review", "UX Assessment"],
       image: getAssetPath("pdfs/SuzanneCollins.png"),
       pdfUrl: getAssetPath("pdfs/SCHeuristicEvaluation.pdf"),
-      type: "Heuristic Evaluation"
-    },
-    {
-      id: 7,
-      title: "Suzanne Collins Component Compendium",
-      description: "Detailed documentation of reusable UI components and design patterns identified from Suzanne Collins' website, including specifications and usage guidelines.",
-      tags: ["Component Documentation", "UI Patterns", "Design Systems", "Technical Specs"],
-      image: getAssetPath("pdfs/SuzanneCollins.png"),
-      pdfUrl: getAssetPath("pdfs/SCComps.pdf"),
-      type: "Component Compendium"
+      type: ["Heuristic Evaluation"]
     }
   ];
 
@@ -129,7 +120,7 @@ export function TechnicalWriting() {
   };
 
   return (
-    <section id="tech-writing" className="py-20 bg-orange/5" aria-labelledby="tech-writing-heading">
+    <section id="tech-writing" className="py-20" aria-labelledby="tech-writing-heading">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <p className="subheading text-lg mb-4" role="text">Content Strategy, Documentation & Editing</p>
@@ -225,7 +216,7 @@ export function TechnicalWriting() {
 
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
           <DialogContent
-            className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] max-w-7xl w-[95vw] max-h-[90vh] flex flex-col z-50 tech-writing-modal"
+            className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] max-w-7xl w-[95vw] max-h-[90vh] flex flex-col z-[9999] bg-white tech-writing-modal"
             data-theme="orange"
             onKeyDown={handleKeyDown}
             aria-labelledby="modal-title"

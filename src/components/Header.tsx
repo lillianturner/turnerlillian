@@ -209,6 +209,8 @@ export function Header() {
             className="fixed top-[62px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-32 pointer-events-none opacity-70 z-0"
             title="Decorative vines background"
             aria-hidden="true"
+            loading="lazy"
+            style={{ willChange: 'auto' }}
           />
 
           {/* Right side - Resume/CV Buttons */}
@@ -317,6 +319,7 @@ export function Header() {
           </div>
         )}
       </div>
+      </header>
 
       {/* Resume Modal */}
       <Dialog open={showResumeModal} onOpenChange={(open) => {
@@ -481,10 +484,6 @@ export function Header() {
           </div>
         </DialogContent>
       </Dialog>
-    </header>
-
-    {/* Resume Modal */}
-
     </>
   );
 }

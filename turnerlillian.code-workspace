@@ -7,5 +7,7 @@
 			"path": "../../Downloads/Professional Portfolio Website (1)"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "turnerlillian"
+	}
 }
