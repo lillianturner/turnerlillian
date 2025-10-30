@@ -1,0 +1,332 @@
+# Lillian Turner Portfolio - Design System Style Guide
+
+## 🎨 Color Palette
+
+### Primary Colors (Green Theme)
+- **Primary**: `hsl(158, 64%, 20%)` - Forest green, main brand color
+- **Primary Foreground**: `hsl(0, 0%, 100%)` - White text on primary backgrounds
+- **Deep Forest Green**: `hsl(158, 85%, 9%)` - Dark green for emphasized text
+- **Accent**: `hsl(158, 64%, 35%)` - Lighter green for accents
+
+### Secondary Colors (Orange Theme - Technical Writing)
+- **Orange**: `hsl(25, 95%, 53%)` - Bright orange
+- **Orange Foreground**: `hsl(25, 60%, 25%)` - Muted darkish orange for text
+
+### Tertiary Colors (Yellow Theme - Design Gallery)
+- **Yellow**: `hsl(45, 93%, 47%)` - Bright yellow
+- **Yellow Foreground**: `hsl(25, 30%, 25%)` - Dark warm brown for text
+
+### Neutral Colors
+- **Background**: `hsl(0, 0%, 100%)` - White
+- **Foreground**: `hsl(158, 85%, 9%)` - Deep forest green for body text
+- **Muted**: `hsl(210, 40%, 96.1%)` - Light gray backgrounds
+- **Muted Foreground**: `hsl(215.4, 16.3%, 46.9%)` - Gray text
+
+### Decorative Colors (Hero Section Blobs)
+- **Blue**: `hsl(210, 100%, 70%)` - Soft blue
+- **Lavender**: `hsl(270, 50%, 75%)` - Soft purple
+- **Light Green**: `hsl(120, 40%, 80%)` - Soft green
+- **Peach**: `hsl(25, 80%, 75%)` - Soft peach
+
+## 📐 Layout & Spacing
+
+### Container
+- Max width: Responsive container with padding
+- Padding: `px-4 sm:px-6 lg:px-8`
+
+### Section Spacing
+- Padding: `py-20` (80px top and bottom)
+- Consistent across all major sections
+
+### Grid Systems
+- **Two-column**: `lg:grid-cols-2` for hero and major content
+- **Three-column**: `md:grid-cols-2 lg:grid-cols-3` for portfolio cards
+- **Four-column**: `grid-cols-2 md:grid-cols-4` for core values
+- Gap: `gap-6` (24px) standard, `gap-8` (32px) for larger layouts
+
+## 🔤 Typography
+
+### Font Family
+- Primary: System font stack (default)
+
+### Headings
+- **H1**: `text-3xl md:text-4xl lg:text-5xl font-bold` - Main page title
+- **H2**: `text-3xl md:text-4xl font-bold mb-4` - Section headings
+- **H3**: `text-2xl md:text-3xl font-bold` - Subsection headings
+- **H4**: `text-xl font-semibold` - Card headings
+
+### Body Text
+- **Base**: `text-base` (16px)
+- **Large**: `text-lg` (18px) for emphasis
+- **Small**: `text-sm` (14px) for metadata
+
+### Text Colors
+- **Primary text**: `text-foreground` or `text-primary`
+- **Secondary text**: `text-muted-foreground` or `text-foreground/70`
+- **Accent text**: `text-orange-foreground` or `text-yellow-foreground` in themed sections
+
+### Special Typography
+- **Subheading**: `.subheading` class - Uppercase with letter spacing
+
+## 🎯 Components
+
+### Buttons
+
+#### Variants
+
+1. **Primary (Green)**
+```tsx
+<Button variant="default" className="bg-primary hover:bg-primary/90 text-primary-foreground btn-animate hover-glow">
+  Button Text
+</Button>
+```
+
+2. **Orange**
+```tsx
+<Button variant="orange" className="bg-orange hover:bg-orange/90 text-orange-foreground btn-animate hover-glow">
+  Button Text
+</Button>
+```
+
+3. **Yellow**
+```tsx
+<Button variant="yellow" className="bg-yellow hover:bg-yellow/90 text-yellow-foreground btn-animate hover-glow">
+  Button Text
+</Button>
+```
+
+4. **Outline**
+```tsx
+<Button variant="outline" className="border-2 border-primary text-primary hover:bg-primary/10 btn-animate">
+  Button Text
+</Button>
+```
+
+5. **Ghost**
+```tsx
+<Button variant="ghost" className="text-primary hover:bg-primary/10">
+  Button Text
+</Button>
+```
+
+#### Sizes
+- **Small**: `size="sm"` - `h-9 px-3`
+- **Default**: `size="default"` - Standard size
+- **Large**: `size="lg"` - `h-11 px-8` for CTAs
+
+### Cards
+
+#### Glass Cards
+- **Green (Primary)**: `.glass-card-primary`
+- **Orange**: `.glass-card-orange`
+- **Yellow**: `.glass-card-yellow`
+
+#### Properties
+- Backdrop blur: `backdrop-blur-sm`
+- Background: Semi-transparent with color tint
+- Border: Solid color with transparency
+- Border radius: `rounded-xl` or `rounded-2xl`
+- Padding: `p-6` or `p-8`
+
+#### Glass Buttons
+- Used for Core Values cards
+- Variants: `.glass-button-primary`, `.glass-button-orange`, `.glass-button-yellow`
+
+### Modals (Dialog)
+
+#### Structure
+```tsx
+<Dialog>
+  <DialogContent className="max-w-5xl max-h-[85vh]">
+    <DialogHeader>
+      <DialogTitle>Project Title</DialogTitle>
+    </DialogHeader>
+    <div className="overflow-y-scroll">
+      {/* Modal content */}
+    </div>
+  </DialogContent>
+</Dialog>
+```
+
+#### Scrollbar Styling
+- Technical Writing modals: Orange scrollbar
+- Custom styling with `data-theme` attribute
+
+### Navigation
+
+#### Header
+- Fixed: `fixed top-0 w-full z-50`
+- Background: `bg-background/95 backdrop-blur-md`
+- Border: `border-b border-border`
+
+#### Navigation Links
+- Hover: `hover:text-primary transition-colors`
+- Active: Enhanced with underline or background
+
+### Icons
+- Size: `w-6 h-6` standard
+- Color: Inherit from parent or specific theme color
+- Hover effects: Scale and color transitions
+
+## 🎭 Effects & Animations
+
+### Glass Morphism
+- Backdrop blur: `backdrop-blur-sm` or `backdrop-blur-md`
+- Semi-transparent backgrounds: `bg-{color}/10` to `bg-{color}/20`
+- Border: `border border-{color}/20`
+
+### Hover Effects
+- **Scale**: `.hover-scale-sm` - Scales to 105%
+- **Lift**: `.hover-lift` - Translates up by 4px
+- **Glow**: `.hover-glow` - Enhanced shadow on hover
+- **Button Animation**: `.btn-animate` - Smooth all transitions
+
+### Transitions
+- **All Smooth**: `.transition-all-smooth` - `transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1)`
+- **Transform**: `transition-transform duration-300`
+- **Colors**: `transition-colors duration-300`
+
+### Decorative Animations
+- **Flower blobs**: `.animate-flower-1`, `.animate-flower-2`, `.animate-flower-3`
+  - Floating/pulsing motion in hero section
+  - Colors: Blue, lavender, light green, peach
+
+### Focus States
+- Ring: `focus-visible:ring-2 focus-visible:ring-{color}`
+- Outline: `focus-visible:outline-none`
+
+## 📱 Responsive Design
+
+### Breakpoints
+- **sm**: 640px
+- **md**: 768px
+- **lg**: 1024px
+- **xl**: 1280px
+
+### Responsive Patterns
+```css
+/* Mobile-first approach */
+.element {
+  padding: 1rem;        /* Mobile */
+}
+
+@media (min-width: 768px) {
+  .element {
+    padding: 1.5rem;    /* Tablet */
+  }
+}
+
+@media (min-width: 1024px) {
+  .element {
+    padding: 2rem;      /* Desktop */
+  }
+}
+```
+
+### Common Responsive Classes
+- Text: `text-base md:text-lg lg:text-xl`
+- Spacing: `p-4 md:p-6 lg:p-8`
+- Grid: `grid-cols-1 md:grid-cols-2 lg:grid-cols-3`
+
+## ♿ Accessibility
+
+### ARIA Labels
+- All interactive elements have descriptive `aria-label` attributes
+- Navigation uses `role="navigation"`
+- Sections use appropriate landmark roles
+
+### Focus Management
+- Visible focus states on all interactive elements
+- Keyboard navigation support (arrow keys in modals)
+- Skip links for screen readers
+
+### Color Contrast
+- All text meets WCAG AA standards (minimum 4.5:1 ratio)
+- Deep forest green (`hsl(158, 85%, 9%)`) provides excellent contrast on light backgrounds
+
+### Semantic HTML
+- Proper heading hierarchy (h1 → h2 → h3 → h4)
+- Semantic section elements with IDs
+- Lists use proper `<ul>` and `<li>` tags
+
+## 🎨 Section-Specific Themes
+
+### Hero Section
+- Background: White with colorful decorative blobs
+- Text: Deep forest green
+- Buttons: Primary green and outline
+- Social icons: Primary, yellow, orange
+
+### UX Case Studies
+- Theme: Primary green
+- Cards: White with hover effects
+- Buttons: Green
+
+### Technical Writing & Editing
+- Theme: Orange (`bg-orange/5` tint)
+- Cards: `glass-card-orange`
+- Buttons: Orange variant
+- Scrollbar: Orange
+
+### Design Gallery
+- Theme: Yellow (`bg-yellow/5` tint)
+- Cards: `glass-card-yellow`
+- Text: Yellow foreground (dark warm brown)
+
+### About Section
+- Multi-color theme
+- Journey card: Orange
+- What Drives Me card: Yellow
+- Core Values: Rotating green, orange, yellow
+- Skills: Green accent
+
+### Contact/Footer
+- Background: Primary green (`bg-primary`)
+- Text: White (`text-primary-foreground`)
+- Buttons: Outline variant
+
+## 📋 Best Practices
+
+### Component Usage
+1. Always use Button component from UI library
+2. Apply theme-specific classes to match section context
+3. Use glass effects for elevated surfaces
+4. Include hover effects on interactive elements
+
+### Color Usage
+1. Stick to defined color palette
+2. Use theme colors in their respective sections
+3. Ensure sufficient contrast for readability
+4. Apply opacity for subtle backgrounds (`/10`, `/20`, `/60`)
+
+### Spacing
+1. Use consistent padding across sections (`py-20`)
+2. Maintain grid gaps (`gap-6` or `gap-8`)
+3. Apply responsive spacing with breakpoint modifiers
+
+### Accessibility
+1. Always include ARIA labels for icons and interactive elements
+2. Test keyboard navigation
+3. Ensure color contrast meets standards
+4. Use semantic HTML elements
+
+## 🔧 Utility Classes Reference
+
+### Custom Utilities
+- `.btn-animate` - Button animation effects
+- `.hover-glow` - Enhanced shadow on hover
+- `.hover-scale-sm` - Scale to 105% on hover
+- `.hover-lift` - Translate up 4px on hover
+- `.transition-all-smooth` - Smooth cubic-bezier transition
+- `.glass-card-{color}` - Glass morphism card styles
+- `.glass-button-{color}` - Glass morphism button styles
+- `.glass-social-icon` - Social media icon styling
+- `.subheading` - Special heading typography
+
+### State Classes
+- `.shimmer-effect` - Animated shimmer overlay
+- `.animate-flower-{1,2,3}` - Decorative blob animations
+
+---
+
+*This style guide is a living document and should be updated as the design system evolves.*

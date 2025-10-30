@@ -43,7 +43,7 @@ export function About() {
     <section id="about" className="py-20 bg-muted/50" aria-labelledby="about-heading">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <p className="subheading text-lg mb-4" role="text">Professional Background</p>
+          <p className="subheading text-primary text-lg mb-4" role="text">Professional Background</p>
           <h2 id="about-heading" className="text-4xl font-bold mb-4">About Me</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto" role="text">
             I'm a passionate UX designer and technical communicator who believes that great design and clear communication 
@@ -55,15 +55,15 @@ export function About() {
         <div className="max-w-4xl mx-auto mb-16">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <article className="glass-card-orange p-8 rounded-xl hover-lift transition-all-smooth" aria-labelledby="journey-heading">
-                <h3 id="journey-heading" className="text-2xl font-semibold mb-4 text-orange-foreground">My Journey</h3>
-                <p className="text-orange-foreground/70 leading-relaxed mb-4">
-                  As a UX designer and technical communicator, I've worked on projects for startups and 
-                  established companies, creating digital experiences that users actually love. My background in both 
+              <article className="glass-card p-8 rounded-xl hover-lift transition-all-smooth" aria-labelledby="journey-heading">
+                <h3 id="journey-heading" className="text-2xl font-semibold mb-4">My Journey</h3>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  With over 5 years of experience in UX design and technical writing, I've helped startups and 
+                  established companies create digital experiences that users actually love. My background in both 
                   design and communication gives me a unique perspective on how to bridge the gap between complex 
                   technology and human understanding.
                 </p>
-                <p className="text-orange-foreground/70 leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed">
                   I started my career in technical writing, where I learned the art of making complex information 
                   accessible. This foundation in clear communication naturally led me to UX design, where I could 
                   apply the same principles to visual and interactive experiences.
@@ -72,9 +72,9 @@ export function About() {
             </div>
             
             <div className="space-y-6">
-              <article className="glass-card-yellow p-8 rounded-xl hover-lift transition-all-smooth" aria-labelledby="motivation-heading">
-                <h3 id="motivation-heading" className="text-2xl font-semibold mb-4 text-yellow-foreground">What Drives Me</h3>
-                <p className="text-yellow-foreground/70 leading-relaxed mb-6">
+              <article className="glass-card p-8 rounded-xl hover-lift transition-all-smooth" aria-labelledby="motivation-heading">
+                <h3 id="motivation-heading" className="text-2xl font-semibold mb-4">What Drives Me</h3>
+                <p className="text-muted-foreground leading-relaxed mb-6">
                   I'm fascinated by the intersection of psychology, technology, and design. Every project is an 
                   opportunity to understand how people think, what they need, and how we can create solutions 
                   that feel almost invisible in their simplicity.
@@ -83,8 +83,8 @@ export function About() {
                 <div className="grid grid-cols-2 gap-4" role="list" aria-label="Personal facts">
                   {personalFacts.map((item, index) => (
                     <div key={index} role="listitem" className="flex items-center space-x-2 text-sm">
-                      <div className="text-yellow-foreground" role="img" aria-label={`${item.fact} icon`}>{item.icon}</div>
-                      <span className="text-yellow-foreground/70">{item.fact}</span>
+                      <div className="text-primary" role="img" aria-label={`${item.fact} icon`}>{item.icon}</div>
+                      <span className="text-muted-foreground">{item.fact}</span>
                     </div>
                   ))}
                 </div>
@@ -97,18 +97,13 @@ export function About() {
         <div className="mb-16">
           <h3 className="text-2xl font-semibold text-center mb-8" id="values-heading">Core Values</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6" role="list" aria-labelledby="values-heading">
-            {values.map((value, index) => {
-              const glassClass = index === 0 ? 'glass-button-primary' : index === 1 ? 'glass-button-orange' : index === 2 ? 'glass-button-yellow' : 'glass-button-primary';
-              const textColor = (index === 0 || index === 3) ? 'text-[hsl(158,85%,9%)]' : index === 1 ? 'text-orange-foreground' : 'text-yellow-foreground';
-              
-              return (
-                <article key={index} role="listitem" className={`${glassClass} p-6 rounded-xl text-center hover-lift transition-all-smooth btn-animate hover-glow`}>
-                  <div className={`mb-4 flex justify-center ${textColor}`} role="img" aria-label={`${value.title} icon`}>{value.icon}</div>
-                  <h4 className={`text-lg font-semibold mb-3 ${textColor}`} id={`value-title-${index}`}>{value.title}</h4>
-                  <p className={`text-sm ${textColor} opacity-90`} aria-describedby={`value-title-${index}`}>{value.description}</p>
-                </article>
-              );
-            })}
+            {values.map((value, index) => (
+              <article key={index} role="listitem" className="glass-card p-6 rounded-xl text-center focus-within:ring-2 focus-within:ring-primary hover-lift transition-all-smooth">
+                <div className="text-primary mb-4 flex justify-center" role="img" aria-label={`${value.title} icon`}>{value.icon}</div>
+                <h4 className="text-lg font-semibold mb-3" id={`value-title-${index}`}>{value.title}</h4>
+                <p className="text-sm text-muted-foreground" aria-describedby={`value-title-${index}`}>{value.description}</p>
+              </article>
+            ))}
           </div>
         </div>
 

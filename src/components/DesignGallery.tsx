@@ -66,32 +66,32 @@ export function DesignGallery() {
   ];
 
   return (
-    <section id="design-gallery" className="py-20 bg-yellow/5" aria-labelledby="design-gallery-heading">
+    <section id="design-gallery" className="py-20" aria-labelledby="design-gallery-heading">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <p className="subheading text-lg mb-4" role="text">Visual Design & User Experience</p>
-          <h2 id="design-gallery-heading" className="text-4xl font-bold mb-4 text-yellow-foreground">Design Gallery</h2>
-          <p className="text-xl text-yellow-foreground/70 max-w-3xl mx-auto" role="text">
+          <p className="subheading text-primary text-lg mb-4" role="text">Visual Design & User Experience</p>
+          <h2 id="design-gallery-heading" className="text-4xl font-bold mb-4">Design Gallery</h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto" role="text">
             Visual storytelling through thoughtful interface design, cohesive branding, and innovative problem-solving. 
             I create digital experiences that are both beautiful and functional.
           </p>
         </div>
 
         {/* Design Philosophy */}
-        <aside className="glass-card-yellow p-8 rounded-xl mb-16 max-w-4xl mx-auto hover-lift transition-all-smooth" aria-labelledby="philosophy-heading">
-          <h3 id="philosophy-heading" className="text-2xl font-semibold mb-6 text-center text-yellow-foreground">Design Philosophy</h3>
+        <aside className="glass-card-primary p-8 rounded-xl mb-16 max-w-4xl mx-auto hover-lift transition-all-smooth" aria-labelledby="philosophy-heading">
+          <h3 id="philosophy-heading" className="text-2xl font-semibold mb-6 text-center">Design Philosophy</h3>
           <div className="grid md:grid-cols-3 gap-6" role="list" aria-label="Design principles">
             {designPrinciples.map((principle, index) => (
               <article key={index} role="listitem" className="text-center">
                 <div 
-                  className="inline-flex items-center justify-center w-12 h-12 bg-yellow/10 text-yellow-foreground rounded-full mb-3"
+                  className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 text-primary rounded-full mb-3"
                   role="img" 
                   aria-label={`${principle.title} icon`}
                 >
                   {principle.icon}
                 </div>
-                <h4 className="text-lg font-semibold mb-2 text-yellow-foreground">{principle.title}</h4>
-                <p className="text-sm text-yellow-foreground/60">{principle.description}</p>
+                <h4 className="text-lg font-semibold mb-2">{principle.title}</h4>
+                <p className="text-sm text-muted-foreground">{principle.description}</p>
               </article>
             ))}
           </div>
@@ -99,19 +99,19 @@ export function DesignGallery() {
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16" role="list" aria-label="Design categories">
           {designCategories.map((category, index) => (
-            <article key={index} role="listitem" className="group glass-card rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-yellow hover-lift transition-all-smooth">
-              <div className="p-8 glass-card-yellow" role="banner">
-                <div className="text-yellow-foreground mb-4" role="img" aria-label={`${category.title} icon`}>{category.icon}</div>
-                <h3 className="text-xl font-bold text-yellow-foreground" id={`category-title-${index}`}>{category.title}</h3>
+            <article key={index} role="listitem" className="group glass-card rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-primary hover-lift transition-all-smooth">
+              <div className={`p-8 text-gray-900 ${category.glassClass}`} role="banner">
+                <div className="text-gray-800 mb-4" role="img" aria-label={`${category.title} icon`}>{category.icon}</div>
+                <h3 className="text-xl font-bold text-gray-900" id={`category-title-${index}`}>{category.title}</h3>
               </div>
               <div className="p-6">
-                <p className="text-yellow-foreground/60 mb-4" aria-describedby={`category-title-${index}`}>{category.description}</p>
+                <p className="text-muted-foreground mb-4" aria-describedby={`category-title-${index}`}>{category.description}</p>
                 <div className="space-y-2">
-                  <h4 className="text-sm font-medium text-yellow-foreground">Featured Projects:</h4>
+                  <h4 className="text-sm font-medium text-muted-foreground">Featured Projects:</h4>
                   <ul className="space-y-1" aria-label="Projects in this category">
                     {category.projects.map((project, idx) => (
-                      <li key={idx} className="flex items-center text-sm text-yellow-foreground/70">
-                        <span className="w-1.5 h-1.5 bg-yellow rounded-full mr-2" role="presentation"></span>
+                      <li key={idx} className="flex items-center text-sm">
+                        <span className="w-1.5 h-1.5 bg-primary rounded-full mr-2" role="presentation"></span>
                         {project}
                       </li>
                     ))}
@@ -123,8 +123,8 @@ export function DesignGallery() {
         </div>
 
         {/* Design Process */}
-        <aside className="glass-card-yellow p-8 rounded-xl hover-lift transition-all-smooth" aria-labelledby="process-heading">
-          <h3 id="process-heading" className="text-2xl font-semibold mb-6 text-center text-yellow-foreground">Design Process</h3>
+        <aside className="glass-card-accent p-8 rounded-xl hover-lift transition-all-smooth" aria-labelledby="process-heading">
+          <h3 id="process-heading" className="text-2xl font-semibold mb-6 text-center">Design Process</h3>
           <div className="grid md:grid-cols-4 gap-6" role="list" aria-label="Design process steps">
             {[
               { step: "1", title: "Research", description: "Understanding users, market, and constraints" },
@@ -133,11 +133,11 @@ export function DesignGallery() {
               { step: "4", title: "Test & Iterate", description: "Validating designs with real users and data" },
             ].map((phase, index) => (
               <article key={index} role="listitem" className="text-center">
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-yellow/10 text-yellow-foreground rounded-full font-bold text-lg mb-3" role="img" aria-label={`Step ${phase.step}`}>
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-primary text-primary-foreground rounded-full font-bold text-lg mb-3" role="img" aria-label={`Step ${phase.step}`}>
                   {phase.step}
                 </div>
-                <h4 className="text-lg font-semibold mb-2 text-yellow-foreground">{phase.title}</h4>
-                <p className="text-sm text-yellow-foreground/60">{phase.description}</p>
+                <h4 className="text-lg font-semibold mb-2">{phase.title}</h4>
+                <p className="text-sm text-muted-foreground">{phase.description}</p>
               </article>
             ))}
           </div>

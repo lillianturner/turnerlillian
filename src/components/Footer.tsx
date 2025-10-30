@@ -19,7 +19,7 @@ export function Footer() {
             </p>
             <div className="flex space-x-4" role="list" aria-label="Social media links">
               <a 
-                href="https://www.linkedin.com/in/lillian-turner-79bb16226" 
+                href="https://linkedin.com/in/lillianturner" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center w-10 h-10 rounded-lg glass-logo transition-transform duration-200 hover:scale-105"
@@ -30,7 +30,7 @@ export function Footer() {
                 <Linkedin className="w-5 h-5 text-white" />
               </a>
               <a 
-                href="https://github.com/turnerlillian" 
+                href="https://github.com/lillianturner" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center w-10 h-10 rounded-lg glass-logo transition-transform duration-200 hover:scale-105"
@@ -41,7 +41,7 @@ export function Footer() {
                 <Github className="w-5 h-5 text-white" />
               </a>
               <a 
-                href="mailto:turnerlillianc@gmail.com"
+                href="mailto:hello@lillianturner.com"
                 className="inline-flex items-center justify-center w-10 h-10 rounded-lg glass-logo transition-transform duration-200 hover:scale-105"
                 style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
                 aria-label="Send email"
@@ -58,7 +58,7 @@ export function Footer() {
             <ul className="space-y-3">
               <li><a href="#home" className="text-white/80 hover:text-white transition-colors focus:text-white focus:outline-none focus:underline">Home</a></li>
               <li><a href="#ux-studies" className="text-white/80 hover:text-white transition-colors focus:text-white focus:outline-none focus:underline">UX Case Studies</a></li>
-              <li><a href="#tech-writing" className="text-white/80 hover:text-white transition-colors focus:text-white focus:outline-none focus:underline">Technical Writing & Editing</a></li>
+              <li><a href="#tech-writing" className="text-white/80 hover:text-white transition-colors focus:text-white focus:outline-none focus:underline">Technical Writing</a></li>
               <li><a href="#design-gallery" className="text-white/80 hover:text-white transition-colors focus:text-white focus:outline-none focus:underline">Design Gallery</a></li>
               <li><a href="#about" className="text-white/80 hover:text-white transition-colors focus:text-white focus:outline-none focus:underline">About</a></li>
               <li><a href="#contact" className="text-white/80 hover:text-white transition-colors focus:text-white focus:outline-none focus:underline">Contact</a></li>
@@ -71,7 +71,7 @@ export function Footer() {
             <ul className="space-y-3" aria-label="Services offered">
               <li className="text-white/80">UX/UI Design</li>
               <li className="text-white/80">User Research</li>
-              <li className="text-white/80">Technical Writing & Editing</li>
+              <li className="text-white/80">Technical Writing</li>
               <li className="text-white/80">Content Strategy</li>
               <li className="text-white/80">Design Systems</li>
               <li className="text-white/80">API Documentation</li>
