@@ -9,10 +9,20 @@ import { Footer } from './components/Footer';
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <main id="main-content">
-        <Hero />
+    <div className="min-h-screen relative">
+      {/* Colorful blob background for entire page */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <iframe
+          src="/processing-background/index.html"
+          className="w-full h-full border-0"
+          title="Colorful Background"
+        />
+      </div>
+      
+      <div className="relative z-10">
+        <Header />
+        <main id="main-content">
+          <Hero />
         <UXCaseStudies />
         <TechnicalWriting />
         <DesignGallery />
@@ -20,6 +30,7 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
+      </div>
     </div>
   );
 }

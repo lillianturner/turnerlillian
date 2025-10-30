@@ -19,6 +19,10 @@ const buttonVariants = cva(
           "glass-button-accent",
         ghost: "glass-button text-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        orange:
+          "glass-button-orange",
+        yellow:
+          "glass-button-yellow",
       },
       size: {
         default: "h-9 px-4 py-2",

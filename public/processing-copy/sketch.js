@@ -43,7 +43,13 @@ function draw() {
   
   for (let vine of vines) {
     if (vine.growing) {
-      vine.grow();
+      // Apply growth rate - some vines grow faster than others
+      if (random() < vine.growthRate) {
+        vine.grow();
+      }
+      if (random() < vine.growthRate) {
+        vine.grow(); // Possible second growth
+      }
     }
     vine.display();
   }
@@ -137,6 +143,7 @@ class Vine {
     this.maxLength = random(200, 350);
     this.growing = true;
     this.clockwise = random() < 0.5;
+    this.growthRate = random(0.5, 1.5); // Vary growth speed between 50% and 150%
     this.leaves = [];
     this.leafChance = 0.06;
     this.flowers = [];
@@ -148,7 +155,7 @@ class Vine {
   }
   
   grow() {
-    if (!this.growing || frameCount % 2 !== 0 || this.segments.length >= this.maxLength) return;
+    if (!this.growing || this.segments.length >= this.maxLength) return; // Removed frame skip for faster growth
     
     let last = this.segments[this.segments.length - 1];
     let distToCenter = dist(last.x, last.y, centerX, centerY);
@@ -253,9 +260,9 @@ class Vine {
     // Bloom all flowers (with delay)
     for (let flower of this.flowers) {
       if (flower.bloomDelay > 0) {
-        flower.bloomDelay--;
+        flower.bloomDelay -= 2; // Faster delay countdown
       } else if (flower.bloomProgress < 1) {
-        flower.bloomProgress += 0.008; // Slower bloom
+        flower.bloomProgress += 0.02; // Faster bloom
       }
     }
     

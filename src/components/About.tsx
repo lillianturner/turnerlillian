@@ -58,8 +58,8 @@ export function About() {
               <article className="glass-card p-8 rounded-xl hover-lift transition-all-smooth" aria-labelledby="journey-heading">
                 <h3 id="journey-heading" className="text-2xl font-semibold mb-4">My Journey</h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  With over 5 years of experience in UX design and technical writing, I've helped startups and 
-                  established companies create digital experiences that users actually love. My background in both 
+                  As a UX designer and technical communicator, I've worked on projects for startups and 
+                  established companies, creating digital experiences that users actually love. My background in both 
                   design and communication gives me a unique perspective on how to bridge the gap between complex 
                   technology and human understanding.
                 </p>

@@ -7,7 +7,7 @@ export function Hero() {
       {/* Processing Sketch Background */}
       <div className="absolute inset-0 pointer-events-none z-0 bg-white">
         <iframe
-          src="/turnerlillian/processing-copy/index.html"
+          src="/processing-copy/index.html"
           className="w-full h-full border-0"
           title="Growing Vines Background"
         />
