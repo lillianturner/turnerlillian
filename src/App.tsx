@@ -6,16 +6,19 @@ import { DesignGallery } from './components/DesignGallery';
 import { About } from './components/About';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
+import { LazyIframe } from './components/LazyIframe';
 
 export default function App() {
   return (
     <div className="min-h-screen relative">
-      {/* Colorful blob background for entire page */}
+      {/* Colorful blob background for entire page - Lazy Loaded */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        <iframe
+        <LazyIframe
           src="/processing-background/index.html"
           className="w-full h-full border-0"
           title="Colorful Background"
+          loadingClassName="animate-pulse bg-gradient-to-br from-background via-muted/20 to-background"
+          threshold={0}
         />
       </div>
       

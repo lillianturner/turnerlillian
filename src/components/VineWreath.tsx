@@ -1,3 +1,5 @@
+import { LazyIframe } from './LazyIframe';
+
 interface VineWreathProps {
   width?: number;
   height?: number;
@@ -10,11 +12,12 @@ export function VineWreath({ width = 800, height = 250, className = '' }: VineWr
       className={`vine-wreath-container ${className}`}
       style={{ width, height }}
     >
-      <iframe
+      <LazyIframe
         src="/processing-wreath/index.html"
         className="w-full h-full border-0 pointer-events-none"
         title="Vine Wreath Decoration"
-        style={{ background: 'transparent' }}
+        loadingClassName="bg-transparent"
+        threshold={0.1}
       />
     </div>
   );

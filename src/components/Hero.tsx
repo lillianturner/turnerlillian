@@ -1,15 +1,18 @@
 import { ArrowDown, Linkedin, Github, Mail } from 'lucide-react';
 import { Button } from './ui/button';
+import { LazyIframe } from './LazyIframe';
 
 export function Hero() {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden" role="main" aria-labelledby="hero-heading">
-      {/* Processing Sketch Background */}
+      {/* Processing Sketch Background - Lazy Loaded */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <iframe
+        <LazyIframe
           src="/processing-copy/index.html"
           className="w-full h-full border-0"
           title="Growing Vines Background"
+          loadingClassName="animate-pulse bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5"
+          threshold={0}
         />
       </div>
       
