@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { Menu, X, Download, FileText, ChevronDown } from 'lucide-react';
 import { Button } from './ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from './ui/dialog';
@@ -89,7 +90,12 @@ export function Header() {
   // Handle clicks outside dropdown to close it
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current && 
+        !dropdownRef.current.contains(event.target as Node) &&
+        dropdownMenuRef.current &&
+        !dropdownMenuRef.current.contains(event.target as Node)
+      ) {
         setIsPortfolioDropdownOpen(false);
       }
     };
@@ -134,9 +140,9 @@ export function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b overflow-visible" role="banner">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 overflow-visible">
-        <div className="flex items-center py-4 overflow-visible">
+      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b" role="banner">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center py-4">
           {/* Left side - Navigation */}
           <nav className="hidden md:flex items-center space-x-2 flex-1" role="navigation" aria-label="Main navigation">
             {navigation.map((item) => (
@@ -165,10 +171,20 @@ export function Header() {
                 <ChevronDown className={`ml-1 w-4 h-4 transition-transform duration-200 ${isPortfolioDropdownOpen ? 'rotate-180' : ''}`} />
               </Button>
               
-              {/* Dropdown Menu */}
-              {isPortfolioDropdownOpen && (
-                <div 
-                  className="absolute top-full left-0 mt-2 w-64 bg-background/60 backdrop-blur-2xl border border-white/20 rounded-xl shadow-2xl z-[60]"
+              {/* Dropdown Menu - Rendered via Portal */}
+              {isPortfolioDropdownOpen && createPortal(
+                <div
+                  className="fixed w-64 rounded-2xl shadow-2xl"
+                  style={{
+                    top: dropdownRef.current ? `${dropdownRef.current.getBoundingClientRect().bottom + 8}px` : '0',
+                    left: dropdownRef.current ? `${dropdownRef.current.getBoundingClientRect().left}px` : '0',
+                    zIndex: 9999,
+                    background: 'hsla(158, 25%, 97%, 0.6)',
+                    backdropFilter: 'blur(8px)',
+                    WebkitBackdropFilter: 'blur(8px)',
+                    border: '1px solid hsl(158, 25%, 90%)',
+                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+                  }}
                   ref={dropdownMenuRef}
                 >
                   {portfolioItems.map((item) => (
@@ -184,7 +200,8 @@ export function Header() {
                       {item.name}
                     </a>
                   ))}
-                </div>
+                </div>,
+                document.body
               )}
             </div>
           </nav>
