@@ -132,7 +132,7 @@ export function TechnicalWriting() {
         </div>
 
         {/* Writing Philosophy */}
-        <aside className="glass-card-orange p-8 rounded-xl mb-16 max-w-4xl mx-auto" aria-labelledby="philosophy-heading">
+        <aside className="glass-card-orange p-8 rounded-xl mb-16 max-w-4xl mx-auto hover-lift transition-all-smooth" aria-labelledby="philosophy-heading">
           <h3 id="philosophy-heading" className="text-2xl font-semibold mb-4 text-center text-orange-foreground">My Writing & Editing Philosophy</h3>
           <blockquote className="text-lg text-orange-foreground/80 text-center leading-relaxed">
             "Great technical writing and editing is invisible. It gets users to their destination without them noticing the journey.
@@ -188,7 +188,7 @@ export function TechnicalWriting() {
         </div>
 
         {/* Tools & Methodology */}
-        <aside className="glass-card-orange p-8 rounded-xl mt-8" aria-labelledby="tools-heading">
+        <aside className="glass-card-orange p-8 rounded-xl mt-8 hover-lift transition-all-smooth" aria-labelledby="tools-heading">
           <h3 id="tools-heading" className="text-2xl font-semibold mb-6 text-center text-orange-foreground">Tools & Methodology</h3>
           <div className="grid md:grid-cols-2 gap-8">
             <div>

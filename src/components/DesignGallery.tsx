@@ -103,7 +103,7 @@ export function DesignGallery() {
             {designPrinciples.map((principle, index) => (
               <article key={index} role="listitem" className="text-center">
                 <div 
-                  className="inline-flex items-center justify-center w-12 h-12 bg-yellow/10 text-yellow-foreground rounded-full mb-3"
+                  className="inline-flex items-center justify-center w-12 h-12 bg-yellow/30 text-yellow-foreground rounded-full mb-3"
                   role="img" 
                   aria-label={`${principle.title} icon`}
                 >
