@@ -20,8 +20,8 @@ export function Header() {
       type: 'resume' as const,
       title: 'Resume - Lillian Turner',
       description: 'UX Designer & Technical Communicator',
-      filePath: getAssetPath('pdfs/lillian-turner-resume.md'),
-      downloadName: 'Lillian_Turner_Resume.md'
+      filePath: getAssetPath('pdfs/Turner_Lillian_UX_UI_Resume.pdf'),
+      downloadName: 'Turner_Lillian_UX_UI_Resume.pdf'
     },
     {
       type: 'cv' as const,
@@ -344,19 +344,21 @@ export function Header() {
         if (!open) setCurrentDocument(null);
       }}>
         <DialogContent
-          className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] max-w-7xl w-[95vw] h-[98vh] overflow-hidden flex flex-col"
+          className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] max-w-7xl w-[98vw] max-h-[96vh] flex flex-col z-[9999] bg-white"
           onKeyDown={handleDocumentKeyDown}
+          aria-labelledby="resume-modal-title"
+          aria-describedby="resume-modal-description"
         >
           {/* Skip link for screen readers */}
           <a
-            href="#document-content"
+            href="#resume-content"
             className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-primary-foreground px-3 py-2 rounded-md text-sm font-medium z-50"
           >
             Skip to content
           </a>
 
           <DialogHeader className="flex-shrink-0">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-3">
                 <Button
                   variant="ghost"
@@ -383,38 +385,41 @@ export function Header() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </Button>
+                <Button
+                  size="sm"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground btn-animate hover-glow h-9 px-5"
+                  onClick={() => {
+                    const link = document.createElement('a');
+                    link.href = getAssetPath('pdfs/Turner_Lillian_UX_UI_Resume.pdf');
+                    link.download = 'Turner_Lillian_UX_UI_Resume.pdf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                  }}
+                  aria-label="Download Resume"
+                >
+                  <Download className="w-4 h-4 mr-2" aria-hidden="true" />
+                  Download
+                </Button>
               </div>
             </div>
-            <DialogTitle className="text-2xl font-bold text-primary mt-4">Resume - Lillian Turner</DialogTitle>
-            <DialogDescription>
-              UX Designer & Technical Communicator
-            </DialogDescription>
-          </DialogHeader>
-          <div className="flex justify-between items-center mb-4">
-            <div className="text-sm text-muted-foreground">
-              View or download my professional resume • Use arrow keys to navigate between documents
+            <div className="flex items-center justify-between">
+              <DialogTitle id="resume-modal-title" className="text-xl md:text-2xl text-green-800">Resume - Lillian Turner</DialogTitle>
+              <div className="text-xs text-muted-foreground flex items-center gap-1">
+                <span>Use</span>
+                <kbd className="px-2 py-0.5 bg-muted rounded text-xs font-mono">←</kbd>
+                <kbd className="px-2 py-0.5 bg-muted rounded text-xs font-mono">→</kbd>
+                <span>to navigate</span>
+                <span className="mx-1">•</span>
+                <kbd className="px-2 py-0.5 bg-muted rounded text-xs font-mono">ESC</kbd>
+                <span>to close</span>
+              </div>
             </div>
-            <Button
-              size="sm"
-              className="bg-primary hover:bg-gradient-to-r hover:from-primary hover:to-peach-400/80 text-primary-foreground transition-all duration-200"
-              onClick={() => {
-                const link = document.createElement('a');
-                link.href = getAssetPath('pdfs/lillian-turner-resume.md');
-                link.download = 'Lillian_Turner_Resume.md';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-              }}
-            >
-              <Download className="w-4 h-4 mr-2" aria-hidden="true" />
-              Download Resume
-            </Button>
-          </div>
-          <div className="flex-1 overflow-hidden" id="document-content">
-            <iframe
-              src={getAssetPath("pdfs/lillian-turner-resume.md")}
-              className="w-full h-full border-0 rounded-lg"
-              title="Resume - Lillian Turner"
+          </DialogHeader>
+
+          <div className="flex-1 overflow-y-scroll" id="resume-content">
+            <PDFViewer
+              pdfUrl={getAssetPath("pdfs/Turner_Lillian_UX_UI_Resume.pdf")}
             />
           </div>
         </DialogContent>
@@ -426,19 +431,21 @@ export function Header() {
         if (!open) setCurrentDocument(null);
       }}>
         <DialogContent
-          className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] max-w-7xl w-[95vw] h-[98vh] overflow-hidden flex flex-col"
+          className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] max-w-7xl w-[98vw] max-h-[96vh] flex flex-col z-[9999] bg-white"
           onKeyDown={handleDocumentKeyDown}
+          aria-labelledby="cv-modal-title"
+          aria-describedby="cv-modal-description"
         >
           {/* Skip link for screen readers */}
           <a
-            href="#document-content"
+            href="#cv-content"
             className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-primary-foreground px-3 py-2 rounded-md text-sm font-medium z-50"
           >
             Skip to content
           </a>
 
           <DialogHeader className="flex-shrink-0">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-3">
                 <Button
                   variant="ghost"
@@ -465,34 +472,39 @@ export function Header() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </Button>
+                <Button
+                  size="sm"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground btn-animate hover-glow h-9 px-5"
+                  onClick={() => {
+                    const link = document.createElement('a');
+                    link.href = getAssetPath('pdfs/lillian-turner-cv.md');
+                    link.download = 'Lillian_Turner_CV.md';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                  }}
+                  aria-label="Download CV"
+                >
+                  <Download className="w-4 h-4 mr-2" aria-hidden="true" />
+                  Download
+                </Button>
               </div>
             </div>
-            <DialogTitle className="text-2xl font-bold text-primary mt-4">CV - Lillian Turner</DialogTitle>
-            <DialogDescription>
-              UX Designer & Technical Communicator
-            </DialogDescription>
-          </DialogHeader>
-          <div className="flex justify-between items-center mb-4">
-            <div className="text-sm text-muted-foreground">
-              View or download my professional CV • Use arrow keys to navigate between documents
+            <div className="flex items-center justify-between">
+              <DialogTitle id="cv-modal-title" className="text-xl md:text-2xl text-green-800">CV - Lillian Turner</DialogTitle>
+              <div className="text-xs text-muted-foreground flex items-center gap-1">
+                <span>Use</span>
+                <kbd className="px-2 py-0.5 bg-muted rounded text-xs font-mono">←</kbd>
+                <kbd className="px-2 py-0.5 bg-muted rounded text-xs font-mono">→</kbd>
+                <span>to navigate</span>
+                <span className="mx-1">•</span>
+                <kbd className="px-2 py-0.5 bg-muted rounded text-xs font-mono">ESC</kbd>
+                <span>to close</span>
+              </div>
             </div>
-            <Button
-              size="sm"
-              className="bg-primary hover:bg-gradient-to-r hover:from-primary hover:to-lavender-400/80 text-primary-foreground transition-all duration-200"
-              onClick={() => {
-                const link = document.createElement('a');
-                link.href = getAssetPath('pdfs/lillian-turner-cv.md');
-                link.download = 'Lillian_Turner_CV.md';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-              }}
-            >
-              <Download className="w-4 h-4 mr-2" aria-hidden="true" />
-              Download CV
-            </Button>
-          </div>
-          <div className="flex-1 overflow-hidden" id="document-content">
+          </DialogHeader>
+
+          <div className="flex-1 overflow-y-scroll" id="cv-content">
             <iframe
               src={getAssetPath("pdfs/lillian-turner-cv.md")}
               className="w-full h-full border-0 rounded-lg"

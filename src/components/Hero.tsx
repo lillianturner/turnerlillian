@@ -4,7 +4,7 @@ import { LazyIframe } from './LazyIframe';
 
 export function Hero() {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden" role="main" aria-labelledby="hero-heading">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden -mt-9" role="main" aria-labelledby="hero-heading">
       {/* Processing Sketch Background - Lazy Loaded */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <LazyIframe

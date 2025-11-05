@@ -216,7 +216,7 @@ export function TechnicalWriting() {
 
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
           <DialogContent
-            className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] max-w-7xl w-[95vw] max-h-[90vh] flex flex-col z-[9999] bg-white tech-writing-modal"
+            className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] max-w-7xl w-[98vw] max-h-[96vh] flex flex-col z-[9999] bg-white tech-writing-modal"
             data-theme="orange"
             onKeyDown={handleKeyDown}
             aria-labelledby="modal-title"
