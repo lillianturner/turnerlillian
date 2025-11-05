@@ -1,6 +1,38 @@
+import { useState } from 'react';
 import { Button } from './ui/button';
+import { Spinner } from './Spinner';
 
 export function Contact() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    // Simulate form submission (replace with actual API call)
+    try {
+      await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate network delay
+      
+      // TODO: Add actual form submission logic here
+      // const formData = new FormData(e.currentTarget);
+      // await submitContactForm(formData);
+      
+      setSubmitStatus('success');
+      setIsSubmitting(false);
+      
+      // Reset form after success
+      e.currentTarget.reset();
+      
+      // Reset success message after 5 seconds
+      setTimeout(() => setSubmitStatus('idle'), 5000);
+    } catch (error) {
+      setSubmitStatus('error');
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section id="contact" className="py-20" aria-labelledby="contact-heading">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -13,7 +45,7 @@ export function Contact() {
         </div>
         
         <div className="max-w-2xl mx-auto">
-          <form className="glass-card p-8 rounded-xl space-y-6" aria-label="Contact form">
+          <form className="glass-card p-8 rounded-xl space-y-6" aria-label="Contact form" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="name" className="block text-sm font-medium mb-2">Name <span className="text-red-500" aria-label="required">*</span></label>
               <input 
@@ -52,9 +84,37 @@ export function Contact() {
                 placeholder="Tell me about your project or how I can help you..."
               ></textarea>
             </div>
-            <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground btn-animate hover-glow" aria-describedby="submit-help">
-              Send Message
+            <Button 
+              type="submit" 
+              size="lg" 
+              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground btn-animate hover-glow" 
+              aria-describedby="submit-help"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <>
+                  <Spinner size="sm" className="mr-2" label="Sending message..." />
+                  Sending...
+                </>
+              ) : (
+                'Send Message'
+              )}
             </Button>
+            
+            {/* Success Message */}
+            {submitStatus === 'success' && (
+              <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800 text-center" role="alert">
+                ✓ Message sent successfully! I'll respond within 24 hours.
+              </div>
+            )}
+            
+            {/* Error Message */}
+            {submitStatus === 'error' && (
+              <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800 text-center" role="alert">
+                ✗ Failed to send message. Please try again or email me directly at hello@lillianturner.com
+              </div>
+            )}
+            
             <p id="submit-help" className="text-sm text-muted-foreground text-center">I typically respond within 24 hours.</p>
           </form>
         </div>

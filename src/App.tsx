@@ -7,10 +7,20 @@ import { About } from './components/About';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { LazyIframe } from './components/LazyIframe';
+import { BackToTop } from './components/BackToTop';
 
 export default function App() {
   return (
-    <div className="min-h-screen relative">
+    <>
+      <div className="min-h-screen relative">
+        {/* Skip to main content link for accessibility */}
+        <a 
+          href="#ux-studies" 
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[10000] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-lg focus:shadow-lg focus:ring-2 focus:ring-ring focus:ring-offset-2"
+        >
+          Skip to main content
+        </a>
+      
       {/* Colorful blob background for entire page - Lazy Loaded */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <LazyIframe
@@ -32,8 +42,12 @@ export default function App() {
           <About />
           <Contact />
         </main>
-      <Footer />
+        <Footer />
       </div>
     </div>
+    
+    {/* Sticky Back to Top Button - Outside main container with inline styles for proper fixed positioning */}
+    <BackToTop />
+    </>
   );
 }
