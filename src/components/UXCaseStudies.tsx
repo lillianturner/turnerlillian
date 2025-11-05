@@ -173,6 +173,7 @@ export function UXCaseStudies() {
         <Dialog open={!!selectedStudy} onOpenChange={() => setSelectedStudy(null)}>
           <DialogContent
             className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] max-w-7xl w-[98vw] max-h-[96vh] flex flex-col z-[9999] bg-white"
+            data-theme="primary"
             onKeyDown={handleKeyDown}
             aria-labelledby="modal-title"
             aria-describedby="modal-description"

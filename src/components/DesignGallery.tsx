@@ -1,7 +1,12 @@
+import { useState, useEffect } from 'react';
 import { Palette, Smartphone, Globe, Target, BarChart3, Zap, Eye, Layers, MousePointer } from 'lucide-react';
 import { Button } from './ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from './ui/dialog';
 
 export function DesignGallery() {
+  const [selectedCategory, setSelectedCategory] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isScrolledToBottom, setIsScrolledToBottom] = useState(false);
 
   const designCategories = [
     {
@@ -66,6 +71,57 @@ export function DesignGallery() {
     },
   ];
 
+  const openModal = (category: any) => {
+    setSelectedCategory(category);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedCategory(null);
+  };
+
+  const navigateCategory = (direction: string) => {
+    const currentIndex = designCategories.findIndex(c => c.title === selectedCategory?.title);
+    let newIndex;
+    if (direction === 'next') {
+      newIndex = (currentIndex + 1) % designCategories.length;
+    } else {
+      newIndex = currentIndex === 0 ? designCategories.length - 1 : currentIndex - 1;
+    }
+    setSelectedCategory(designCategories[newIndex]);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      navigateCategory('prev');
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      navigateCategory('next');
+    } else if (e.key === 'Escape') {
+      setIsModalOpen(false);
+    }
+  };
+
+  // Reset scroll state when modal opens/closes or category changes
+  useEffect(() => {
+    setIsScrolledToBottom(false);
+  }, [isModalOpen, selectedCategory]);
+
+  const toggleScroll = () => {
+    const modalContent = document.getElementById('modal-content');
+    if (modalContent) {
+      if (isScrolledToBottom) {
+        modalContent.scrollTo({ top: 0, behavior: 'smooth' });
+        setIsScrolledToBottom(false);
+      } else {
+        modalContent.scrollTo({ top: modalContent.scrollHeight, behavior: 'smooth' });
+        setIsScrolledToBottom(true);
+      }
+    }
+  };
+
   const designPrinciples = [
     {
       icon: <Eye className="w-6 h-6" />,
@@ -118,7 +174,7 @@ export function DesignGallery() {
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16" role="list" aria-label="Design categories">
           {designCategories.map((category, index) => (
-            <article key={index} role="listitem" className="group glass-card rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-yellow hover-lift transition-all-smooth">
+            <article key={index} role="listitem" className="group glass-card rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-yellow hover-lift transition-all-smooth cursor-pointer" onClick={() => openModal(category)}>
               <div className="p-8 glass-card-yellow" role="banner">
                 <div className="text-yellow-foreground mb-4" role="img" aria-label={`${category.title} icon`}>{category.icon}</div>
                 <h3 className="text-xl font-bold text-yellow-foreground" id={`category-title-${index}`}>{category.title}</h3>
@@ -136,6 +192,17 @@ export function DesignGallery() {
                     ))}
                   </ul>
                 </div>
+                <Button
+                  variant="yellow"
+                  className="w-full mt-4 focus:ring-2 focus:ring-yellow focus:ring-offset-2 btn-animate hover-glow"
+                  aria-label={`View detailed information for ${category.title}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    openModal(category);
+                  }}
+                >
+                  View Details
+                </Button>
               </div>
             </article>
           ))}
@@ -162,6 +229,199 @@ export function DesignGallery() {
           </div>
         </aside>
       </div>
+
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent
+          className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] max-w-7xl w-[98vw] max-h-[96vh] flex flex-col z-[9999] bg-white design-gallery-modal"
+          data-theme="yellow"
+          onKeyDown={handleKeyDown}
+          aria-labelledby="modal-title"
+          aria-describedby="modal-description"
+        >
+          {/* Skip link for screen readers */}
+          <a
+            href="#modal-content"
+            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-yellow text-yellow-foreground px-3 py-2 rounded-md text-sm font-medium z-50"
+          >
+            Skip to content
+          </a>
+
+          <DialogHeader className="flex-shrink-0">
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-3">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => navigateCategory('prev')}
+                  className="p-2 h-8 w-8 text-yellow-foreground hover:text-yellow-600"
+                  aria-label={`Previous design category: ${designCategories[(designCategories.findIndex(c => c.title === selectedCategory?.title) - 1 + designCategories.length) % designCategories.length]?.title}`}
+                  disabled={designCategories.length <= 1}
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </Button>
+                <div className="text-sm text-yellow-foreground" aria-live="polite">
+                  {designCategories.findIndex(c => c.title === selectedCategory?.title) + 1} of {designCategories.length}
+                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => navigateCategory('next')}
+                  className="p-2 h-8 w-8 text-yellow-foreground hover:text-yellow-600"
+                  aria-label={`Next design category: ${designCategories[(designCategories.findIndex(c => c.title === selectedCategory?.title) + 1) % designCategories.length]?.title}`}
+                  disabled={designCategories.length <= 1}
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Button>
+                <Button
+                  variant="yellow"
+                  size="sm"
+                  className="btn-animate hover-glow h-9 px-5"
+                  onClick={toggleScroll}
+                  aria-label={isScrolledToBottom ? "Scroll to top" : "Scroll to bottom"}
+                >
+                  {isScrolledToBottom ? "↑" : "↓"}
+                </Button>
+              </div>
+            </div>
+            <div className="flex items-center justify-between">
+              <DialogTitle id="modal-title" className="text-xl md:text-2xl text-yellow-foreground">{selectedCategory?.title}</DialogTitle>
+              <div className="text-xs text-yellow-foreground/60 flex items-center gap-1">
+                <span>Use</span>
+                <kbd className="px-2 py-0.5 bg-yellow/10 text-yellow-foreground rounded text-xs font-mono">←</kbd>
+                <kbd className="px-2 py-0.5 bg-yellow/10 text-yellow-foreground rounded text-xs font-mono">→</kbd>
+                <span>to navigate</span>
+                <span className="mx-1">•</span>
+                <kbd className="px-2 py-0.5 bg-yellow/10 text-yellow-foreground rounded text-xs font-mono">ESC</kbd>
+                <span>to close</span>
+              </div>
+            </div>
+          </DialogHeader>
+
+          <div 
+            className="flex-1 overflow-y-scroll yellow-scrollbar" 
+            id="modal-content"
+            style={{
+              scrollbarWidth: 'thin',
+              scrollbarColor: 'rgba(161, 98, 7, 0.8) rgba(251, 191, 36, 0.1)'
+            }}
+          >
+            <div className="space-y-6">
+              {/* Design Preview Section - Above project information */}
+              <div className="border-t pt-6">
+                <div className="flex items-center justify-between mb-3">
+                  <h4 className="font-semibold text-lg text-yellow-foreground">Design Category Preview</h4>
+                  <Button
+                    variant="yellow"
+                    size="sm"
+                    className="btn-animate hover-glow whitespace-nowrap h-9 px-5"
+                    onClick={() => {
+                      setIsModalOpen(false);
+                      setTimeout(() => {
+                        const element = document.getElementById('design-gallery');
+                        element?.scrollIntoView({ behavior: 'smooth' });
+                      }, 100);
+                    }}
+                    title="View full design gallery"
+                  >
+                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 3H3a2 2 0 00-2 2v14a2 2 0 002 2h18a2 2 0 002-2V5a2 2 0 00-2-2z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 14l-9-9-9 9" />
+                    </svg>
+                    Full Gallery
+                  </Button>
+                </div>
+                <div className="bg-yellow/5 p-6 rounded-xl">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="text-yellow-foreground text-4xl" role="img" aria-label={`${selectedCategory?.title} icon`}>
+                      {selectedCategory?.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-yellow-foreground mb-2">{selectedCategory?.title}</h3>
+                      <p className="text-yellow-foreground/60">{selectedCategory?.description}</p>
+                    </div>
+                  </div>
+                  <div className="grid gap-3">
+                    <h4 className="text-sm font-medium text-yellow-foreground">Featured Projects:</h4>
+                    {selectedCategory?.projects.map((project: string, index: number) => (
+                      <div key={index} className="flex items-center">
+                        <span className="w-1.5 h-1.5 bg-yellow rounded-full mr-2" role="presentation"></span>
+                        <span className="text-yellow-foreground/80 text-sm">{project}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Project Information - Below design preview */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="lg:col-span-2 space-y-4">
+                  <div>
+                    <h4 className="font-semibold mb-3 text-lg text-yellow-foreground">Project Overview</h4>
+                    <p className="text-yellow-foreground/60 leading-relaxed">
+                      {selectedCategory?.detailedDescription}
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-3 text-lg text-yellow-foreground">Key Deliverables</h4>
+                    <ul className="text-yellow-foreground/60 space-y-2 list-disc pl-6">
+                      <li>Comprehensive design research and user analysis</li>
+                      <li>High-fidelity mockups and interactive prototypes</li>
+                      <li>Design system documentation and guidelines</li>
+                      <li>User testing and iterative improvements</li>
+                      <li>Cross-platform responsive design solutions</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="font-semibold mb-3 text-lg text-yellow-foreground">Key Skills & Technologies</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedCategory?.skills.map((skill: string, index: number) => (
+                        <span key={index} className="px-3 py-1 bg-yellow/10 text-yellow-foreground rounded-full text-sm">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-3 text-lg text-yellow-foreground">Design Type</h4>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="px-3 py-1 bg-yellow/15 text-yellow-foreground rounded-full text-sm">
+                        {selectedCategory?.title}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>          {/* CTA Section at Bottom */}
+          <div className="flex-shrink-0 mt-4 pt-4 border-t border-yellow/20 flex flex-col sm:flex-row items-center justify-between gap-3 bg-yellow/5 -mx-6 px-6 py-4 -mb-6 rounded-b-xl">
+            <div className="text-center sm:text-left">
+              <h4 className="font-semibold text-base mb-1 text-yellow-foreground">Interested in similar design work?</h4>
+              <p className="text-sm text-yellow-foreground/60">Let's discuss how I can help with your project</p>
+            </div>
+            <Button
+              variant="yellow"
+              size="sm"
+              className="btn-animate hover-glow whitespace-nowrap h-9 px-5"
+              onClick={() => {
+                setIsModalOpen(false);
+                setTimeout(() => {
+                  const element = document.getElementById('contact');
+                  element?.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+              }}
+            >
+              Get In Touch
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }

@@ -162,7 +162,7 @@ iframe {
   --radius: 0.75rem;
 
   /* Button colors */
-  --yellow: 50 100% 48%; /* Bright marigold yellow */
+  --yellow: 47 100% 45%; /* Bright marigold yellow */
   --yellow-foreground: 25 40% 25%; /* Darker warm brown text */
   --orange: 25 95% 53%; /* Bright orange #F97316 */
   --orange-foreground: 25 85% 15%; /* Super dark orange text */
@@ -203,7 +203,7 @@ iframe {
   --ring: 158 45% 35%; /* Light green focus ring #34A853 */
 
   /* Button colors for dark mode */
-  --yellow: 50 100% 48%; /* Bright marigold yellow */
+  --yellow: 47 100% 45%; /* Bright marigold yellow */
   --yellow-foreground: 25 40% 25%; /* Darker warm brown text */
   --orange: 25 95% 53%; /* Bright orange #F97316 */
   --orange-foreground: 25 85% 15%; /* Super dark orange text */
@@ -1913,6 +1913,54 @@ div[role="dialog"].tech-writing-modal::-webkit-scrollbar-thumb:hover {
   ) !important;
   box-shadow:
     0 3px 6px rgba(194, 65, 12, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Yellow scrollbar for design gallery modals */
+[data-theme="yellow"]::-webkit-scrollbar,
+[data-theme="yellow"] *::-webkit-scrollbar {
+  width: 12px !important;
+  height: 12px !important;
+}
+
+[data-theme="yellow"]::-webkit-scrollbar-track,
+[data-theme="yellow"] *::-webkit-scrollbar-track {
+  background: rgba(251, 191, 36, 0.1) !important;
+  border-radius: 8px !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(251, 191, 36, 0.2) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="yellow"]::-webkit-scrollbar-thumb,
+[data-theme="yellow"] *::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    135deg,
+    rgba(161, 98, 7, 0.9) 0%,
+    rgba(161, 98, 7, 0.7) 50%,
+    rgba(161, 98, 7, 0.8) 100%
+  ) !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(251, 191, 36, 0.3) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  box-shadow:
+    0 2px 4px rgba(161, 98, 7, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  min-height: 20px !important;
+}
+
+[data-theme="yellow"]::-webkit-scrollbar-thumb:hover,
+[data-theme="yellow"] *::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(180, 120, 20, 0.95) 0%,
+    rgba(180, 120, 20, 0.8) 50%,
+    rgba(180, 120, 20, 0.9) 100%
+  ) !important;
+  box-shadow:
+    0 3px 6px rgba(161, 98, 7, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
 }
 
