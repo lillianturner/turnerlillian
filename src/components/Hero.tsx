@@ -1,10 +1,18 @@
+import { useState } from 'react';
 import { ArrowDown, Linkedin, Github, Mail } from 'lucide-react';
 import { Button } from './ui/button';
 import { LazyIframe } from './LazyIframe';
 
 export function Hero() {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden -mt-9" role="main" aria-labelledby="hero-heading">
+    <section 
+      id="home" 
+      className="min-h-screen flex items-center justify-center relative overflow-hidden -mt-9" 
+      role="main" 
+      aria-labelledby="hero-heading"
+    >
       {/* Processing Sketch Background - Lazy Loaded */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <LazyIframe
@@ -16,26 +24,49 @@ export function Hero() {
         />
       </div>
       
-      {/* Frosted Glass Circle Background - Absolute Position Centered in Hero Section */}
+      {/* Hover Detection Area - Matches glass circle size */}
       <div 
-        className="absolute top-1/2 left-1/2 w-[78vmin] h-[78vmin] pointer-events-none z-[5]"
+        className="absolute top-1/2 left-1/2 w-[78vmin] h-[78vmin] z-[5] cursor-default"
         style={{
           transform: 'translate(-50%, -50%)',
           borderRadius: '50%',
-          backdropFilter: 'blur(16px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(16px) saturate(180%)',
+          pointerEvents: 'auto',
+        }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        aria-hidden="true"
+      />
+
+      {/* Frosted Glass Circle Background - Visual Effect Only */}
+      <div 
+        className="absolute top-1/2 left-1/2 w-[78vmin] h-[78vmin] z-[5] cursor-default"
+        style={{
+          transform: isHovered 
+            ? 'translate(-50%, -50%) scale(1.02)' 
+            : 'translate(-50%, -50%) scale(1)',
+          borderRadius: '50%',
+          backdropFilter: isHovered ? 'blur(8px) saturate(160%)' : 'blur(6px) saturate(140%)',
+          WebkitBackdropFilter: isHovered ? 'blur(8px) saturate(160%)' : 'blur(6px) saturate(140%)',
           background: 'rgba(255, 255, 255, 0.25)',
           border: '1.75px solid rgba(255, 255, 255, 0.5)',
-          boxShadow: 'inset 0 2px 4px rgba(255, 255, 255, 0.3), inset 0 -2px 4px rgba(0, 0, 0, 0.05), 0 10px 40px rgba(0, 0, 0, 0.15), 0 25px 70px rgba(0, 0, 0, 0.2)',
+          boxShadow: isHovered 
+            ? 'inset 0 2px 6px rgba(255, 255, 255, 0.4), inset 0 -2px 6px rgba(0, 0, 0, 0.08), 0 12px 50px rgba(0, 0, 0, 0.18), 0 30px 80px rgba(0, 0, 0, 0.25)'
+            : 'inset 0 2px 4px rgba(255, 255, 255, 0.3), inset 0 -2px 4px rgba(0, 0, 0, 0.05), 0 10px 40px rgba(0, 0, 0, 0.15), 0 25px 70px rgba(0, 0, 0, 0.2)',
+          transition: 'all 0.7s ease-in-out',
+          pointerEvents: 'none',
         }}
         aria-hidden="true"
       />
       
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-6 relative z-20">
         <div className="max-w-xl mx-auto text-center relative">
           
           {/* Content - Sized to fit within 70vmin circle */}
-          <div className="space-y-6 relative">
+          <div 
+            className="space-y-6 relative"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
             <div className="space-y-4">
               <div className="px-6 mx-auto">
                 <p className="subheading text-primary text-lg mb-3" aria-label="Introduction">Lillian Turner</p>
