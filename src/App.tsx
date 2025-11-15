@@ -34,7 +34,7 @@ export default function App() {
       
       <div className="relative z-10">
         <Header />
-        <main id="main-content">
+        <main id="main-content" className="pt-16">
           <Hero />
           <UXCaseStudies />
           <TechnicalWriting />

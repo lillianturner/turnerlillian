@@ -9,7 +9,7 @@ export function Hero() {
   return (
     <section 
       id="home" 
-      className="min-h-screen flex items-center justify-center relative overflow-hidden mt-22" 
+      className="min-h-screen flex items-center justify-center relative overflow-hidden" 
       role="main" 
       aria-labelledby="hero-heading"
     >
