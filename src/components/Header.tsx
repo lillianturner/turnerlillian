@@ -140,9 +140,18 @@ export function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b" role="banner">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center py-4">
+      <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl" role="banner">
+        <div 
+          className="rounded-full px-6 py-3 shadow-lg"
+          style={{
+            background: 'rgba(255, 255, 255, 0.25)',
+            backdropFilter: 'blur(6px) saturate(140%)',
+            WebkitBackdropFilter: 'blur(6px) saturate(140%)',
+            border: '1.75px solid rgba(255, 255, 255, 0.5)',
+            boxShadow: 'inset 0 2px 4px rgba(255, 255, 255, 0.3), inset 0 -2px 4px rgba(0, 0, 0, 0.05), 0 10px 40px rgba(0, 0, 0, 0.15), 0 25px 70px rgba(0, 0, 0, 0.2)',
+          }}
+        >
+        <div className="flex items-center">
           {/* Left side - Navigation */}
           <nav className="hidden md:flex items-center space-x-2 flex-1" role="navigation" aria-label="Main navigation">
             {navigation.map((item) => (
@@ -207,28 +216,16 @@ export function Header() {
           </nav>
 
           {/* Center - Brand Name */}
-          <div className="flex items-center justify-center flex-1 md:flex-initial relative overflow-visible">
-            <div className="relative flex items-center justify-center z-10">
-              <a 
-                href="#home" 
-                onClick={(e) => handleNavClick(e, '#home')}
-                className="relative flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg transition-all-smooth" 
-                aria-label="Lillian Turner - Home"
-              >
-                <span className="text-xl font-semibold brand-name">LILLIAN TURNER</span>
-              </a>
-            </div>
+          <div className="flex items-center justify-center flex-1 md:flex-initial">
+            <a 
+              href="#home" 
+              onClick={(e) => handleNavClick(e, '#home')}
+              className="flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg transition-all-smooth" 
+              aria-label="Lillian Turner - Home"
+            >
+              <span className="text-xl font-semibold brand-name">LILLIAN TURNER</span>
+            </a>
           </div>
-
-          {/* Vines background - positioned fixed to viewport, centered in header area */}
-          <iframe
-            src="/processing-header/index.html"
-            className="fixed top-[62px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-32 pointer-events-none opacity-70 z-0"
-            title="Decorative vines background"
-            aria-hidden="true"
-            loading="lazy"
-            style={{ willChange: 'auto' }}
-          />
 
           {/* Right side - Resume/CV Buttons */}
           <div className="hidden md:flex items-center space-x-2 flex-1 justify-end">
@@ -278,10 +275,22 @@ export function Header() {
             </Button>
           </div>
         </div>
+        </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation - Floating below pill */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t" id="mobile-menu">
+          <div 
+            className="mt-2 rounded-2xl overflow-hidden shadow-lg"
+            style={{
+              background: 'rgba(255, 255, 255, 0.25)',
+              backdropFilter: 'blur(6px) saturate(140%)',
+              WebkitBackdropFilter: 'blur(6px) saturate(140%)',
+              border: '1.75px solid rgba(255, 255, 255, 0.5)',
+              boxShadow: 'inset 0 2px 4px rgba(255, 255, 255, 0.3), inset 0 -2px 4px rgba(0, 0, 0, 0.05), 0 10px 40px rgba(0, 0, 0, 0.15), 0 25px 70px rgba(0, 0, 0, 0.2)',
+            }}
+            id="mobile-menu"
+          >
+            <div className="py-4">
             <nav className="flex flex-col space-y-1" role="navigation" aria-label="Mobile navigation">
               {navigation.map((item) => (
                 <a
@@ -333,9 +342,9 @@ export function Header() {
                 CV
               </Button>
             </nav>
+            </div>
           </div>
         )}
-      </div>
       </header>
 
       {/* Resume Modal */}
