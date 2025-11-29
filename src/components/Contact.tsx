@@ -36,14 +36,23 @@ export function Contact() {
 
   return (
     <section id="contact" className="pt-28 pb-20 relative" aria-labelledby="contact-heading">
+      {/* Translucent Lavender Overlay */}
+      <div 
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          background: 'rgba(210, 180, 230, 0.15)',
+        }}
+        aria-hidden="true"
+      />
+      
       {/* Pill-shaped Glass Container Background */}
       <div 
-        className="absolute top-0 left-1/2 w-[80%] max-w-5xl h-64 z-0"
+        className="absolute top-0 left-1/2 w-[80%] max-w-5xl h-64 z-[5]"
         style={{
           transform: 'translate(-50%, 25%)',
           borderRadius: '200px',
-          backdropFilter: 'blur(20px) saturate(150%)',
-          WebkitBackdropFilter: 'blur(20px) saturate(150%)',
+          backdropFilter: 'blur(10px) saturate(150%)',
+          WebkitBackdropFilter: 'blur(10px) saturate(150%)',
           background: 'rgba(255, 255, 255, 0.4)',
           border: '1.75px solid rgba(255, 255, 255, 0.6)',
           boxShadow: 'inset 0 2px 4px rgba(255, 255, 255, 0.5), inset 0 -2px 4px rgba(0, 0, 0, 0.1), 0 10px 40px rgba(0, 0, 0, 0.08), 0 25px 70px rgba(0, 0, 0, 0.12)',
@@ -62,7 +71,15 @@ export function Contact() {
         </div>
         
         <div className="max-w-2xl mx-auto">
-          <form className="glass-card p-8 rounded-xl space-y-6" aria-label="Contact form" onSubmit={handleSubmit}>
+          <form 
+            className="glass-card p-8 rounded-xl space-y-6" 
+            aria-label="Contact form" 
+            onSubmit={handleSubmit}
+            style={{
+              backdropFilter: 'blur(16px)',
+              WebkitBackdropFilter: 'blur(16px)',
+            }}
+          >
             <div>
               <label htmlFor="name" className="block text-sm font-medium mb-2">Name <span className="text-red-500" aria-label="required">*</span></label>
               <input 

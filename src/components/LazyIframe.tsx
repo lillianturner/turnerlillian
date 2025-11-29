@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, memo } from 'react';
 
 interface LazyIframeProps {
   src: string;
@@ -8,7 +8,7 @@ interface LazyIframeProps {
   threshold?: number;
 }
 
-export function LazyIframe({ 
+export const LazyIframe = memo(function LazyIframe({ 
   src, 
   className = '', 
   title, 
@@ -18,6 +18,7 @@ export function LazyIframe({
   const [isLoaded, setIsLoaded] = useState(false);
   const [shouldLoad, setShouldLoad] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
     // Check if user prefers reduced motion
@@ -86,4 +87,4 @@ export function LazyIframe({
       )}
     </div>
   );
-}
+});

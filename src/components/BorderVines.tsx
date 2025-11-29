@@ -1,10 +1,11 @@
+import { memo } from 'react';
 import { LazyIframe } from './LazyIframe';
 
 interface BorderVinesProps {
   className?: string;
 }
 
-export function BorderVines({ className = '' }: BorderVinesProps) {
+export const BorderVines = memo(function BorderVines({ className = '' }: BorderVinesProps) {
   return (
     <div 
       className={`absolute inset-0 pointer-events-none -z-10 ${className}`}
@@ -18,4 +19,4 @@ export function BorderVines({ className = '' }: BorderVinesProps) {
       />
     </div>
   );
-}
+});
