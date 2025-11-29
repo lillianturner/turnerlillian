@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button } from './ui/button';
 import { Spinner } from './Spinner';
+import { BorderVines } from './BorderVines';
 
 export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -34,9 +35,25 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20" aria-labelledby="contact-heading">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+    <section id="contact" className="pt-28 pb-20 relative" aria-labelledby="contact-heading">
+      {/* Pill-shaped Glass Container Background */}
+      <div 
+        className="absolute top-0 left-1/2 w-[80%] max-w-5xl h-64 z-0"
+        style={{
+          transform: 'translate(-50%, 25%)',
+          borderRadius: '200px',
+          backdropFilter: 'blur(20px) saturate(150%)',
+          WebkitBackdropFilter: 'blur(20px) saturate(150%)',
+          background: 'rgba(255, 255, 255, 0.4)',
+          border: '1.75px solid rgba(255, 255, 255, 0.6)',
+          boxShadow: 'inset 0 2px 4px rgba(255, 255, 255, 0.5), inset 0 -2px 4px rgba(0, 0, 0, 0.1), 0 10px 40px rgba(0, 0, 0, 0.08), 0 25px 70px rgba(0, 0, 0, 0.12)',
+          pointerEvents: 'none',
+        }}
+        aria-hidden="true"
+      />
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-32">
           <p className="subheading text-primary text-lg mb-4">Get In Touch</p>
           <h2 id="contact-heading" className="text-4xl font-bold mb-4">Let's Work Together</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -119,6 +136,9 @@ export function Contact() {
           </form>
         </div>
       </div>
+      
+      {/* Decorative Border Vines */}
+      <BorderVines className="opacity-40" />
     </section>
   );
 }

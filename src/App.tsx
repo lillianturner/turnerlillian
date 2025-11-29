@@ -1,8 +1,4 @@
-import { Header } from './components/Header';
 import { Hero } from './components/Hero';
-import { UXCaseStudies } from './components/UXCaseStudies';
-import { TechnicalWriting } from './components/TechnicalWriting';
-import { DesignGallery } from './components/DesignGallery';
 import { About } from './components/About';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
@@ -15,7 +11,7 @@ export default function App() {
       <div className="min-h-screen relative">
         {/* Skip to main content link for accessibility */}
         <a 
-          href="#ux-studies" 
+          href="#about" 
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[10000] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-lg focus:shadow-lg focus:ring-2 focus:ring-ring focus:ring-offset-2"
         >
           Skip to main content
@@ -33,12 +29,8 @@ export default function App() {
       </div>
       
       <div className="relative z-10">
-        <Header />
-        <main id="main-content" className="pt-16">
+        <main id="main-content">
           <Hero />
-          <UXCaseStudies />
-          <TechnicalWriting />
-          <DesignGallery />
           <About />
           <Contact />
         </main>
